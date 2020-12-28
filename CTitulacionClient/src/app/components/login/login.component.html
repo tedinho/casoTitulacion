@@ -32,15 +32,16 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Inicio de Sesión</h1>
                                     </div>
-                                    <form class="user">
+
+                                    <form class="user" [formGroup]="loginForm" (ngSubmit)="login()">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Email">
+                                                placeholder="Email" formControlName="email">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Contraseña">
+                                                id="exampleInputPassword" placeholder="Contraseña" formControlName="password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -48,13 +49,12 @@
                                                 <label class="custom-control-label" for="customCheck">Recordar
                                                     </label>
                                             </div>
-                                        </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        </div>                                        
+                                        <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
                                         <hr>
                                       
                                     </form>
+
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Perdío Contraseña</a>

@@ -34,7 +34,7 @@ class RegisterController extends BaseController
         $input = $request->json()->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-        $user->roles()->attach(Role::where('name', 'user')->first());
+        $user->roles()->attach(Role::where('name', 'student')->first());
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
    
