@@ -12,6 +12,15 @@ Instalar componenetes de composer en la carpeta CtitulacionServer con el comando
 composer install 
 ```
 
+Después de instalar los componentes necesarios se debe copiar el archvio .env y se configura conforme a la base de datos que se va a utilizar
+
+Una vez configurado se debe ejecutar la siguiente linea para la correcta migración en la base de datos 
+
+```bash
+php artisan migrate:refresh --seed
+```
+
+
 Luego de ello ejecutar el comando para la generacion de una nueva key en la aplicacion
 
 ```bash
