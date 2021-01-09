@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 
    
-class RegisterController extends BaseController
+class AuthController extends BaseController
 {
     /**
      * Register api
@@ -38,7 +38,7 @@ class RegisterController extends BaseController
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
    
-        return $this->sendResponse($success, 'User register successfully.');
+        return $this->sendResponse($success, 'Usuario creado exitosamente.');
     }
    
     /**
@@ -52,12 +52,12 @@ class RegisterController extends BaseController
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             $success['name'] =  $user->name;
-            $success['rol'] = Auth::user()->roles->first()->name;                       
+            $success['rol'] = Auth::user()->roles->first()->description;                       
    
             return $this->sendResponse($success, 'User login successfully.');
         } 
         else{ 
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+            return $this->sendError('No autorizado.', ['error'=>'Error o contraseña incorrectas']);
         } 
     }
 }

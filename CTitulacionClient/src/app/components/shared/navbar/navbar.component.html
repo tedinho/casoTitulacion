@@ -22,8 +22,14 @@
 
 
         </div>
-        <button *ngIf="isLogin()" class="btn btn-outline-success" type="button" (click)="cerrarSesion()">Cerrar
-            Sesión</button>
+
+        <div *ngIf="isLogin()">
+            <small>{{ dataUser.user }} - {{ dataUser.role }} </small> 
+            <button class="btn btn-outline-success" type="button" (click)="cerrarSesion()">Cerrar
+                Sesión
+            </button>
+        </div>
+        
 
     </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 
@@ -7,9 +7,14 @@ import { AuthService } from 'src/app/Services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
-  constructor(private authService: AuthService) { }
+  existenMensajes: boolean;
+  mensaje: string;
+
+  constructor(private authService: AuthService) {
+    this.existenMensajes = false;
+   }
 
   //Formulario Reactivo de register
   registerForm = new FormGroup({
@@ -17,18 +22,26 @@ export class RegisterComponent implements OnInit {
     name: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
+    password_repeat: new FormControl('')
 
-  });
-
-  ngOnInit(): void {
-  }
+  });  
 
   register()
   {
-    // console.warn(this.registerForm.value);
     this.authService.postRegister(this.registerForm.value)
-      .subscribe(resp =>{
-        console.log(resp);
+      .subscribe(resp =>{        
+        this.mensaje = resp.message;
+        this.registerForm.reset();        
+        this.existenMensajes = true;
+      }, (errorServicio)=>{
+        if(errorServicio.message == "Http failure response for http://localhost:8000/api/register: 0 Unknown Error"){
+          this.mensaje = "Error con la conexión con el servidor, por favor contactese con el administrador";
+        }
+        else{
+          this.mensaje = "El usuario que trata de crear ya se encuentra registrado";          
+        }          
+        
+        this.existenMensajes = true;
       });
   }
 

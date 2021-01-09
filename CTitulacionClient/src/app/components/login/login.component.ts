@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -8,9 +8,14 @@ import { AuthService } from 'src/app/Services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  existenMensajes: boolean;
+  mensaje: string;
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.existenMensajes = false;
+   }
 
   //Formulario Reactivo de login
   loginForm = new FormGroup({
@@ -20,25 +25,19 @@ export class LoginComponent implements OnInit {
 
   });
 
-  ngOnInit(): void {
-  }
 
   login(){
     // console.warn(this.loginForm.value);
     this.authService.postLogin(this.loginForm.value)
       .subscribe(resp=>{
-        localStorage.setItem('token',resp.token);
-        this.router.navigate(['/home']);
-        console.log(resp);
-      },
-      err=>{
-        if(err.status = 400){
-          console.log('Usuario Contraseña Incorrecta');
-        }
-        else{
-          console.log(err);
-        }
-       });
+        localStorage.setItem('token', resp.data.token);
+        localStorage.setItem('rol', resp.data.rol);
+        localStorage.setItem('username', resp.data.name);        
+        this.router.navigate(['/home']);        
+      }, (errorServer) =>{
+        this.mensaje = errorServer.error.data.error;
+        this.existenMensajes = true;
+      });
   }
 
 

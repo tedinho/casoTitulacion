@@ -7,17 +7,28 @@ import { AuthService } from 'src/app/Services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent  {
 
-  constructor(private routes:Router, private authService: AuthService){}
+  dataUser: any;  
+
+  constructor(private routes:Router, private authService: AuthService){
+    this.obtenerDatos();
+  }
 
   cerrarSesion(){
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('rol');
     this.routes.navigate(['/login']);
   }
 
-  ngOnInit(): void {
-    
+  obtenerDatos(){
+    if(this.isLogin()){
+      this.dataUser = this.authService.obtenerUsuario();      
+    }
+    else{
+      this.dataUser = {};
+    }
   }
 
   isLogin(){

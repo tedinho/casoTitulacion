@@ -18,7 +18,7 @@ class CreateDocenteCarrerasTable extends Migration
             $table->bigInteger('usuario_id')->unsigned();
             $table->foreign('usuario_id')
                 ->references('id')
-                ->on('usuarios')
+                ->on('users')
                 ->onDelete('cascade');
             $table->bigInteger('carrera_id')->unsigned();
             $table->foreign('carrera_id')

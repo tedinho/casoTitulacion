@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  private api:string = "http://localhost:8001/api/";
+  private api:string = "http://localhost:8000/api/";
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +23,14 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  obtenerUsuario(){
+    let username = localStorage.getItem('username');
+    let rol = localStorage.getItem('rol');
+    return {
+      user: username,
+      role: rol
+    };
+  }
 
   estaLogeado():boolean{
     let tokenId = this.obtenerToken();
