@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from 'src/environments/environment';
+
+API_URL;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArchivosService {
 
-  private api:string = "http://localhost:8000/api/";
 
   constructor(private http: HttpClient) { }
 
   enviarArchivo(Archivo: any){
-    return this.http.post(`${this.api}storefile`, Archivo);
+    return this.http.post(`${API_URL}storefile`, Archivo);
   }
 }

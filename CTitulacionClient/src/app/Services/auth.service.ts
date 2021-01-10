@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from 'src/environments/environment';
  
+API_URL;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private api:string = "http://localhost:8000/api/";
+  
 
   constructor(private http: HttpClient) { }
 
   postRegister(Credenciales: Object){
-    return this.http.post<any>(`${this.api}register`, Credenciales)
+    return this.http.post<any>(`${API_URL}register`, Credenciales)
   }
 
 
   postLogin(Credenciales: Object){
-    return this.http.post<any>(`${this.api}login`, Credenciales)
+    return this.http.post<any>(`${API_URL}login`, Credenciales)
   }
 
   obtenerToken():string{
