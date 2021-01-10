@@ -1,4 +1,4 @@
-export interface Carrera {
+export class Carrera {
   id: number;
   nombre: string;
   codigo: string;

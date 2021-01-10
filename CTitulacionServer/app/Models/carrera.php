@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class carrera extends Model
 {
-    use HasFactory;
+    protected $table = 'carreras';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'nombre', 'codigo', 'tipo_carrera' , 'estado', 'id_coordinador'];
+    public $timestamps = false;
 }

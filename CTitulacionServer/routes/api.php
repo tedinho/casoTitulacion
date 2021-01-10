@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ArchivosController;
+use App\Http\Controllers\CarreraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::post('storefile', [ArchivosController::class, 'store']);
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::resource('carreras', CarreraController::class);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

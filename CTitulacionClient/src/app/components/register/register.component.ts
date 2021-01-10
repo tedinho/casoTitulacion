@@ -36,11 +36,8 @@ export class RegisterComponent {
       }, (errorServicio)=>{
         if(errorServicio.message == "Http failure response for http://localhost:8000/api/register: 0 Unknown Error"){
           this.mensaje = "Error con la conexión con el servidor, por favor contactese con el administrador";
-        }
-        else{
-          this.mensaje = "El usuario que trata de crear ya se encuentra registrado";          
-        }          
-        
+        }      
+        console.log(errorServicio);
         this.existenMensajes = true;
       });
   }

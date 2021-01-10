@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CarreraController extends Controller
 {
+
+    public function buscarPorNombre($nombre = 'Turismo')
+    {
+        return $this->post->where('nombre', 'like', '%' . $nombre . '%')->get();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        //
+        return carrera::get();
     }
 
     /**
@@ -35,7 +41,8 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return carrera::create($input);
     }
 
     /**
@@ -44,9 +51,9 @@ class CarreraController extends Controller
      * @param  \App\Models\carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function show(carrera $carrera)
+    public function show($id)
     {
-        //
+        return carrera::find($id);
     }
 
     /**
@@ -67,9 +74,11 @@ class CarreraController extends Controller
      * @param  \App\Models\carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, carrera $carrera)
+    public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        carrera::where('id', $id)->update($input);
+        return carrera::find($id);
     }
 
     /**

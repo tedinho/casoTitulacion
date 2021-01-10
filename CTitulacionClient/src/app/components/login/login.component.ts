@@ -35,7 +35,8 @@ export class LoginComponent {
         localStorage.setItem('username', resp.data.name);        
         this.router.navigate(['/home']);        
       }, (errorServer) =>{
-        this.mensaje = errorServer.error.data.error;
+        this.mensaje = errorServer;
+        console.log(errorServer);
         this.existenMensajes = true;
       });
   }
