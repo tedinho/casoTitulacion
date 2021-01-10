@@ -12,6 +12,13 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarreraFormComponent } from './carrera-form/carrera-form.component';
+import { IngresoProcesoComponent } from './components/ingreso-proceso/ingreso-proceso.component';
+import { GestionAnteproyectoComponent } from './components/gestion-anteproyecto/gestion-anteproyecto.component';
+import { AprobacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/aprobacion-anteproyecto.component';
+import { GestionProyectoComponent } from './components/gestion-proyecto/gestion-proyecto.component';
+import { GestionProyecto2Component } from './components/gestion-proyecto2/gestion-proyecto2.component';
+import { ProrrogaComponent } from './components/prorroga/prorroga.component';
+import { DefensaComponent } from './components/defensa/defensa.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +28,14 @@ import { CarreraFormComponent } from './carrera-form/carrera-form.component';
     HomeComponent,
     NavbarComponent,
     CarreraListaComponent,
-    CarreraFormComponent
+    CarreraFormComponent,
+    IngresoProcesoComponent,
+    GestionAnteproyectoComponent,
+    AprobacionAnteproyectoComponent,
+    GestionProyectoComponent,
+    GestionProyecto2Component,
+    ProrrogaComponent,
+    DefensaComponent
   ],
   imports: [
     BrowserModule,

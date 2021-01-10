@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Carrera } from 'src/app/models/carrera';
-const API_URL: string = 'http://localhost:8002/api/';
+const API_URL: string = 'http://localhost:8000/api/';
 
 @Injectable({
   providedIn: 'root'
