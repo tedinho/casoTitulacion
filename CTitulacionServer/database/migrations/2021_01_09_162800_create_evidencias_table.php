@@ -15,6 +15,7 @@ class CreateEvidenciasTable extends Migration
     {
         Schema::create('evidencias', function (Blueprint $table) {
             $table->id();
+            $table->string('ruta_archivo');
             $table->timestamps();
         });
     }

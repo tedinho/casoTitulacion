@@ -1,1 +1,21 @@
-<p>home works!</p>
+<div class="alert alert-success m-5" *ngIf="existenMensajes">
+    {{mensaje}} 
+</div>
+
+<div class="shadow p-3 mb-5 bg-white rounded m-5">
+
+    <form [formGroup]="subirArchivosForm" class="m-5" (ngSubmit)="enviarArchivo()">
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Subir Archivo</label>
+            <input 
+                type="file" 
+                class="form-control-file" 
+                id="arch" 
+                name="arch"
+                (change)="onFileSelect($event)"
+                >
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-block">Enviar archivo</button>
+    </form>
+
+</div>

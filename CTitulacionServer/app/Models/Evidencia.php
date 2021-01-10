@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class evidencia extends Model
+class Evidencia extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'ruta_archivo'
+    ];
 }
