@@ -16,9 +16,14 @@ import { IngresoProcesoComponent } from './components/ingreso-proceso/ingreso-pr
 import { GestionAnteproyectoComponent } from './components/gestion-anteproyecto/gestion-anteproyecto.component';
 import { AprobacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/aprobacion-anteproyecto.component';
 import { GestionProyectoComponent } from './components/gestion-proyecto/gestion-proyecto.component';
-import { GestionProyecto2Component } from './components/gestion-proyecto2/gestion-proyecto2.component';
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { DefensaComponent } from './components/defensa/defensa.component';
+import { InformeRevisorComponent } from './components/gestion-proyecto2/informe-revisor/informe-revisor.component';
+import { CargaDocsFinalProComponent } from './components/gestion-proyecto2/carga-docs-final-pro/carga-docs-final-pro.component';
+import { RegistroNotasComponent } from './components/gestion-proyecto2/registro-notas/registro-notas.component';
+import { ModificacionRevisorComponent } from './components/gestion-proyecto2/modificacion-revisor/modificacion-revisor.component';
+import { FallaFechaEntregaComponent } from './components/gestion-proyecto2/falla-fecha-entrega/falla-fecha-entrega.component';
+import { RegistroFechaComponent } from './components/gestion-proyecto2/registro-fecha/registro-fecha.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +38,14 @@ import { DefensaComponent } from './components/defensa/defensa.component';
     GestionAnteproyectoComponent,
     AprobacionAnteproyectoComponent,
     GestionProyectoComponent,
-    GestionProyecto2Component,
     ProrrogaComponent,
-    DefensaComponent
+    DefensaComponent,
+    InformeRevisorComponent,
+    CargaDocsFinalProComponent,
+    RegistroNotasComponent,
+    ModificacionRevisorComponent,
+    FallaFechaEntregaComponent,
+    RegistroFechaComponent
   ],
   imports: [
     BrowserModule,
