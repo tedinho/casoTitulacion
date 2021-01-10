@@ -25,7 +25,7 @@ class ArchivosController extends BaseController
               
             return response()->json([
                 "success" => true,
-                "message" => "File successfully uploaded",
+                "message" => "Archivo Subido exitosamente",
                 "file" => $file
             ]);
   
