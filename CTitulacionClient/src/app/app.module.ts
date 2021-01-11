@@ -19,6 +19,8 @@ import { GestionProyectoComponent } from './components/gestion-proyecto/gestion-
 import { GestionProyecto2Component } from './components/gestion-proyecto2/gestion-proyecto2.component';
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { DefensaComponent } from './components/defensa/defensa.component';
+import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
+import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { DefensaComponent } from './components/defensa/defensa.component';
     GestionProyectoComponent,
     GestionProyecto2Component,
     ProrrogaComponent,
-    DefensaComponent
+    DefensaComponent,
+    AnteproyectoFormComponent,
+    AnteproyectoListComponent
   ],
   imports: [
     BrowserModule,

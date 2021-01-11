@@ -6,6 +6,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService } from './authguard/auth-guard.service';
 import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
 import { CarreraFormComponent } from './carrera-form/carrera-form.component';
+import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component'
+import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component'
 const routes: Routes = [
    {
       path: 'login',
@@ -26,6 +28,16 @@ const routes: Routes = [
       component: CarreraFormComponent,
       canActivate: [AuthGuardService]
 
+   },
+   {
+      path: 'anteproyecto-form',
+      component: AnteproyectoFormComponent,
+      canActivate: [AuthGuardService]
+   },
+   {
+      path: 'anteproyecto-list',
+      component: AnteproyectoListComponent,
+      canActivate: [AuthGuardService]
    },
    {
       path: 'home',
