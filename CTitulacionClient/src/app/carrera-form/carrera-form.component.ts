@@ -12,7 +12,7 @@ import { CarreraService } from '../Services/carrera.service';
 })
 
 export class CarreraFormComponent implements OnInit {
-  carrera:Carrera;
+  carrera: Carrera;
   id: number;
   errorMessage: string;
   formularioCarrera = new FormGroup({
@@ -25,7 +25,7 @@ export class CarreraFormComponent implements OnInit {
 
   name = new FormControl('');
 
-  constructor(private carreraServicio:CarreraService,private route:ActivatedRoute, private router: Router) { }
+  constructor(private carreraServicio: CarreraService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.carrera = new Carrera();
@@ -35,8 +35,8 @@ export class CarreraFormComponent implements OnInit {
         this.id = params.id;
         if (this.id != null) {
           this.getCarrera();
-     }    
-  });
+        }
+      });
   }
 
 

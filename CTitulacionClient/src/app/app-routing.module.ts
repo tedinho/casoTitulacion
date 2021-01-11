@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService } from './authguard/auth-guard.service';
 import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
 import { CarreraFormComponent } from './carrera-form/carrera-form.component';
+import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -24,6 +25,12 @@ const routes: Routes = [
    {
       path: 'carrera-form',
       component: CarreraFormComponent,
+      canActivate: [AuthGuardService]
+
+   },
+   {
+      path: 'actualizar-datos',
+      component: ActualizarDatosComponent,
       canActivate: [AuthGuardService]
 
    },

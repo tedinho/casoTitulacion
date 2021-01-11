@@ -19,6 +19,7 @@ import { GestionProyectoComponent } from './components/gestion-proyecto/gestion-
 import { GestionProyecto2Component } from './components/gestion-proyecto2/gestion-proyecto2.component';
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { DefensaComponent } from './components/defensa/defensa.component';
+import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DefensaComponent } from './components/defensa/defensa.component';
     GestionProyectoComponent,
     GestionProyecto2Component,
     ProrrogaComponent,
-    DefensaComponent
+    DefensaComponent,
+    ActualizarDatosComponent
   ],
   imports: [
     BrowserModule,

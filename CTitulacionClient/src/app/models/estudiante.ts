@@ -1,7 +1,7 @@
 import { Carrera } from '.'
 
-export interface Estudiante {
+export class Estudiante {
   id: number;
-  career: Carrera[];
-  fechaIngreso: Date;
+  fecha_ingreso: Date;
+  actualizar_datos: boolean;
 }

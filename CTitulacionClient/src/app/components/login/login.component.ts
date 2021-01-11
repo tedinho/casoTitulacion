@@ -30,9 +30,11 @@ export class LoginComponent {
     // console.warn(this.loginForm.value);
     this.authService.postLogin(this.loginForm.value)
       .subscribe(resp=>{
+        console.log(resp.data);
         localStorage.setItem('token', resp.data.token);
         localStorage.setItem('rol', resp.data.rol);
-        localStorage.setItem('username', resp.data.name);        
+        localStorage.setItem('username', resp.data.name);  
+        localStorage.setItem('id', resp.data.id);        
         this.router.navigate(['/home']);        
       }, (errorServer) =>{
         this.mensaje = errorServer;

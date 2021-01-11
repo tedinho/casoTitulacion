@@ -35,7 +35,8 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return estudiante::create($input);
     }
 
     /**
@@ -44,9 +45,9 @@ class EstudianteController extends Controller
      * @param  \App\Models\estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function show(estudiante $estudiante)
+    public function show($id)
     {
-        //
+        return estudiante::find($id);
     }
 
     /**
@@ -67,9 +68,11 @@ class EstudianteController extends Controller
      * @param  \App\Models\estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, estudiante $estudiante)
+    public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        estudiante::where('id', $id)->update($input);
+        return estudiante::find($id);
     }
 
     /**
