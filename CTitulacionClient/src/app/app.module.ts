@@ -21,6 +21,8 @@ import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { DefensaComponent } from './components/defensa/defensa.component';
 import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
 import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
+import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
+import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/
     ProrrogaComponent,
     DefensaComponent,
     AnteproyectoFormComponent,
-    AnteproyectoListComponent
+    AnteproyectoListComponent,
+    RubricaComponent,
+    GuiasProyectoComponent
   ],
   imports: [
     BrowserModule,
