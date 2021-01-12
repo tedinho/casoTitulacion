@@ -14,8 +14,11 @@ class CreateAnteproyectosTable extends Migration
     public function up()
     {
         Schema::create('anteproyectos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('estado');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+            $table->bigInteger('id_solicitud')->unsigned();
         });
     }
 

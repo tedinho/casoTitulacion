@@ -14,7 +14,7 @@ class ObservacionAnteproyectoController extends Controller
      */
     public function index()
     {
-        //
+        return observacion_anteproyecto::get();
     }
 
     /**
@@ -35,7 +35,8 @@ class ObservacionAnteproyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return observacion_anteproyecto::create($input);
     }
 
     /**
@@ -46,7 +47,7 @@ class ObservacionAnteproyectoController extends Controller
      */
     public function show(observacion_anteproyecto $observacion_anteproyecto)
     {
-        //
+        return observacion_anteproyecto::find($id);
     }
 
     /**
@@ -69,7 +70,9 @@ class ObservacionAnteproyectoController extends Controller
      */
     public function update(Request $request, observacion_anteproyecto $observacion_anteproyecto)
     {
-        //
+        $input = $request->all();
+        observacion_anteproyecto::where('id', $id)->update($input);
+        return observacion_anteproyecto::find($id);
     }
 
     /**

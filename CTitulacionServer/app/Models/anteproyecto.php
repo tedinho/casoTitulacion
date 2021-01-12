@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class anteproyecto extends Model
 {
-    use HasFactory;
+    protected $table = 'anteproyectos';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'estado', 'fecha_inicio', 'fecha_fin' , 'observacion', 'fecha_rechazo', 'id_solicitud'];
+    public $timestamps = false;
 }

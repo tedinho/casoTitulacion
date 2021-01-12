@@ -14,7 +14,7 @@ class AnteproyectoController extends Controller
      */
     public function index()
     {
-        //
+        return anteproyecto::get();
     }
 
     /**
@@ -35,7 +35,8 @@ class AnteproyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return anteproyecto::create($input);
     }
 
     /**
@@ -46,7 +47,7 @@ class AnteproyectoController extends Controller
      */
     public function show(anteproyecto $anteproyecto)
     {
-        //
+        return anteproyecto::find($id);
     }
 
     /**
@@ -69,7 +70,9 @@ class AnteproyectoController extends Controller
      */
     public function update(Request $request, anteproyecto $anteproyecto)
     {
-        //
+        $input = $request->all();
+        anteproyecto::where('id', $id)->update($input);
+        return anteproyecto::find($id);
     }
 
     /**
