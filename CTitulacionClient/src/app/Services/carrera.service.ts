@@ -12,7 +12,7 @@ export class CarreraService {
   constructor(private http: HttpClient) { }
 
   getCarreras(nombre: string): Observable<Carrera[]> {
-    if (nombre != '') {
+    if (nombre != null && nombre != '') {
       return this.http.get<Carrera[]>(API_URL + 'carreras/porNombre/' + nombre);
     } else {
       return this.http.get<Carrera[]>(API_URL + 'carreras');

@@ -35,7 +35,13 @@ class EstudianteCarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return estudiante_carrera::create($input);
+    }
+
+    public function buscarPorIdEstudiante($idEstudiante)
+    {
+        return estudiante_carrera::where('estudiante_id', $idEstudiante)->get();
     }
 
     /**

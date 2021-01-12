@@ -20,6 +20,7 @@ import { GestionProyecto2Component } from './components/gestion-proyecto2/gestio
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { DefensaComponent } from './components/defensa/defensa.component';
 import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
+import { EstudianteCarreraComponent } from './estudiante-carrera/estudiante-carrera.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.co
     GestionProyecto2Component,
     ProrrogaComponent,
     DefensaComponent,
-    ActualizarDatosComponent
+    ActualizarDatosComponent,
+    EstudianteCarreraComponent
   ],
   imports: [
     BrowserModule,

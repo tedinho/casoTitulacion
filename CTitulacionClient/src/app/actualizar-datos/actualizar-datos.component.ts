@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EstudianteCarreraService } from '../Services/estudiante-carrera.service';
 import { EstudianteService } from '../Services/estudiante.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class ActualizarDatosComponent implements OnInit {
   });
   id: number;
 
-  constructor(private estudianteServicio: EstudianteService, private router: Router) { }
+  constructor(private estudianteServicio: EstudianteService, private router: Router, private estudianteCarreraServicio: EstudianteCarreraService) { }
 
   ngOnInit(): void {
     this.getEstudiante();
@@ -56,7 +57,17 @@ export class ActualizarDatosComponent implements OnInit {
       .actualizarEstudiante(this.formularioEstudiante.value, this.id)
       .subscribe(estudiante => {
         console.log(estudiante);
-        this.router.navigate(['/home']);
+        this.estudianteCarreraServicio
+          .buscarEstudianteCarreraPorIdEstudiante(this.id)
+          .subscribe(
+            (estudiantesCarrera: any) => {
+              if (estudiantesCarrera && estudiantesCarrera.length > 0) {
+                this.router.navigate(['/home']);
+              } else {
+                this.router.navigate(['/estudiante-carrera']);
+              }
+            }
+          );
       });
   }
 
