@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEvidenciasTable extends Migration
+class CreateInformesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateEvidenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('evidencias', function (Blueprint $table) {
+        Schema::create('informes', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_archivo');
-            $table->string('ruta_archivo');
-            $table->string('nota_archivo')->nullable();
+            $table->string('titulo');
+            $table->string('cuerpo');
+            $table->text('observacion');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
-
+            
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
@@ -35,6 +35,6 @@ class CreateEvidenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evidencias');
+        Schema::dropIfExists('informes');
     }
 }

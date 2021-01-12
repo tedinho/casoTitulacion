@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +8,24 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent  {
 
-  constructor() { }
+  constructor(private gestionService: GestionProyectoService) { }
+
+  //Formulario Reactivo de login
+  informeForm = new FormGroup({
+
+    titulo: new FormControl(''),
+    cuerpo: new FormControl(''),
+    observacion: new FormControl(''),
+    user_id: new FormControl('')
+
+  });
+
+  registrarInforme(){
+    console.warn(this.informeForm.value);
+    this.gestionService.registrarInforme(this.informeForm.value)
+      .subscribe(respu =>{
+        console.log(respu)
+      });
+  }
 
 }

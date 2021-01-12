@@ -11,6 +11,21 @@ use Validator,Redirect,Response,File;
 
 class ArchivosController extends BaseController
 {
+
+    public function index()
+    {
+        return Evidencia::get();
+    }
+
+    public function nota(Request $request, $id)
+    {
+        $documento = Evidencia::find($id);
+
+        $documento->nota_archivo = $request['nota_archivo'];
+
+        $documento->save();
+    }
+
     public function store(Request $request)
     {
         if ($request->file('file')) {
