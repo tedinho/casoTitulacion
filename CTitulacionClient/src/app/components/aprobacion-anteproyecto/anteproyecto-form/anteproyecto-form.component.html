@@ -1,1 +1,53 @@
-<p>anteproyecto-form works!</p>
+<br>
+<h1>Aprobación / Rechazo Anteproyecto</h1>
+<h4 class="card-subtitle text-muted">Insertar</h4>
+<hr>
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label>Estudiante</label>
+      <input type="text" class="form-control" placeholder="Estudiante">
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label>Estado</label>
+      <select class="form-control">
+        <option value="approved">Aprobado</option>
+        <option value="rejected">Rechazado</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label>Fecha inicio</label>
+      <input type="date" class="form-control" placeholder="Fecha inicio">
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label>Fecha fin</label>
+      <input type="date" class="form-control" placeholder="Fecha fin">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label>Fecha</label>
+      <input type="date" class="form-control" placeholder="Fecha">
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label>Observación</label>
+      <input type="text" class="form-control" placeholder="Observación">
+    </div>
+  </div>
+</div>
+<button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
+<button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
+  Cancelar
+</button>
