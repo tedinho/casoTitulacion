@@ -1,2 +1,24 @@
-<p>Hola lops works!</p>
+<br>
+<h1>Rúbrica</h1>
+<hr>
+<div class="row">
+  <div class="col">
+    <label>Formato de rúbrica</label>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary">
+        Descargar
+      </button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label>Subir Rúbrica</label>
+      <input type="file" class="form-control" placeholder="Estudiante">
+    </div>
+  </div>
+</div>
 <app-guias-proyecto></app-guias-proyecto>
+<br>
+<button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
+  Cancelar
+</button>
