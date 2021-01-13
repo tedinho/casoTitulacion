@@ -10,6 +10,6 @@ class Evidencia extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ruta_archivo', 'tipo_archivo', 'nota_archivo', 'user_id'
+        'ruta_archivo', 'tipo_archivo', 'nota_archivo', 'user_id', 'fecha_entrega', 'nombre_archivo'
     ];
 }

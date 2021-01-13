@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('storefile', [ArchivosController::class, 'store']);
-Route::get('storefile', [ArchivosController::class, 'index']);
+Route::post('getfile', [ArchivosController::class, 'obtenerDocumentos']);
 
 Route::post('informe', [InformeController::class, 'store']);
 Route::get('informe', [InformeController::class, 'index']);

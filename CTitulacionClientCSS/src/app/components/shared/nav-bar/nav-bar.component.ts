@@ -11,7 +11,7 @@ export class NavBarComponent  {
 
   cerrarSesion(){
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
+    localStorage.removeItem('email');
     localStorage.removeItem('rol');
     this.routes.navigate(['/login']);
   }

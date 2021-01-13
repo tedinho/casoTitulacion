@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 @Component({
   selector: 'app-modificacion-revisor',
@@ -6,6 +7,17 @@ import { Component } from '@angular/core';
 })
 export class ModificacionRevisorComponent  {
 
-  constructor() { }
+  revisores: any;
+
+  constructor(private revisoresService: GestionProyectoService) { 
+
+    this.revisoresService.obtenerRevisores()
+      .subscribe(resp =>{
+        console.log(resp);
+        this.revisores = resp;
+      }, (errorServicio)=>{
+        console.log(errorServicio);
+      });
+  }
 
 }

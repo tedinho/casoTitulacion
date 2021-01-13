@@ -7,6 +7,8 @@ import { API_URL } from 'src/environments/environment';
 })
 export class GestionProyectoService {
 
+  datos = {email: localStorage.getItem('email')};
+
   constructor(private http: HttpClient) { }
 
   registrarInforme(Informe: Object) {
@@ -24,6 +26,10 @@ export class GestionProyectoService {
 
   cargaDocumento(Archivo: any) {
     return this.http.post(`${API_URL}storefile`, Archivo);
+  }
+
+  obtenerDocumento() {
+    return this.http.post(`${API_URL}getfile`, this.datos);
   }
 
   registrarNota(Nota: Object) {

@@ -27,7 +27,7 @@ export class LoginComponent {
       .subscribe(resp => {
         localStorage.setItem('token', resp.data.token);
         localStorage.setItem('rol', resp.data.rol);
-        localStorage.setItem('username', resp.data.name);
+        localStorage.setItem('email', resp.data.email);
         console.log(resp);
         this.router.navigate(['/home']);
       }, (errorServer) => {

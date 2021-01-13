@@ -7,6 +7,8 @@ import { API_URL } from 'src/environments/environment';
 })
 export class LoginService {
 
+  roleAs:string;
+
   constructor(private http: HttpClient) { }
 
   login(Credenciales: Object){
@@ -18,7 +20,7 @@ export class LoginService {
   }
 
   obtenerUsuario(){
-    let username = localStorage.getItem('username');
+    let username = localStorage.getItem('email');
     let rol = localStorage.getItem('rol');
     return {
       user: username,
@@ -33,4 +35,10 @@ export class LoginService {
     }
     return true;
   }
+
+  getRole(){
+    this.roleAs = localStorage.getItem('rol')
+    return this.roleAs;
+  }
+
 }

@@ -29,16 +29,11 @@
                         <label for="notaTutor">Modificar Revisor</label>
                         <select class="form-control select2" style="width: 100%;">
                             <option selected="selected">Seleccione Revisor</option>
-                            <option>Ing. Estrella</option>
-                            <option>Ing. Prieto</option>
-                            <option>Ing. Chulde</option>
-                            <option>Ing. Tamayo</option>
-                            <option>Ing. Yanez</option>
-                            <option>Ing. Robayo</option>
+                            <option [value]="revisor.id" *ngFor="let revisor of revisores">{{ revisor.name }}</option>                            
                         </select>
                     </div>
                     
-                    <button class="btn btn-primary">Guardar Modificación</button>
+                    <button type="submit" class="btn btn-primary">Guardar Modificación</button>
                 </div>
 
             </div>

@@ -16,7 +16,7 @@ export class DashboardComponent  {
     titulo: new FormControl(''),
     cuerpo: new FormControl(''),
     observacion: new FormControl(''),
-    user_id: new FormControl('')
+    email: new FormControl(localStorage.getItem('email'))
 
   });
 

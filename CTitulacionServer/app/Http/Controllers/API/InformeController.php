@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\API;
-   
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
 use App\Http\Resources\Product as ProductResource;
 use App\Models\Informe;
 use App\Models\proyecto_titulacion;
+use App\Models\User;
 
 class InformeController extends BaseController
 {
@@ -28,13 +29,20 @@ class InformeController extends BaseController
      */
     public function store(Request $request)
     {
-        $input = $request->json()->all();
-   
-        $informe = Informe::create($input);
-   
+        $userId = User::where('email', $request['email'])
+            ->first();
+
+        $informe = new Informe();
+        $informe->titulo = $request['titulo'];  
+        $informe->cuerpo = $request['cuerpo'];
+        $informe->observacion = $request['observacion'];
+        $informe->user_id = $userId->id;
+
+        $informe->save();
+
         return $this->sendResponse(new ProductResource($informe), 'Informe creado exitosamente.');
-    } 
-   
+    }
+
     /**
      * Display the specified resource.
      *
@@ -44,14 +52,14 @@ class InformeController extends BaseController
     public function show($id)
     {
         $product = Informe::find($id);
-  
+
         if (is_null($product)) {
             return $this->sendError('Informe no encontrado.');
         }
-   
+
         return $this->sendResponse(new ProductResource($product), 'Informe recuperado exitosamente.');
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -61,12 +69,11 @@ class InformeController extends BaseController
      */
     public function update(Request $request)
     {
-
     }
 
-    public function fechaEntrega(Request $request){
-        
+    public function fechaEntrega(Request $request)
+    {
+
         return proyecto_titulacion::create($request);
     }
-   
 }

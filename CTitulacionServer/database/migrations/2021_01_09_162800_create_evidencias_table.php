@@ -17,7 +17,9 @@ class CreateEvidenciasTable extends Migration
             $table->id();
             $table->string('tipo_archivo');
             $table->string('ruta_archivo');
+            $table->string('nombre_archivo');            
             $table->string('nota_archivo')->nullable();
+            $table->date('fecha_entrega')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

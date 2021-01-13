@@ -14,7 +14,6 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
-import { RegistroNotaTutorComponent } from './components/registro-nota-tutor/registro-nota-tutor.component';
 import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { ModificacionRevisorComponent } from './components/modificacion-revisor/
     RegisterComponent,
     FechaEntregaFinalComponent,
     CargaDocumentoFinalComponent,
-    RegistroNotaTutorComponent,
     ModificacionRevisorComponent
   ],
   imports: [
