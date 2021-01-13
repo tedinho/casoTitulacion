@@ -23,6 +23,7 @@ import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/
 import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
+import { ObservacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/observacion-anteproyecto/observacion-anteproyecto.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proy
     AnteproyectoFormComponent,
     AnteproyectoListComponent,
     RubricaComponent,
-    GuiasProyectoComponent
+    GuiasProyectoComponent,
+    ObservacionAnteproyectoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,7 @@
-export interface Anteproyecto {
+export class Anteproyecto {
   id: number;
   estado: string;
-  fechaInicio: Date;
-  fechaTentativaFin: Date;
-  observacion: Observation; 
-}
-
-interface Observation {
-  id: number;
-  observacion: string;
-  fecha: Date;
+  fecha_inicio: Date;
+  fecha_fin: Date;
+  id_solicitud: number;
 }
