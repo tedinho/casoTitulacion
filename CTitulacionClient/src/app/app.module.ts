@@ -1,59 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { InjectionToken, NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule } from '@angular/core';
+
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
+import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './components/home/home.component';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { CarreraFormComponent } from './carrera-form/carrera-form.component';
-import { IngresoProcesoComponent } from './components/ingreso-proceso/ingreso-proceso.component';
-import { GestionAnteproyectoComponent } from './components/gestion-anteproyecto/gestion-anteproyecto.component';
-import { AprobacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/aprobacion-anteproyecto.component';
-import { GestionProyectoComponent } from './components/gestion-proyecto/gestion-proyecto.component';
-import { ProrrogaComponent } from './components/prorroga/prorroga.component';
-import { DefensaComponent } from './components/defensa/defensa.component';
-import { InformeRevisorComponent } from './components/gestion-proyecto2/informe-revisor/informe-revisor.component';
-import { CargaDocsFinalProComponent } from './components/gestion-proyecto2/carga-docs-final-pro/carga-docs-final-pro.component';
-import { RegistroNotasComponent } from './components/gestion-proyecto2/registro-notas/registro-notas.component';
-import { ModificacionRevisorComponent } from './components/gestion-proyecto2/modificacion-revisor/modificacion-revisor.component';
-import { FallaFechaEntregaComponent } from './components/gestion-proyecto2/falla-fecha-entrega/falla-fecha-entrega.component';
-import { RegistroFechaComponent } from './components/gestion-proyecto2/registro-fecha/registro-fecha.component';
+import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
+import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
+import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SideBarComponent,
+    NavBarComponent,
+    FooterComponent,
+    DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
-    NavbarComponent,
-    CarreraListaComponent,
-    CarreraFormComponent,
-    IngresoProcesoComponent,
-    GestionAnteproyectoComponent,
-    AprobacionAnteproyectoComponent,
-    GestionProyectoComponent,
-    ProrrogaComponent,
-    DefensaComponent,
-    InformeRevisorComponent,
-    CargaDocsFinalProComponent,
-    RegistroNotasComponent,
+    FechaEntregaFinalComponent,
+    CargaDocumentoFinalComponent,
     ModificacionRevisorComponent,
-    FallaFechaEntregaComponent,
-    RegistroFechaComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ReactiveFormsModule,
-    NgxPaginationModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
