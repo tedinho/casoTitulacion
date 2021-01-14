@@ -15,9 +15,9 @@ export class GestionProyectoService {
     return this.http.post(`${API_URL}informe`, Informe);
   }
 
-  registrarFechaEntrega(Fecha: Object)
+  registrarFechaEntrega(Fecha: Object, DocId?: number)
   {
-    return this.http.post(`${API_URL}`, Fecha);
+    return this.http.post(`${API_URL}fechaEntrega/${DocId}`, Fecha);
   }
 
   obtenerInforme() {
@@ -38,6 +38,10 @@ export class GestionProyectoService {
 
   obtenerRevisores() {
     return this.http.get(`${API_URL}revisor`);
+  }
+
+  obtenerEstudiantes() {
+    return this.http.get(`${API_URL}getStudents`);
   }
 
 }

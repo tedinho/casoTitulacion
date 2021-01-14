@@ -13,9 +13,9 @@ const routes: Routes = [
     { path: 'login',component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService] },    
-    { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService] },            
+    { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService] ,data : {role: 'Estudiante'} },    
     { path: 'modificacionRevisor', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: {
-        role: 'ROLE_ADMIN'
+        role: 'Estudiante'
       }},        
     { path: 'home',component: DashboardComponent, canActivate: [AuthGuardService] },
     { path: '**', redirectTo: 'home' }

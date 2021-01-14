@@ -8,6 +8,7 @@ use Validator;
 use App\Http\Resources\Product as ProductResource;
 use App\Models\Informe;
 use App\Models\proyecto_titulacion;
+use App\Models\Role;
 use App\Models\User;
 
 class InformeController extends BaseController
@@ -29,14 +30,11 @@ class InformeController extends BaseController
      */
     public function store(Request $request)
     {
-        $userId = User::where('email', $request['email'])
-            ->first();
-
         $informe = new Informe();
-        $informe->titulo = $request['titulo'];  
+        $informe->titulo = $request['titulo'];
         $informe->cuerpo = $request['cuerpo'];
         $informe->observacion = $request['observacion'];
-        $informe->user_id = $userId->id;
+        $informe->user_id = $request['id'];
 
         $informe->save();
 
@@ -71,9 +69,16 @@ class InformeController extends BaseController
     {
     }
 
-    public function fechaEntrega(Request $request)
-    {
+    public function obtenerEstudiantes($student = "student")
+    {      
+        $rol = $this->obtenerRol($student);
+        return $rol;
+    }
 
-        return proyecto_titulacion::create($request);
+    protected function obtenerRol($rol_nombre)
+    {
+        $rol = Role::with('users')->where('name', $rol_nombre)->first();
+        
+        return $rol['users'];
     }
 }

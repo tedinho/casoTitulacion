@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 @Component({
@@ -9,15 +10,29 @@ export class FechaEntregaFinalComponent {
   
   documentos: any;
 
+  fechaEntrega = new FormGroup({
+    fechaEntrega: new FormControl('')
+  });
+
   constructor(private documento: GestionProyectoService) {
 
     this.documento.obtenerDocumento()
-    .subscribe(respu => {
-      console.log(respu);
+    .subscribe(respu => {      
       this.documentos = respu;
     }, (errorSer) => {
       console.log(errorSer);
     });
+  }
+
+  guardarFecha()
+  {
+    //console.warn(this.fechaEntrega.value);
+    this.documento.registrarFechaEntrega(this.fechaEntrega.value)
+      .subscribe(resp =>{
+        console.log(resp);
+      }, (errorSrv)=>{
+        console.log(errorSrv);
+      });
   }
 
 }

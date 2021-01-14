@@ -27,7 +27,7 @@ import { ModificacionRevisorComponent } from './components/modificacion-revisor/
     RegisterComponent,
     FechaEntregaFinalComponent,
     CargaDocumentoFinalComponent,
-    ModificacionRevisorComponent
+    ModificacionRevisorComponent,
   ],
   imports: [
     BrowserModule,

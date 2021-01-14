@@ -8,7 +8,17 @@ import { GestionProyectoService } from 'src/app/services/gestion-proyecto.servic
 })
 export class DashboardComponent  {
 
-  constructor(private gestionService: GestionProyectoService) { }
+
+  estudiantes: any;
+
+  constructor(private gestionService: GestionProyectoService) {
+    this.gestionService.obtenerEstudiantes()  
+      .subscribe((resp: any) =>{
+        this.estudiantes = resp;
+      }, (errorSrv)=> {
+        console.log(errorSrv);
+      });
+   }
 
   //Formulario Reactivo de login
   informeForm = new FormGroup({
@@ -16,15 +26,17 @@ export class DashboardComponent  {
     titulo: new FormControl(''),
     cuerpo: new FormControl(''),
     observacion: new FormControl(''),
-    email: new FormControl(localStorage.getItem('email'))
+    id: new FormControl('')
 
   });
 
   registrarInforme(){
-    console.warn(this.informeForm.value);
+    //console.warn(this.informeForm.value);
     this.gestionService.registrarInforme(this.informeForm.value)
       .subscribe(respu =>{
-        console.log(respu)
+        //console.log(respu)
+      }, (errorSrv)=>{
+        console.log(errorSrv);
       });
   }
 
