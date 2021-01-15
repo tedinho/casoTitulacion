@@ -1,76 +1,71 @@
-<div class="content-header">
+<!-- Content Header (Page header) -->
+<section class="content-header">
     <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Dashboard</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard v1</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Estudiantes</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Simple Tables</li>
+          </ol>
+        </div>
+      </div>
     </div><!-- /.container-fluid -->
-</div>
-<!-- /.row -->
-<!-- Main content -->
-<section class="content">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Formulario</h3>
+  </section>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="fechaEntrega" (ngSubmit)="guardarFecha()">
-                        <div class="form-group">
-                            <label for="inputName">Fecha de entrega</label>
-                            <input type="date" id="inputName" class="form-control" formControlName="fechaEntrega">
-                        </div>
-                        <button type="submit" class="btn btn-outline-success">Guardar Registro</button>
-                    </form>
-
-                    <div class="form-group">
-                        <label for="inputClientCompany">Calificación</label>
-                        <input type="number" id="inputClientCompany" class="form-control">
-                    </div>
-                    <button class="btn btn-outline-success">Guardar Registro</button>
-                </div>
-                <!-- /.card-body -->
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+       
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Lista de Estudiantes</h3>
             </div>
-            <!-- /.card -->
-        </div>
-        <div class="col-md-6">
-            <div class="card card-secondary">
-                <div class="card-header">
-                    <h3 class="card-title">Archivos</h3>
+            <!-- ./card-header -->
+            <div class="card-body">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>              
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-widget="expandable-table" aria-expanded="false" *ngFor="let nombre of nombres; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ nombre.name }}</td>
+                    <td>{{ nombre.email }}</td>          
+                  </tr>
+                  <tr class="expandable-body">
+                    <td colspan="5" >
+                      <p *ngFor="let dato of datos">
+                        {{ dato.nombre_archivo }}
+                        {{ dato.nota_archivo }}
+                      </p>
+                        <p>
+                          
+                        <input type="text" name="" id="" class="form-control mb-2" placeholder="Registrar nota">
+                        <button type="submit" class="btn btn-success">Guardar Nota</button>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <h5 class="text-muted">Documentos cargados por el estudiante:</h5>
-                    <ul class="list-unstyled">
-                        <li *ngFor="let documento of documentos">
-                            <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i>
-                                {{ documento.nombre_archivo }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.card-body -->
+                        <input type="date" name="" id="" class="form-control mb-2 mt-2">
+                        <button type="submit" class="btn btn-success">Guardar Fecha</button>
+                      </p>
+                    </td>
+                  </tr>                                    
+                </tbody>
+              </table>
             </div>
-            <!-- /.card -->
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
         </div>
-    </div>
-</section>
+      </div>
+      <!-- /.row -->      
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->

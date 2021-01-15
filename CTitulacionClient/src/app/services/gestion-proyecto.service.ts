@@ -31,6 +31,9 @@ export class GestionProyectoService {
   obtenerDocumento() {
     return this.http.post(`${API_URL}getfile`, this.datos);
   }
+  obtenerUsuarioId(id: number) {
+    return this.http.get(`${API_URL}getUser/${id}`);
+  }
 
   registrarNota(Nota: Object) {
     return this.http.post(`${API_URL}storefile`, Nota);

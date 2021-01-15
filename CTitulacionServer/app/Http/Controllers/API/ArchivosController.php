@@ -15,13 +15,19 @@ use Validator, Redirect, Response, File;
 class ArchivosController extends BaseController
 {
 
-    public function obtenerDocumentos(Request $request)
+    public function obtenerDocumentos()
     {
-        $userId = User::where('email', $request['email'])
-            ->first();
+        $user = Evidencia::get();
 
-        return Evidencia::where('user_id', $userId->id)
+        return $user;
+    }
+
+    public function getUserById($id)
+    {
+        $user = User::where('id', $id)
             ->get();
+
+        return $user;
     }
 
 
@@ -67,7 +73,7 @@ class ArchivosController extends BaseController
         $fechaconf = FechaConfiguracione::where([
             ['fecha', '>=', date('Y-m-d')],
             ['user_id', $id],
-            ])
+        ])
             ->first();
 
         if ($fechaconf) {
@@ -81,9 +87,9 @@ class ArchivosController extends BaseController
 
     public function store(Request $request)
     {
-        
+
         $usuario = User::where('email', $request['email'])
-        ->first('id');        
+            ->first('id');
 
         if (!$usuario) {
             return response()->json([
