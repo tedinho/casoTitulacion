@@ -53,9 +53,9 @@ class AuthController extends BaseController
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             $success['name'] =  $user->name;
             $success['id'] =  $user->id;
-            $success['email'] =  $user->email;
             $success['rol'] = Auth::user()->roles->first()->description;                       
-            return $this->sendResponse($success, 'Usuario autenticado satisfactoriamente.');
+   
+            return $this->sendResponse($success, 'User login successfully.');
         } 
         else{ 
             return $this->sendError('No autorizado.', ['error'=>'Error o contraseña incorrectas']);

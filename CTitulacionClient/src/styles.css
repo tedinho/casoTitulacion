@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+.centrador{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+  }
+
+.imagen{
+      position: absolute;
+      width: 100px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+  }

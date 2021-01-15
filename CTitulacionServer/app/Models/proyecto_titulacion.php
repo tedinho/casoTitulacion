@@ -8,8 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class proyecto_titulacion extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'tipo_entrega', 'fecha_entrega',
-    ];
 }

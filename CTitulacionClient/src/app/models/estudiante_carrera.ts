@@ -1,3 +1,4 @@
+import { Carrera } from '.'
 
 export class EstudianteCarrera {
   id: number;
