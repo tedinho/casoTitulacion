@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEvidenciasTable extends Migration
+class CreateFechaConfiguracionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,19 @@ class CreateEvidenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('evidencias', function (Blueprint $table) {
+        Schema::create('fecha_configuraciones', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_archivo');
-            $table->string('ruta_archivo');
-            $table->string('nombre_archivo');            
-            $table->string('nota_archivo')->nullable();
+            $table->string('tipo_fecha')->nullable();
+            $table->date('fecha');
 
-            $table->unsignedBigInteger('user_id');
-
-            $table->timestamps();
+            $table->unsignedBigInteger('user_id');                
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
@@ -38,6 +36,6 @@ class CreateEvidenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evidencias');
+        Schema::dropIfExists('fecha_configuraciones');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Evidencia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
+use App\Models\FechaConfiguracione;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Validator, Redirect, Response, File;
@@ -23,29 +24,6 @@ class ArchivosController extends BaseController
             ->get();
     }
 
-    public function fechaEntrega(Request $request, $id)
-    {
-        $documentoVerificado = $this->verificarDocumento($id, 'fecha_entrega');
-
-        if ($documentoVerificado) {
-            $documento = Evidencia::find($id);
-            $documento->fecha_entrega = $request['fecha_entrega'];
-
-            $documento->save();
-
-            return response()->json([
-                "success" => true,
-                "message" => "La fecha de entrega se guardo",
-                "fecha_entrega" => $documento['fecha_entrega']
-            ]);
-        }
-        if (!$documentoVerificado) {
-            return response()->json([
-                "success" => false,
-                "message" => "La fecha de entrega ya fue asignada anteriormente",
-            ]);
-        }
-    }
 
     public function nota(Request $request, $id)
     {
@@ -86,34 +64,39 @@ class ArchivosController extends BaseController
 
     protected function verificarFecha($id)
     {
-        $documento = Evidencia::where('fecha_entrega', '>=', date('Y-m-d'))->find($id);
+        $fechaconf = FechaConfiguracione::where([
+            ['fecha', '>=', date('Y-m-d')],
+            ['user_id', $id],
+            ])
+            ->first();
 
-        if ($documento) {
+        if ($fechaconf) {
             return true;
         }
-        if (!$documento) {
+
+        if (!$fechaconf) {
             return false;
         }
     }
 
     public function store(Request $request)
     {
-
+        
         $usuario = User::where('email', $request['email'])
-            ->first('id');
+        ->first('id');        
 
-        $habilitadoFecha = $this->verificarFecha($usuario->id);
+        if (!$usuario) {
+            return response()->json([
+                "success" => false,
+                "message" => "No existe el correo",
+            ]);
+        }
+        if ($usuario) {
 
-        if ($habilitadoFecha) {
-            if (!$usuario) {
-                return response()->json([
-                    "success" => false,
-                    "message" => "No existe el correo",
-                ]);
-            }
-            if ($usuario) {
-                $arch = Evidencia::where('user_id', $usuario->id)
-                    ->first();
+            $arch = Evidencia::where('user_id', $usuario->id)
+                ->first();
+
+            if ($this->verificarFecha($usuario->id)) {
 
                 if ($arch) {
                     return response()->json([
@@ -143,23 +126,22 @@ class ArchivosController extends BaseController
                     }
                 }
             }
-        }
-        if (!$habilitadoFecha) {
-
-            return response()->json([
-                "success" => false,
-                "message" => "Su fecha para subir el documento a expirado."
-            ]);
+            if (!$this->verificarFecha($usuario)) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "No puede subir archivos tiempo expirado",
+                    "user" => $usuario
+                ]);
+            }
         }
     }
 
     public function descargarDocumento($id)
     {
         $documento = Evidencia::find($id);
-        
-        $ruta_archivo = $documento->ruta_archivo;        
-                
-        return response()->download($ruta_archivo);
 
+        $ruta_archivo = $documento->ruta_archivo;
+
+        return response()->download($ruta_archivo);
     }
 }

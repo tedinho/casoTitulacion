@@ -12,8 +12,7 @@ export class ModificacionRevisorComponent  {
   constructor(private revisoresService: GestionProyectoService) { 
 
     this.revisoresService.obtenerRevisores()
-      .subscribe(resp =>{
-        console.log(resp);
+      .subscribe(resp =>{        
         this.revisores = resp;
       }, (errorServicio)=>{
         console.log(errorServicio);

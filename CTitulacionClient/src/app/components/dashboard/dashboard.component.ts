@@ -31,10 +31,10 @@ export class DashboardComponent  {
   });
 
   registrarInforme(){
-    //console.warn(this.informeForm.value);
+    console.warn(this.informeForm.value);
     this.gestionService.registrarInforme(this.informeForm.value)
       .subscribe(respu =>{
-        //console.log(respu)
+        console.log(respu)
       }, (errorSrv)=>{
         console.log(errorSrv);
       });
