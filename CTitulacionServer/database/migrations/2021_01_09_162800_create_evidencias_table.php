@@ -15,19 +15,8 @@ class CreateEvidenciasTable extends Migration
     {
         Schema::create('evidencias', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_archivo');
             $table->string('ruta_archivo');
-            $table->string('nombre_archivo');            
-            $table->string('nota_archivo')->nullable();
-
-            $table->unsignedBigInteger('user_id');
-
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
         });
     }
 

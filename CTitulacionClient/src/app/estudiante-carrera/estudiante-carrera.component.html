@@ -1,0 +1,30 @@
+<form [formGroup]="formularioEstudianteCarrera" (ngSubmit)="guardar()">
+    <h4>Seleccionar Modalidad</h4>
+    <div class="form-group" style="max-width: 50%;">
+        <label for="carrera-select">Carrera:</label>
+        <select formControlName="carrera_id" id="carrera-select" class="form-control">
+            <option value="null">Seleccione</option>
+            <option [value]="c.id" *ngFor="let c of carreras" [ngValue]="c.id">
+                {{ c.nombre }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group" style="max-width: 50%;">
+        <label for="modalida-select">Modalidad:</label>
+        <select formControlName="modalidad" id="modalida-select" class="form-control">
+            <option value="null">Seleccione</option>
+            <option *ngFor="let m of modalidades" [ngValue]="m">
+                {{ m }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group" style="max-width: 30%;">
+        <label for="fecha-inicio">Fecha de inicio de carrera:</label>
+        <input type="date" class="form-control" id="fecha-inicio" formControlName="fecha_comienzo">
+    </div>
+    <div class="form-group" style="max-width: 30%;">
+        <label for="fecha-final">Fecha de egreso:</label>
+        <input type="date" class="form-control" id="fecha-final" formControlName="fecha_final">
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

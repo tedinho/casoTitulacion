@@ -1,29 +1,60 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
-import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
-import { AuthGuardService } from './services/auth/auth-guard.service';
-
-
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuardService } from './authguard/auth-guard.service';
+import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
+import { CarreraFormComponent } from './carrera-form/carrera-form.component';
+import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
+import { EstudianteCarreraComponent } from './estudiante-carrera/estudiante-carrera.component';
 const routes: Routes = [
-    { path: 'login',component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService] },    
-    { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService] ,data : {role: 'Estudiante'} },    
-    { path: 'modificacionRevisor', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: {
-        role: 'Estudiante'
-      }},        
-    { path: 'home',component: DashboardComponent, canActivate: [AuthGuardService] },
-    { path: '**', redirectTo: 'home' }
+   {
+      path: 'login',
+      component: LoginComponent,
+   },
+   {
+      path: 'register',
+      component: RegisterComponent
+   },
+   {
+      path: 'carrera-lista',
+      component: CarreraListaComponent,
+      canActivate: [AuthGuardService]
+
+   },
+   {
+      path: 'carrera-form',
+      component: CarreraFormComponent,
+      canActivate: [AuthGuardService]
+
+   },
+   {
+      path: 'actualizar-datos',
+      component: ActualizarDatosComponent,
+      canActivate: [AuthGuardService]
+
+   },
+   {
+      path: 'estudiante-carrera',
+      component: EstudianteCarreraComponent,
+      canActivate: [AuthGuardService]
+
+   },
+   {
+      path: 'home',
+      component: HomeComponent,
+      canActivate: [AuthGuardService]
+
+   },
+   {
+      path: '**', redirectTo: 'home'
+   }
 
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+   imports: [RouterModule.forRoot(routes)],
+   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -15,8 +15,6 @@ class CreateProyectoTitulacionsTable extends Migration
     {
         Schema::create('proyecto_titulacions', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_entrega');
-            $table->date('fecha_entrega');
             $table->timestamps();
         });
     }

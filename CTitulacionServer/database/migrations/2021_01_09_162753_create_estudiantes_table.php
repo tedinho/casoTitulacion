@@ -16,6 +16,12 @@ class CreateEstudiantesTable extends Migration
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
             $table->date('fecha_ingreso'); // fecha de ingreso al proceso
+            $table->boolean('actualizar_datos');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('correo');
+            $table->string('telefono');
+            $table->string('celular');
         });
     }
 

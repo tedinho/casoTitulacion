@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "CTitulacionClientCSS": {
+    "Project": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/CTitulacionClientCSS",
+            "outputPath": "dist/Project",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,9 +24,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -61,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CTitulacionClientCSS:build"
+            "browserTarget": "Project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "CTitulacionClientCSS:build:production"
+              "browserTarget": "Project:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CTitulacionClientCSS:build"
+            "browserTarget": "Project:build"
           }
         },
         "test": {
@@ -109,16 +113,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "CTitulacionClientCSS:serve"
+            "devServerTarget": "Project:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "CTitulacionClientCSS:serve:production"
+              "devServerTarget": "Project:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "CTitulacionClientCSS"
+  "defaultProject": "Project",
+  "cli": {
+    "analytics": false
+  }
 }

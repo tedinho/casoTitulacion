@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from './services/auth/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,8 @@ import { LoginService } from './services/auth/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'CTitulacionClientCSS';
-
-  constructor(private authService: LoginService){}
-
-  isLogin(){
-    return this.authService.estaLogeado();
-  }
+  title = 'Project';
 
 }
+
+
