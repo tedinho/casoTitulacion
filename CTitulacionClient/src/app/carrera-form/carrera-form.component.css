@@ -1,0 +1,12 @@
+h6{
+    border: solid;
+    background-color: #FFAEB4; 
+    border-color: #FFAEB4;;
+    color: red;
+}
+
+.boton-guardar {
+    width: 100%;
+    color: #fff;
+    background: #009688;
+}
