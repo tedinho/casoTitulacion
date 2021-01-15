@@ -43,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function evidencia()
+    {
+        return $this->hasOne(Evidencia::class);
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
