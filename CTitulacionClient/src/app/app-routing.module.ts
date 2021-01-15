@@ -12,10 +12,10 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
 const routes: Routes = [
     { path: 'login',component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService] },    
+    { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService], data: {role: 'Revisor'}},    
     { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService] ,data : {role: 'Estudiante'} },    
     { path: 'modificacionRevisor', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: {
-        role: 'Estudiante'
+        role: 'Revisor'
       }},        
     { path: 'home',component: DashboardComponent, canActivate: [AuthGuardService] },
     { path: '**', redirectTo: 'home' }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RegisterService } from 'src/app/services/auth/register.service';
 
+declare var Swal: any;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html'
@@ -24,9 +26,19 @@ export class RegisterComponent {
     this.authService.postRegister(this.registerForm.value)
       .subscribe(resp => {
         this.registerForm.reset();
-        console.log(resp);
+        Swal.fire({
+          title: 'Registro exitoso!',
+          text: 'Se ha registrado de forma exitosa, por favor inicia sesión',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
       }, (errorServicio) => {
-        console.log(errorServicio);
+        Swal.fire({
+          title: 'Registro fallido!',
+          text: 'No se a podido registrar, es posible que el usuario ya tenga una cuenta asignada',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
       });
   }
 

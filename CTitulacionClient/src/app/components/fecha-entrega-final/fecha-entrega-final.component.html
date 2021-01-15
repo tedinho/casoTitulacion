@@ -33,6 +33,7 @@
                                     <th>#</th>
                                     <th>Nombre</th>
                                     <th>Correo</th>
+                                    <th>Id  </th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let nombre of nombres; let i = index">
@@ -40,9 +41,10 @@
                                     <td>{{ i+1 }}</td>
                                     <td>{{ nombre.name }}</td>
                                     <td>{{ nombre.email }}</td>
+                                    <td>{{nombre.id}}</td>                                    
                                 </tr>
-                                <tr class="expandable-body" *ngFor="let dato of datos">
-                                    <td colspan="5" *ngIf="nombre.id == dato.id">
+                                <tr class="expandable-body" *ngFor="let dato of datos">                                    
+                                    <td colspan="5" *ngIf="nombre.id == dato.user_id">
                                         
                                             Nombre del archivo: <small>{{ dato.nombre_archivo }} </small>  | Nota de archivo <small>{{ dato.nota_archivo }}</small> 
                                                                                     
@@ -53,13 +55,10 @@
                                                     <button type="submit" class="btn btn-success" (click)="guardarNota(nombre.id)">Guardar Nota</button>
 
                                                 </div>
-                                            </form>     
-                                                                              
-
-                                            
+                                            </form>                                                                                                                               
                                        
                                     </td>
-                                    <td colspan="5" *ngIf="nombre.id != dato.id">
+                                    <td colspan="5" *ngIf="nombre.id != dato.user_id">
 
                                         <form [formGroup]="fechaEntrega">
                                             <input type="date" name="" id="" class="form-control mb-2 mt-2" formControlName="fecha">

@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/auth/login.service';
 
+declare var Swal:any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
@@ -27,11 +29,15 @@ export class LoginComponent {
       .subscribe(resp => {
         localStorage.setItem('token', resp.data.token);
         localStorage.setItem('rol', resp.data.rol);
-        localStorage.setItem('email', resp.data.email);
-        console.log(resp);
+        localStorage.setItem('email', resp.data.email);        
         this.router.navigate(['/home']);
       }, (errorServer) => {
-        console.log(errorServer);
+        Swal.fire({
+          title: 'Error!',
+          text: 'El usuario o contraseña no coinciden',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
       });
   }
 

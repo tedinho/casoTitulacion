@@ -7,6 +7,7 @@ import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/auth/login/login.component';

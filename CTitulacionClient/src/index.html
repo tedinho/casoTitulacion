@@ -35,8 +35,10 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed text-sm">
+  <div class="overlay-container"><div id="toast-container" class="toast-top-right toast-container"></div></div>
   <app-root></app-root>
-
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <!-- jQuery -->
   <script src="assets/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -70,15 +72,4 @@
 
   <script src="assets/plugins/select2/js/select2.full.min.js"></script>
 </body>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-  });
-</script>
 </html>
