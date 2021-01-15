@@ -24,11 +24,11 @@ class FechaConfiguracioneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $fecha = new FechaConfiguracione();
         $fecha->fecha = $request['fecha'];
-        $fecha->user_id = $request['user_id'];
+        $fecha->user_id = $id;
         $fecha->save();
 
         return response()->json([

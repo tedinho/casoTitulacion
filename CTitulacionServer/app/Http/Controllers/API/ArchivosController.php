@@ -15,11 +15,12 @@ use Validator, Redirect, Response, File;
 class ArchivosController extends BaseController
 {
 
-    public function obtenerDocumentos()
+    public function obtenerDocumentos($user_id)
     {
-        $user = Evidencia::get();
+        $docs = Evidencia::where('user_id', $user_id)
+            ->get();
 
-        return $user;
+        return $docs;
     }
 
     public function getUserById($id)

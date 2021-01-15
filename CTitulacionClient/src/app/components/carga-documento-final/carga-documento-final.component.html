@@ -21,7 +21,7 @@
                 <h3 class="card-title">Carga Documento(Final)</h3>
             </div>
             <div class="card-body p-0 m-3">
-                <form [formGroup]="cargarDocumento" (ngSubmit)="enviarArchivo()">
+                <form [formGroup]="cargarDocumento">
                     <!-- your steps content here -->
                     <div id="general-part" class="content">
                         <div class="input-group mb-2">
@@ -35,7 +35,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Subir Archivo</button>
+                        <button type="submit" class="btn btn-primary" (click)="enviarArchivo()">Subir Archivo</button>
                     </div>
                 </form>
 

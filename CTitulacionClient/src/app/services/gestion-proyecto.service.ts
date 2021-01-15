@@ -15,9 +15,9 @@ export class GestionProyectoService {
     return this.http.post(`${API_URL}informe`, Informe);
   }
 
-  registrarFechaEntrega(Fecha: Object, DocId?: number)
+  registrarFechaEntrega(Fecha: Object, DocId: number)
   {
-    return this.http.post(`${API_URL}fechaEntrega/${DocId}`, Fecha);
+    return this.http.post(`${API_URL}fecha/${DocId}`, Fecha);
   }
 
   obtenerInforme() {
@@ -28,15 +28,15 @@ export class GestionProyectoService {
     return this.http.post(`${API_URL}storefile`, Archivo);
   }
 
-  obtenerDocumento() {
-    return this.http.post(`${API_URL}getfile`, this.datos);
+  obtenerDocumento(user_id: number) {
+    return this.http.post(`${API_URL}getfile/${user_id}`, this.datos);
   }
   obtenerUsuarioId(id: number) {
     return this.http.get(`${API_URL}getUser/${id}`);
   }
 
-  registrarNota(Nota: Object) {
-    return this.http.post(`${API_URL}storefile`, Nota);
+  registrarNota(Nota: Object, Id: number) {
+    return this.http.post(`${API_URL}nota/${Id}`, Nota);
   }
 
   obtenerRevisores() {

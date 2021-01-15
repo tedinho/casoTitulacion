@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('storefile', [ArchivosController::class, 'store']);
-Route::post('getfile', [ArchivosController::class, 'obtenerDocumentos']);
+Route::post('getfile/{user_id}', [ArchivosController::class, 'obtenerDocumentos']);
 Route::get('getUser/{id}', [ArchivosController::class, 'getUserById']);
 
 //Route::get('downfile/{id}', [ArchivosController::class, 'descargarDocumento']);
@@ -32,7 +32,7 @@ Route::post('informe', [InformeController::class, 'store']);
 Route::get('informe', [InformeController::class, 'index']);
 Route::get('getStudents', [InformeController::class, 'obtenerEstudiantes']);
 
-Route::post('fecha', [FechaConfiguracioneController::class, 'store']);
+Route::post('fecha/{id}', [FechaConfiguracioneController::class, 'store']);
 Route::post('nota/{id}', [ArchivosController::class, 'nota']);
 
 Route::get('revisor', [RevisorController::class, 'index']);
