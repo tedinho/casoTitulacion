@@ -1,0 +1,48 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard v1</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Carga Documento(Final)</h3>
+            </div>
+            <div class="card-body p-0 m-3">
+                <form [formGroup]="cargarDocumento" (ngSubmit)="enviarArchivo()">
+                    <!-- your steps content here -->
+                    <div id="general-part" class="content">
+                        <div class="input-group mb-2">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="arch" name="arch"
+                                    (change)="onFileSelect($event)">
+                                <label class="custom-file-label" for="arch">Seleccionar Archivo</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Subir</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Subir Archivo</button>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->

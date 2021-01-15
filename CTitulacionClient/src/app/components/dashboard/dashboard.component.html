@@ -1,0 +1,57 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard v1</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Registro de Informe(Revisor)</h3>
+            </div>
+            <form [formGroup]="informeForm" (ngSubmit)="registrarInforme()">                
+
+                <div class="card-body p-0 m-3">
+
+                    <!-- your steps content here -->
+                    <div id="general-part" class="content">
+                        <div class="form-group">
+                            <label for="notaTutor">Seleccionar Estudiante para Informe</label>
+                            <select class="form-control" style="width: 100%;" formControlName="id">
+                                <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id">{{ estudiante.name }}</option>                            
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="titulo">Titulo del informe</label>
+                            <input type="text" class="form-control" id="titulo" placeholder="Titulo del informe" formControlName="titulo">
+                        </div>
+                        <div class="form-group">
+                            <label for="cuerpo">Cuerpo del informe</label>
+                            <input type="text" class="form-control" id="cuerpo" placeholder="Cuerpo del informe" formControlName="cuerpo">
+                        </div>
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones</label>
+                            <textarea name="observaciones" id="" cols="30" rows="10" class="form-control" formControlName="observacion"></textarea>
+                        </div>
+                        <button class="btn btn-primary">Enviar Informe</button>
+                    </div>
+
+                </div>
+            </form>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->

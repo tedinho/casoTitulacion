@@ -1,0 +1,68 @@
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="../../index2.html"><b>Yavirac</b>Titulación</a>
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nombres" formControlName="name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Correo Electrónico" formControlName="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Repetir Contraseña"
+                            formControlName="password_repeat">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col">
+                            <button type="submit" class="btn btn-outline-success btn-block">
+                                <i class="fas fa-save mr-2"></i>Registrar Usuario</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <div class="social-auth-links text-center">
+                    <p>- O -</p>
+                    <a [routerLink]="['/login']" class="btn btn-block btn-outline-primary">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Tienes cuenta Inicia Sesión
+                    </a>
+                </div>
+
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+    <!-- /.register-box -->
+
+</body>

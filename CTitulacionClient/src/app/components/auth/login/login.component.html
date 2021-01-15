@@ -1,0 +1,44 @@
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href=""><b>Yavirac</b>Titulación</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+
+                <form class="user" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Correo Electrónico" formControlName="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success btn-block">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión</button>                    
+
+                </form>
+
+                <div class="social-auth-links text-center mb-3">
+                    <p>- O -</p>
+                    <a [routerLink]="['/register']" class="btn btn-block btn-outline-primary">
+                        <i class="fas fa-save mr-2"></i> Registrarse
+                    </a>
+                </div>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+
+</body>
