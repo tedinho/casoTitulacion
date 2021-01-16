@@ -18,9 +18,23 @@ class ArchivosController extends BaseController
     public function obtenerDocumentos($user_id)
     {
         $docs = Evidencia::where('user_id', $user_id)
-            ->get();
+            ->first();
 
-        return $docs;
+        if($docs){
+            return Evidencia::where('user_id', $user_id)
+            ->get();           
+        }
+        if(!$docs){
+            $docu = new Evidencia();
+            $docu->id = "";
+            $docu->nombre_archivo = "";
+            $docu->ruta_archivo = "No se a subido ningun archivo";
+            $docu->nota_archivo = "";
+            $docu->user_id = $user_id;
+
+            return [$docu];
+        }
+
     }
 
     public function getUserById($id)

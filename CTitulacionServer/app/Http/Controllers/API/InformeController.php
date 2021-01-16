@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
 use App\Http\Resources\Product as ProductResource;
+use App\Models\FechaConfiguracione;
 use App\Models\Informe;
 use App\Models\proyecto_titulacion;
 use App\Models\Role;
@@ -30,6 +31,12 @@ class InformeController extends BaseController
      */
     public function store(Request $request)
     {
+        $fecha = new FechaConfiguracione();
+        $fecha->fecha = date('Y-m-d', strtotime("+8 days"));
+        $fecha->user_id = $request['id'];
+        
+        $fecha->save();
+        
         $informe = new Informe();
         $informe->titulo = $request['titulo'];
         $informe->cuerpo = $request['cuerpo'];
@@ -38,7 +45,12 @@ class InformeController extends BaseController
 
         $informe->save();
 
-        return $this->sendResponse(new ProductResource($informe), 'Informe creado exitosamente.');
+        return response()->json([
+            "success" => true,
+            "message" => "Se ha guardado el informe de forma correcta y se a asignado una fecha de entrega del proyecto",
+            "informe" => $informe,
+            "fecha" => $fecha
+        ]);
     }
 
     /**

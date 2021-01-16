@@ -40,7 +40,7 @@ export class ModificacionRevisorComponent  {
           text: `${respu['message']}`,
           icon: 'info',
           confirmButtonText: 'Ok'
-        });
+        });        
       }, (errorSrv)=>{
         console.log(errorSrv);
         Swal.fire({

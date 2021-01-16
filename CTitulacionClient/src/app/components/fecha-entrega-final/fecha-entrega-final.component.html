@@ -27,46 +27,47 @@
                     </div>
                     <!-- ./card-header -->
                     <div class="card-body">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
                                     <th>Correo</th>
-                                    <th>Id  </th>
+                                    <th>Acciones</th>
+                                    <th>Nombre archivo | Calificacion</th>
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let nombre of nombres; let i = index">
-                                <tr data-widget="expandable-table" aria-expanded="false">
-                                    <td>{{ i+1 }}</td>
-                                    <td>{{ nombre.name }}</td>
+                            <tbody>
+                                <tr *ngFor="let nombre of nombres; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{nombre.name}}</td>
                                     <td>{{ nombre.email }}</td>
-                                    <td>{{nombre.id}}</td>                                    
-                                </tr>
-                                <tr class="expandable-body" *ngFor="let dato of datos">                                    
-                                    <td colspan="5" *ngIf="nombre.id == dato.user_id">
-                                        
-                                            Nombre del archivo: <small>{{ dato.nombre_archivo }} </small>  | Nota de archivo <small>{{ dato.nota_archivo }}</small> 
-                                                                                    
-                                            <form [formGroup]="notaDocumento" *ngIf="dato.nota_archivo == null">
-                                                <div class="form-group">
-                                                    <input type="hidden" [value]="nombre.id"/>
-                                                    <input type="number" name="" id="" class="form-control mb-2" placeholder="Registrar nota" formControlName="nota_archivo"/>
-                                                    <button type="submit" class="btn btn-success" (click)="guardarNota(nombre.id)">Guardar Nota</button>
+                                    <td>Colocar Nota</td>
+                                    <td>
+                                        <table *ngFor="let dato of datos">
+                                            <tr *ngIf="dato.user_id == nombre.id">
+                                                <td *ngIf="dato.nombre_archivo">{{ dato.nombre_archivo }}</td>
+                                                <td *ngIf="dato.nota_archivo"> <small>{{ dato.nota_archivo }}/10
+                                                    </small></td>
+                                                <td *ngIf="!dato.nombre_archivo">
+                                                    {{ dato.ruta_archivo }}
+                                                </td>
+                                                <td *ngIf="!dato.nota_archivo && dato.id != 0">
+                                                    <form [formGroup]="notaDocumento">
+                                                        <div class="form-group">
+                                                            <input type="hidden" [value]="nombre.id" />
+                                                            <input type="number" name="" id="" class="form-control mb-2"
+                                                                placeholder="Registrar nota"
+                                                                formControlName="nota_archivo" />
+                                                            <button type="submit" class="btn btn-success"
+                                                                (click)="guardarNota(nombre.id)">Guardar Nota</button>
 
-                                                </div>
-                                            </form>                                                                                                                               
-                                       
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
-                                    <td colspan="5" *ngIf="nombre.id != dato.user_id">
-
-                                        <form [formGroup]="fechaEntrega">
-                                            <input type="date" name="" id="" class="form-control mb-2 mt-2" formControlName="fecha">
-                                        <button type="submit" class="btn btn-success" (click)="guardarFecha(nombre.id)">Guardar Fecha</button>
-                                        </form>
-                                        
-                                    </td>
-                                    
                                 </tr>
                             </tbody>
                         </table>

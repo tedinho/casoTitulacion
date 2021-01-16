@@ -15,11 +15,6 @@ export class GestionProyectoService {
     return this.http.post(`${API_URL}informe`, Informe);
   }
 
-  registrarFechaEntrega(Fecha: Object, DocId: number)
-  {
-    return this.http.post(`${API_URL}fecha/${DocId}`, Fecha);
-  }
-
   obtenerInforme() {
     return this.http.get(`${API_URL}informe`);
   }
