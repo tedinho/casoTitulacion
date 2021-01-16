@@ -9,6 +9,6 @@ class carrera extends Model
 {
     protected $table = 'carreras';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'nombre', 'codigo', 'tipo_carrera' , 'estado', 'id_coordinador'];
+    protected $fillable = ['id', 'nombre', 'codigo', 'tipo_carrera', 'estado', 'id_coordinador', 'opcion_graduacion'];
     public $timestamps = false;
 }

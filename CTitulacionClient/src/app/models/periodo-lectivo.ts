@@ -1,6 +1,7 @@
-export interface PeriodoLectivo {
+export class PeriodoLectivo {
   id: number;
   nombre: string;
-  fechaInicio: Date;
-  fechaFin: Date;
+  fecha_inicio: Date;
+  fecha_fin: Date;
+  carrera_id: number;
 }

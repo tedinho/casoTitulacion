@@ -8,6 +8,7 @@ import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
 import { CarreraFormComponent } from './carrera-form/carrera-form.component';
 import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
 import { EstudianteCarreraComponent } from './estudiante-carrera/estudiante-carrera.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -43,7 +44,7 @@ const routes: Routes = [
    },
    {
       path: 'home',
-      component: HomeComponent,
+      component: DashboardComponent,
       canActivate: [AuthGuardService]
 
    },

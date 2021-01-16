@@ -1,62 +1,45 @@
-<div class="alert alert-danger m-5" *ngIf="existenMensajes">
-    {{mensaje}} 
-</div>
-<div class="row justify-content-center">
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href=""><b>Yavirac</b>Titulación</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
 
-    <div class="col-xl-10 col-lg-12 col-md-9">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-
-                <div class="row">
-                    <div class="col-lg-6 d-none d-lg-block">
-                        <!--  <img src="../../resources/picture_yavirac.png" alt=""> -->
-                        <img class="centrador"
-                            src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
-                            alt="login">
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Inicio de Sesión</h1>
+                <form class="user" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Correo Electrónico"
+                            formControlName="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
                             </div>
-
-                            <form class="user" [formGroup]="loginForm" (ngSubmit)="login()">
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        aria-describedby="emailHelp" placeholder="Email" formControlName="email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Contraseña" formControlName="password">
-                                </div>
-                                <!-- <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Recordar
-                                                    </label>
-                                            </div>
-                                        </div>                                         -->
-                                <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
-                                <hr>
-
-                            </form>
-
-                            <!-- <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="">Perdío Contraseña</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="">Ya tiene una cuenta? Login!</a>
-                                    </div> -->
                         </div>
                     </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success btn-block">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión</button>
+
+                </form>
+
+                <div class="social-auth-links text-center mb-3">
+                    <p>- O -</p>
+                    <a [routerLink]="['/register']" class="btn btn-block btn-outline-primary">
+                        <i class="fas fa-save mr-2"></i> Registrarse
+                    </a>
                 </div>
             </div>
+            <!-- /.login-card-body -->
         </div>
-
     </div>
+    <!-- /.login-box -->
 
-</div>
+</body>

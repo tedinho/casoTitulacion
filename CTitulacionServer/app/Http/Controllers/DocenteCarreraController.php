@@ -17,6 +17,16 @@ class DocenteCarreraController extends Controller
         //
     }
 
+    public function buscarDocentesPorIdCarrera($idCarrera)
+    {
+        $docentes = docente_carrera::where('carrera_id', $idCarrera)->get();
+        for ($i = 0; $i < count($docentes); $i++) {
+            $nivel = $docentes[$i]->usuario;
+            $nivel->carrera;
+        }
+        return $docentes;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +45,8 @@ class DocenteCarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return docente_carrera::create($input);
     }
 
     /**

@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarreraFormComponent } from './carrera-form/carrera-form.component';
@@ -21,6 +20,10 @@ import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { DefensaComponent } from './components/defensa/defensa.component';
 import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
 import { EstudianteCarreraComponent } from './estudiante-carrera/estudiante-carrera.component';
+import { NavBarComponent } from './components/shared/shared/nav-bar/nav-bar.component';
+import { FooterComponent } from './components/shared/shared/footer/footer.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SideBarComponent } from './components/shared/shared/side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,7 @@ import { EstudianteCarreraComponent } from './estudiante-carrera/estudiante-carr
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    NavbarComponent,
+    NavBarComponent,
     CarreraListaComponent,
     CarreraFormComponent,
     IngresoProcesoComponent,
@@ -38,8 +41,10 @@ import { EstudianteCarreraComponent } from './estudiante-carrera/estudiante-carr
     GestionProyecto2Component,
     ProrrogaComponent,
     DefensaComponent,
-    ActualizarDatosComponent,
-    EstudianteCarreraComponent
+    ActualizarDatosComponent, FooterComponent,
+    EstudianteCarreraComponent,
+    DashboardComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,

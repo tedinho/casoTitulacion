@@ -17,6 +17,7 @@ class CreateCarrerasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('tipo_carrera');
+            $table->string('opcion_graduacion');
             $table->string('codigo');
             $table->string('estado');
             $table->bigInteger('id_coordinador')->unsigned();

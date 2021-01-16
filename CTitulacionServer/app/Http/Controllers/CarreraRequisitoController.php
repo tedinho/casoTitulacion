@@ -27,6 +27,11 @@ class CarreraRequisitoController extends Controller
         //
     }
 
+    public function buscarRequisitosPorIdCarrera($idCarrera)
+    {
+        return carrera_requisito::where('carrera_id', $idCarrera)->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +40,8 @@ class CarreraRequisitoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return carrera_requisito::create($input);
     }
 
     /**

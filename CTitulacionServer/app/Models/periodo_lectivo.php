@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class periodo_lectivo extends Model
 {
-    use HasFactory;
+    protected $table = 'periodo_lectivos';
+    protected $primaryKey = 'id';
+    protected $fillable = ['id', 'nombre', 'fecha_inicio', 'fecha_fin', 'carrera_id'];
+    public $timestamps = false;
 }

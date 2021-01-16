@@ -27,6 +27,11 @@ class PeriodoLectivoController extends Controller
         //
     }
 
+    public function buscarPeriodosLectivoPorIdCarrera($idCarrera)
+    {
+        return periodo_lectivo::where('carrera_id', $idCarrera)->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +40,8 @@ class PeriodoLectivoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return periodo_lectivo::create($input);
     }
 
     /**

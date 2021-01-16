@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
+import { LoginService } from 'src/app/Services/login.service';
+import { UsuarioService } from 'src/app/Services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +15,9 @@ export class LoginComponent {
   existenMensajes: boolean;
   mensaje: string;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private loginService: LoginService) {
     this.existenMensajes = false;
-   }
+  }
 
   //Formulario Reactivo de login
   loginForm = new FormGroup({
@@ -26,17 +28,18 @@ export class LoginComponent {
   });
 
 
-  login(){
+  login() {
     // console.warn(this.loginForm.value);
-    this.authService.postLogin(this.loginForm.value)
-      .subscribe(resp=>{
+    this.loginService.login(this.loginForm.value)
+      .subscribe(resp => {
         console.log(resp.data);
         localStorage.setItem('token', resp.data.token);
         localStorage.setItem('rol', resp.data.rol);
-        localStorage.setItem('username', resp.data.name);  
-        localStorage.setItem('id', resp.data.id);        
-        this.router.navigate(['/home']);        
-      }, (errorServer) =>{
+        localStorage.setItem('username', resp.data.name);
+        localStorage.setItem('id', resp.data.id);
+        localStorage.setItem('email', resp.data.name);
+        this.router.navigate(['/home']);
+      }, (errorServer) => {
         this.mensaje = errorServer;
         console.log(errorServer);
         this.existenMensajes = true;

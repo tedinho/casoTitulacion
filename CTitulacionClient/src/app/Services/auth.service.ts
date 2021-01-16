@@ -1,29 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
- 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private api:string = "http://localhost:8000/api/";
+  private api: string = "http://localhost:8000/api/";
 
   constructor(private http: HttpClient) { }
 
-  postRegister(Credenciales: Object){
+  postRegister(Credenciales: Object) {
     return this.http.post<any>(`${this.api}register`, Credenciales)
   }
 
 
-  postLogin(Credenciales: Object){
+  postLogin(Credenciales: Object) {
     return this.http.post<any>(`${this.api}login`, Credenciales)
   }
 
-  obtenerToken():string{
+  guardarDocente(Credenciales: Object) {
+    return this.http.post(`${this.api}registrar-docente`, Credenciales);
+  }
+
+  obtenerToken(): string {
     return localStorage.getItem('token');
   }
 
-  obtenerUsuario(){
+  obtenerUsuario() {
     let username = localStorage.getItem('username');
     let rol = localStorage.getItem('rol');
     return {
@@ -32,9 +36,9 @@ export class AuthService {
     };
   }
 
-  estaLogeado():boolean{
+  estaLogeado(): boolean {
     let tokenId = this.obtenerToken();
-    if(!tokenId){
+    if (!tokenId) {
       return false;
     }
     return true;

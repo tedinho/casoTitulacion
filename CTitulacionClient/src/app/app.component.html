@@ -1,4 +1,22 @@
-<app-navbar></app-navbar>
-<div class="container">
+<div class="wrapper" *ngIf="isLogin()">
+    <app-nav-bar></app-nav-bar>
+    <app-side-bar></app-side-bar>
+
+    <div class="overlay-container">
+        <div id="toast-container" class="toast-top-right toast-container">
+
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <section class="content">
+
+            <router-outlet></router-outlet>
+        </section>
+    </div>
+
+    <app-footer></app-footer>
+</div>
+<div *ngIf="!isLogin()">
     <router-outlet></router-outlet>
 </div>
