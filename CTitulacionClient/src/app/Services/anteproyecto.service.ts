@@ -12,11 +12,7 @@ export class AnteproyectoService {
   constructor(private http: HttpClient) { }
 
   getAnteproyectos(nombre: string): Observable<Anteproyecto[]> {
-    if (nombre != '') {
-      return this.http.get<Anteproyecto[]>(API_URL + 'anteproyectos/porNombre/' + nombre);
-    } else {
-      return this.http.get<Anteproyecto[]>(API_URL + 'anteproyectos');
-    }
+    return this.http.get<Anteproyecto[]>(API_URL + 'anteproyectos');
   }
 
   buscarAnteproyecto(llave: number): Observable<Anteproyecto> {

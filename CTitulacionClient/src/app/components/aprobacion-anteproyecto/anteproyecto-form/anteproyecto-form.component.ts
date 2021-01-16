@@ -21,12 +21,15 @@ export class AnteproyectoFormComponent implements OnInit {
     fecha_fin: new FormControl(''),
     id_solicitud: new FormControl(1),
   });
+  
+  estado: string[];
 
   name = new FormControl('');
 
   constructor(private anteproyectoServicio:AnteproyectoService,private route:ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.getEstado();
     this.anteproyecto = new Anteproyecto();
 
     this.route.queryParams
@@ -36,6 +39,10 @@ export class AnteproyectoFormComponent implements OnInit {
           this.getAnteproyecto();
      }    
   });
+  }
+
+  getEstado() {
+    this.estado = ['Aprobado', 'Rechazado'];
   }
 
   guardar() {

@@ -1,14 +1,18 @@
-<div class="row">
+<h2>Observación Anteproyecto</h2>
+<hr>
+<form [formGroup]="formularioObservacionAnteproyecto" (ngSubmit)="guardar()">
+  <div class="row">
     <div class="col">
       <div class="form-group">
         <label>Fecha</label>
-        <input type="date" class="form-control" placeholder="Fecha">
+        <input type="date" class="form-control" formControlName="fecha">
       </div>
     </div>
     <div class="col">
       <div class="form-group">
         <label>Observación</label>
-        <input type="text" class="form-control" placeholder="Observación">
+        <input type="text" class="form-control" placeholder="Observación" formControlName="observacion">
       </div>
     </div>
   </div>
+</form>

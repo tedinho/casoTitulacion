@@ -14,8 +14,9 @@
       <div class="form-group">
         <label>Estado</label>
         <select class="form-control" formControlName="estado">
-          <option value="approved">Aprobado</option>
-          <option value="rejected">Rechazado</option>
+          <option value="" selected disabled>Seleccionar estado</option>
+          <option *ngFor="let est of estado" [ngValue]="est">
+            {{est}}
         </select>
       </div>
     </div>
@@ -34,7 +35,9 @@
       </div>
     </div>
   </div>
-  <app-observacion-anteproyecto></app-observacion-anteproyecto>
+  <div>
+    <app-observacion-anteproyecto></app-observacion-anteproyecto>
+  </div>
   <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
   <button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
     Cancelar
