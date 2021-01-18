@@ -1,29 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { InjectionToken, NgModule } from '@angular/core';
+import { InjectionToken, NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
+import { CarreraListaComponent } from './components/carrera-lista/carrera-lista.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { CarreraFormComponent } from './carrera-form/carrera-form.component';
-import { IngresoProcesoComponent } from './components/ingreso-proceso/ingreso-proceso.component';
-import { GestionAnteproyectoComponent } from './components/gestion-anteproyecto/gestion-anteproyecto.component';
-import { AprobacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/aprobacion-anteproyecto.component';
-import { GestionProyectoComponent } from './components/gestion-proyecto/gestion-proyecto.component';
-import { GestionProyecto2Component } from './components/gestion-proyecto2/gestion-proyecto2.component';
-import { ProrrogaComponent } from './components/prorroga/prorroga.component';
-import { DefensaComponent } from './components/defensa/defensa.component';
-import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
-import { EstudianteCarreraComponent } from './estudiante-carrera/estudiante-carrera.component';
+import { CarreraFormComponent } from './components/carrera-form/carrera-form.component';
+import { ActualizarDatosComponent } from './components/actualizar-datos/actualizar-datos.component';
+import { EstudianteCarreraComponent } from './components/estudiante-carrera/estudiante-carrera.component';
 import { NavBarComponent } from './components/shared/shared/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/shared/shared/footer/footer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SideBarComponent } from './components/shared/shared/side-bar/side-bar.component';
+import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
+import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
+import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
+import { InformesComponent } from './components/informes/informes.component';
+import localEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localEs);
 
 @NgModule({
   declarations: [
@@ -34,17 +35,14 @@ import { SideBarComponent } from './components/shared/shared/side-bar/side-bar.c
     NavBarComponent,
     CarreraListaComponent,
     CarreraFormComponent,
-    IngresoProcesoComponent,
-    GestionAnteproyectoComponent,
-    AprobacionAnteproyectoComponent,
-    GestionProyectoComponent,
-    GestionProyecto2Component,
-    ProrrogaComponent,
-    DefensaComponent,
     ActualizarDatosComponent, FooterComponent,
     EstudianteCarreraComponent,
     DashboardComponent,
-    SideBarComponent
+    SideBarComponent,
+    FechaEntregaFinalComponent,
+    CargaDocumentoFinalComponent,
+    ModificacionRevisorComponent,
+    InformesComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +52,7 @@ import { SideBarComponent } from './components/shared/shared/side-bar/side-bar.c
     ReactiveFormsModule,
     NgxPaginationModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

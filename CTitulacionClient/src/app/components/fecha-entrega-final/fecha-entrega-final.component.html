@@ -1,0 +1,83 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Estudiantes</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Simple Tables</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Lista de Estudiantes</h3>
+                    </div>
+                    <!-- ./card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Acciones</th>
+                                    <th>Nombre archivo | Calificacion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let nombre of nombres; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{nombre.name}}</td>
+                                    <td>{{ nombre.email }}</td>
+                                    <td>Colocar Nota</td>
+                                    <td>
+                                        <table *ngFor="let dato of datos">
+                                            <tr *ngIf="dato.user_id == nombre.id">
+                                                <td *ngIf="dato.nombre_archivo"><a href="http://localhost:8000/{{ dato.url }}" target="_blank">{{ dato.nombre_archivo }}</a></td>
+                                                <td *ngIf="dato.nota_archivo"> <small>{{ dato.nota_archivo }}/10
+                                                    </small></td>
+                                                <td *ngIf="!dato.nombre_archivo">
+                                                    {{ dato.ruta_archivo }}
+                                                </td>
+                                                <td *ngIf="!dato.nota_archivo && dato.id != 0">
+                                                    <form [formGroup]="notaDocumento">
+                                                        <div class="form-group">
+                                                            <input type="hidden" [value]="nombre.id" />
+                                                            <input type="number" name="" id="" class="form-control mb-2"
+                                                                placeholder="Registrar nota"
+                                                                formControlName="nota_archivo" />
+                                                            <button type="submit" class="btn btn-success"
+                                                                (click)="guardarNota(nombre.id)">Guardar Nota</button>
+
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

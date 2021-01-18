@@ -1,0 +1,93 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Carga de documento final</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/home']">Inicio</a></li>
+                    <li class="breadcrumb-item active">Carga de documento final</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.row -->
+<div *ngFor="let documento of documentos">
+    <div *ngIf="documento.id == 0">
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Fecha de Entrega</h3>
+
+                    <div class="card-tools">
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{ fechaMaxima[1] }}
+                    <p *ngFor="let fecha of fechaMaxima">
+                        {{ fecha.fecha | date:'fullDate' }}
+                    </p>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <div class="row" *ngIf="tieneFecha">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Carga Documento(Final)</h3>
+                    </div>
+                    <div class="card-body p-0 m-3">
+                        <form [formGroup]="cargarDocumento">
+                            <!-- your steps content here -->
+                            <div id="general-part" class="content">
+                                <div class="input-group mb-2">
+                                    <div class="custom-file">
+                                        <input type="file" class="form-control-file" id="arch" name="arch"
+                                            (change)="onFileSelect($event)">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" (click)="enviarArchivo()">Subir
+                                    Archivo</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <div *ngIf="documento.id != 0">
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Archivo entregado:</h3>
+
+                    <div class="card-tools">
+                    </div>
+                </div>
+                <div class="card-body">                    
+                    <a href="http://localhost:8000/{{ documento.url }}" target="_blank"><i class="far fa-fw fa-file-pdf"></i>{{ documento.nombre_archivo }}</a>
+                    <hr>                    
+                    <p *ngIf="documento.nota_archivo != null">La calificacion por parte del docente es: {{documento.nota_archivo}}</p>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </section>
+    </div>
+
+</div>

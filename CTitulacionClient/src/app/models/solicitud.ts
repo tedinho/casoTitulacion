@@ -1,7 +1,9 @@
 import { PeriodoLectivo } from ".";
 
-export interface Solicitud {
+export class Solicitud {
   id: number;
-  period: PeriodoLectivo[];
+  fecha_creacion: Date;
+  fecha_envio: Date;
   estado: string;
+  estudiante_carrera_id: number;
 }

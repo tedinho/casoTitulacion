@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService } from './authguard/auth-guard.service';
-import { CarreraListaComponent } from './carrera-lista/carrera-lista.component';
-import { CarreraFormComponent } from './carrera-form/carrera-form.component';
-import { ActualizarDatosComponent } from './actualizar-datos/actualizar-datos.component';
-import { EstudianteCarreraComponent } from './estudiante-carrera/estudiante-carrera.component';
+import { CarreraListaComponent } from './components/carrera-lista/carrera-lista.component';
+import { CarreraFormComponent } from './components/carrera-form/carrera-form.component';
+import { ActualizarDatosComponent } from './components/actualizar-datos/actualizar-datos.component';
+import { EstudianteCarreraComponent } from './components/estudiante-carrera/estudiante-carrera.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { InformesComponent } from './components/informes/informes.component';
+import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
+import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
+import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -41,6 +45,18 @@ const routes: Routes = [
       component: EstudianteCarreraComponent,
       canActivate: [AuthGuardService]
 
+   },
+   { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
+   { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },
+   {
+      path: 'realizarInforme', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: {
+         role: 'Revisor'
+      }
+   },
+   {
+      path: 'informes', component: InformesComponent, canActivate: [AuthGuardService], data: {
+         role: 'Revisor'
+      }
    },
    {
       path: 'home',

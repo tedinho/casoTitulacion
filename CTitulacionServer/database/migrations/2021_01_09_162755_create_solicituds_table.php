@@ -14,8 +14,15 @@ class CreateSolicitudsTable extends Migration
     public function up()
     {
         Schema::create('solicituds', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->date('fecha_creacion');
+            $table->string('estado');
+            $table->date('fecha_envio')->nullable(true);
+            $table->bigInteger('estudiante_carrera_id')->unsigned();
+            $table->foreign('estudiante_carrera_id')
+                ->references('id')
+                ->on('estudiante_carreras')
+                ->onDelete('cascade');
         });
     }
 

@@ -18,4 +18,9 @@ export class EstudianteCarreraService {
   buscarEstudianteCarreraPorIdEstudiante(id: number): Observable<EstudianteCarrera[]> {
     return this.http.get<EstudianteCarrera[]>(API_URL + 'estudiante-carrera/buscar-por-id-estudiante/' + id + '');
   }
+
+  actualizarEstudianteCarrera(estudiante, id) {
+    return this.http.put(API_URL + 'estudiante-carrera/' + id, estudiante);
+  }
+
 }

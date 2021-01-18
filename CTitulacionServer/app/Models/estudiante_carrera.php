@@ -11,4 +11,9 @@ class estudiante_carrera extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['id', 'carrera_id', 'estudiante_id', 'modalidad', 'fecha_comienzo', 'fecha_final'];
     public $timestamps = false;
+
+    public function carrera()
+    {
+        return $this->belongsTo(carrera::class);
+    }
 }

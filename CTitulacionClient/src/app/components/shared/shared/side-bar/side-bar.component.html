@@ -23,11 +23,45 @@
                         <p>Inicio</p>
                     </a>
                 </li>
+                <div *ngIf="isRevisor()">
+                    <li class="nav-item">
+                        <a [routerLink]="['/fechaFinal']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-list-ul"></i>
+                            <p style="    margin-left: 10px;">Lista de estudiantes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/realizarInforme']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p style="    margin-left: 10px;">Realizar Informe</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/informes']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-list-ul"></i>
+                            <p style="    margin-left: 10px;">Lista de Informes</p>
+                        </a>
+                    </li>
+                </div>
                 <div *ngIf="isAdministrador()">
                     <li class="nav-item">
                         <a [routerLink]="['/carrera-lista']" routerLinkActive="active" class="nav-link">
                             <i class="nav-icon fas fa-list-ul"></i>
                             <p style="    margin-left: 10px;"> Carreras</p>
+                        </a>
+                    </li>
+                </div>
+                <div *ngIf="isEstudiante()">
+                    <li class="nav-item">
+                        <a [routerLink]="['/estudiante-carrera']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-user-graduate"></i>
+                            <p style="    margin-left: 10px;"> Seleccion Modalidad</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/cargaDocFinal']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-upload"></i>
+                            <p style="    margin-left: 10px;">Carga Documento (Final)</p>
                         </a>
                     </li>
                 </div>

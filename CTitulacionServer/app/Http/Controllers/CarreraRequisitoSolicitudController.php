@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\estudiante_carrera;
+use App\Models\carrera_requisito_solicitud;
 use Illuminate\Http\Request;
 
-class EstudianteCarreraController extends Controller
+class CarreraRequisitoSolicitudController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,27 +35,16 @@ class EstudianteCarreraController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        return estudiante_carrera::create($input);
-    }
-
-    public function buscarPorIdEstudiante($idEstudiante)
-    {
-        $lista = estudiante_carrera::where('estudiante_id', $idEstudiante)->get();
-        for ($i = 0; $i < count($lista); $i++) {
-            $nivel = $lista[$i]->carrera;
-            $nivel->carrera;
-        }
-        return $lista;
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\estudiante_carrera  $estudiante_carrera
+     * @param  \App\Models\carrera_requisito_solicitud  $carrera_requisito_solicitud
      * @return \Illuminate\Http\Response
      */
-    public function show(estudiante_carrera $estudiante_carrera)
+    public function show(carrera_requisito_solicitud $carrera_requisito_solicitud)
     {
         //
     }
@@ -63,10 +52,10 @@ class EstudianteCarreraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\estudiante_carrera  $estudiante_carrera
+     * @param  \App\Models\carrera_requisito_solicitud  $carrera_requisito_solicitud
      * @return \Illuminate\Http\Response
      */
-    public function edit(estudiante_carrera $estudiante_carrera)
+    public function edit(carrera_requisito_solicitud $carrera_requisito_solicitud)
     {
         //
     }
@@ -75,23 +64,21 @@ class EstudianteCarreraController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\estudiante_carrera  $estudiante_carrera
+     * @param  \App\Models\carrera_requisito_solicitud  $carrera_requisito_solicitud
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, carrera_requisito_solicitud $carrera_requisito_solicitud)
     {
-        $input = $request->all();
-        estudiante_carrera::where('id', $id)->update($input);
-        return estudiante_carrera::find($id);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\estudiante_carrera  $estudiante_carrera
+     * @param  \App\Models\carrera_requisito_solicitud  $carrera_requisito_solicitud
      * @return \Illuminate\Http\Response
      */
-    public function destroy(estudiante_carrera $estudiante_carrera)
+    public function destroy(carrera_requisito_solicitud $carrera_requisito_solicitud)
     {
         //
     }

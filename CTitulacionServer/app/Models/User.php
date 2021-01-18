@@ -1,5 +1,5 @@
 <?php
-  
+
 namespace App\Models;
 
 use App\Models\Role;
@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-  
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-  
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,7 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-  
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -33,7 +33,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-  
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -42,6 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function evidencia()
+    {
+        return $this->hasOne(Evidencia::class);
+    }
 
     public function roles()
     {
@@ -53,7 +58,7 @@ class User extends Authenticatable
         abort_unless($this->hasAnyRole($roles), 401);
         return true;
     }
-    
+
     public function hasAnyRole($roles)
     {
         if (is_array($roles)) {
@@ -64,12 +69,12 @@ class User extends Authenticatable
             }
         } else {
             if ($this->hasRole($roles)) {
-                 return true; 
-            }   
+                return true;
+            }
         }
         return false;
     }
-    
+
     public function hasRole($role)
     {
         if ($this->roles()->where('name', $role)->first()) {
