@@ -15,6 +15,10 @@ export class GestionProyectoService {
     return this.http.post(`${API_URL}informe`, Informe);
   }
 
+  obtenerFechaEntrega(user_id: number){
+    return this.http.get(`${API_URL}fecha/${user_id}`);
+  }
+
   obtenerInforme() {
     return this.http.get(`${API_URL}informe`);
   }

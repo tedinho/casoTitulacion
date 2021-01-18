@@ -1,11 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
 import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+import { registerLocaleData } from '@angular/common';
+import localEs from '@angular/common/locales/es';
+
+registerLocaleData(localEs);
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
 import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
+import { InformesComponent } from './components/informes/informes.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,7 @@ import { ModificacionRevisorComponent } from './components/modificacion-revisor/
     FechaEntregaFinalComponent,
     CargaDocumentoFinalComponent,
     ModificacionRevisorComponent,
+    InformesComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,7 @@ import { ModificacionRevisorComponent } from './components/modificacion-revisor/
     ReactiveFormsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

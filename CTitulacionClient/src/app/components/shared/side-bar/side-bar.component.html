@@ -14,33 +14,49 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" *ngIf="role == 'Revisor'">
                 <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->                               
+               with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a [routerLink]="['/home']"  routerLinkActive="active" class="nav-link">
+                    <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>Inicio</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a [routerLink]="['/fechaFinal']" routerLinkActive="active"  class="nav-link">
+                    <a [routerLink]="['/fechaFinal']" routerLinkActive="active" class="nav-link">
                         <i class="nav-icon fas fa-list-ul"></i>
                         <p>Lista de estudiantes</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a [routerLink]="['/cargaDocFinal']" routerLinkActive="active"  class="nav-link">
-                        <i class="nav-icon fas fa-upload"></i>
-                        <p>Carga Documento (Final)</p>
-                    </a>
-                </li>    
-                <li class="nav-item">
-                    <a [routerLink]="['/modificacionRevisor']" routerLinkActive="active"  class="nav-link">                        
+                    <a [routerLink]="['/realizarInforme']" routerLinkActive="active" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>Realizar Informe</p>
                     </a>
-                </li>  
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/informes']" routerLinkActive="active" class="nav-link">
+                        <i class="nav-icon fas fa-list-ul"></i>
+                        <p>Lista de Informes</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" *ngIf="role == 'Estudiante'">
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Inicio</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/cargaDocFinal']" routerLinkActive="active" class="nav-link">
+                        <i class="nav-icon fas fa-upload"></i>
+                        <p>Carga Documento (Final)</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

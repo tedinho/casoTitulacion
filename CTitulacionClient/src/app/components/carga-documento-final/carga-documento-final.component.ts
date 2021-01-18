@@ -10,7 +10,30 @@ declare var Swal: any;
 })
 export class CargaDocumentoFinalComponent {
 
-  constructor(private archivos: GestionProyectoService) { }
+  fechaMaxima: Array<any> = [];
+  tieneFecha: boolean;
+  documentos: any;;
+
+  constructor(private archivos: GestionProyectoService) {
+
+    this.archivos.obtenerUsuarioId(localStorage['email'])
+      .subscribe(resp =>{
+        this.archivos.obtenerDocumento(resp['id'])
+          .subscribe(res =>{
+            this.documentos = res;
+            console.log(this.documentos);
+          });
+        this.archivos.obtenerFechaEntrega(resp['id'])
+          .subscribe(resp2 =>{            
+            let i;
+            for(i in resp2)
+            {
+              this.fechaMaxima.push(resp2[i]);
+            }
+            this.tieneFecha = this.fechaMaxima[0];
+          });
+      });
+   }
 
   cargarDocumento = new FormGroup({
     arch: new FormControl(''),

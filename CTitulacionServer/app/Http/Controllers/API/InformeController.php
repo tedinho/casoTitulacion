@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
-use App\Http\Resources\Product as ProductResource;
 use App\Models\FechaConfiguracione;
 use App\Models\Informe;
 use App\Models\proyecto_titulacion;
@@ -31,26 +30,40 @@ class InformeController extends BaseController
      */
     public function store(Request $request)
     {
-        $fecha = new FechaConfiguracione();
-        $fecha->fecha = date('Y-m-d', strtotime("+8 days"));
-        $fecha->user_id = $request['id'];
-        
-        $fecha->save();
-        
-        $informe = new Informe();
-        $informe->titulo = $request['titulo'];
-        $informe->cuerpo = $request['cuerpo'];
-        $informe->observacion = $request['observacion'];
-        $informe->user_id = $request['id'];
 
-        $informe->save();
+        $infoID = Informe::where('user_id', $request['id'])
+            ->first();
 
-        return response()->json([
-            "success" => true,
-            "message" => "Se ha guardado el informe de forma correcta y se a asignado una fecha de entrega del proyecto",
-            "informe" => $informe,
-            "fecha" => $fecha
-        ]);
+        if ($infoID) {
+            return response()->json([
+                "success" => false,
+                "message" => "El usuario ya tiene generado un informe",
+            ]);
+        }
+        if (!$infoID) {
+            
+            $fecha = new FechaConfiguracione();
+            $fecha->fecha = date('Y-m-d', strtotime("+8 days"));
+            $fecha->user_id = $request['id'];
+            $fecha->save();
+    
+            $informe = new Informe();
+            $informe->titulo = $request['titulo'];
+            $informe->cuerpo = $request['cuerpo'];
+            $informe->observacion = $request['observacion'];
+            $informe->user_id = $request['id'];
+    
+            $informe->save();
+    
+            return response()->json([
+                "success" => true,
+                "message" => "Se ha guardado el informe de forma correcta y se a asignado una fecha de entrega del proyecto",
+                "informe" => $informe,
+                "fecha" => $fecha
+            ]);
+            
+        }
+
     }
 
     /**
@@ -61,13 +74,16 @@ class InformeController extends BaseController
      */
     public function show($id)
     {
-        $product = Informe::find($id);
+        $informe = Informe::find($id);
 
-        if (is_null($product)) {
+        if (is_null($informe)) {
             return $this->sendError('Informe no encontrado.');
         }
 
-        return $this->sendResponse(new ProductResource($product), 'Informe recuperado exitosamente.');
+        return response()->json([
+            "success" => true,
+            "Informe" => $informe
+        ]);
     }
 
     /**
@@ -82,7 +98,7 @@ class InformeController extends BaseController
     }
 
     public function obtenerEstudiantes($student = "student")
-    {      
+    {
         $rol = $this->obtenerRol($student);
         return $rol;
     }
@@ -90,7 +106,7 @@ class InformeController extends BaseController
     protected function obtenerRol($rol_nombre)
     {
         $rol = Role::with('users')->where('name', $rol_nombre)->first();
-        
+
         return $rol['users'];
     }
 }

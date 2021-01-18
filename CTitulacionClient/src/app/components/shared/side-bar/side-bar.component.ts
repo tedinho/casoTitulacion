@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/auth/login.service';
 export class SideBarComponent {
 
   dataUser: any;
+  role:string = localStorage['rol'];
 
   constructor(private authService: LoginService) { 
     this.obtenerDatos();

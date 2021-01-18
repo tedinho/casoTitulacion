@@ -31,16 +31,15 @@ export class ModificacionRevisorComponent  {
 
   });
 
-  registrarInforme(){
-    console.warn(this.informeForm.value);
+  registrarInforme(){    
     this.gestionService.registrarInforme(this.informeForm.value)
-      .subscribe(respu =>{
-        console.log(respu['message']);
+      .subscribe(respu =>{        
         Swal.fire({          
           text: `${respu['message']}`,
           icon: 'info',
           confirmButtonText: 'Ok'
-        });        
+        });
+        this.informeForm.reset();        
       }, (errorSrv)=>{
         console.log(errorSrv);
         Swal.fire({

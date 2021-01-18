@@ -39,11 +39,12 @@ class ArchivosController extends BaseController
 
     public function getUserById($id)
     {
-        $user = User::where('id', $id)
-            ->get();
+        $user = User::where('email', $id)
+            ->first();
 
         return $user;
     }
+    
 
 
     public function nota(Request $request, $id)

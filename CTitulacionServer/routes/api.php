@@ -33,6 +33,7 @@ Route::get('informe', [InformeController::class, 'index']);
 Route::get('getStudents', [InformeController::class, 'obtenerEstudiantes']);
 
 Route::post('fecha/{id}', [FechaConfiguracioneController::class, 'store']);
+Route::get('fecha/{id}', [FechaConfiguracioneController::class, 'show']);
 Route::post('nota/{id}', [ArchivosController::class, 'nota']);
 
 Route::get('revisor', [RevisorController::class, 'index']);

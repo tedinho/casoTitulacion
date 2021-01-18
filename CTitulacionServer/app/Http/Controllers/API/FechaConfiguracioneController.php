@@ -46,7 +46,23 @@ class FechaConfiguracioneController extends Controller
      */
     public function show($id)
     {
-        //
+        $fecha = FechaConfiguracione::where('user_id', $id)
+            ->first();
+
+        if($fecha){
+            return response()->json([
+                "success" => true,
+                "message" => "Tiene una fecha maxima para subir el archivo",
+                "fecha" => $fecha
+            ]);
+        }
+        if(!$fecha){
+            return response()->json([
+                "success" => false,
+                "message" => "No tiene asignado fecha para la entrega del trabajo contactese con su revisor", 
+                "fecha" => " "
+            ]);
+        }
     }
 
     /**
