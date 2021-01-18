@@ -14,8 +14,26 @@ class CreateCarreraRequisitoSolicitudsTable extends Migration
     public function up()
     {
         Schema::create('carrera_requisito_solicituds', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->boolean('cumple');
+
+            $table->bigInteger('requisito_id')->unsigned();
+            $table->foreign('requisito_id')
+                ->references('id')
+                ->on('carrera_requisitos')
+                ->onDelete('cascade');
+
+            $table->bigInteger('solicitud_id')->unsigned();
+            $table->foreign('solicitud_id')
+                ->references('id')
+                ->on('solicituds')
+                ->onDelete('cascade');
+
+            $table->bigInteger('evidencia_id')->nullable(true)->unsigned();
+            $table->foreign('evidencia_id')
+                ->references('id')
+                ->on('evidencias')
+                ->onDelete('cascade');
         });
     }
 

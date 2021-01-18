@@ -19,4 +19,8 @@ export class CarreraRequisitoSolicitudService {
   buscarCarreraRequisitoPorIdSolicitud(idSolicitud: number): Observable<CarreraRequisitoSolicitud[]> {
     return this.http.get<CarreraRequisitoSolicitud[]>(API_URL + 'carrera-requisito-solicitud/buscar-requisito-carrera-solicitud-id-solicitud/' + idSolicitud);
   }
+
+  actualizarCarreraRequisitoSolicitud(carreraRequisitoSolicitud, id) {
+    return this.http.put(API_URL + 'carrera-requisito-solicitud/' + id, carreraRequisitoSolicitud);
+  }
 }

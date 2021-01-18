@@ -4,4 +4,6 @@ export class CarreraRequisitoSolicitud {
   solicitud_id: number;
   evidencia_id: number;
   cumple: boolean;
+  requisito: any;
+  evidencia: any;
 }

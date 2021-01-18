@@ -35,7 +35,18 @@ class CarreraRequisitoSolicitudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return carrera_requisito_solicitud::create($input);
+    }
+
+    public function buscarCarreraRequisitoPorIdSolicitud($idSolicitud)
+    {
+        $lista = carrera_requisito_solicitud::where('solicitud_id', $idSolicitud)->get();
+        for ($i = 0; $i < count($lista); $i++) {
+            $lista[$i]->requisito;
+            $lista[$i]->evidencia;
+        }
+        return $lista;
     }
 
     /**
@@ -67,9 +78,11 @@ class CarreraRequisitoSolicitudController extends Controller
      * @param  \App\Models\carrera_requisito_solicitud  $carrera_requisito_solicitud
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, carrera_requisito_solicitud $carrera_requisito_solicitud)
+    public function update(Request $request,  $id)
     {
-        //
+        $input = $request->all();
+        carrera_requisito_solicitud::where('id', $id)->update($input);
+        return carrera_requisito_solicitud::find($id);
     }
 
     /**

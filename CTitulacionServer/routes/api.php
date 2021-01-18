@@ -7,10 +7,12 @@ use App\Http\Controllers\API\InformeController;
 use App\Http\Controllers\API\RevisorController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\CarreraRequisitoController;
+use App\Http\Controllers\CarreraRequisitoSolicitudController;
 use App\Http\Controllers\DocenteCarreraController;
 use App\Http\Controllers\EstudianteCarreraController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\PeriodoLectivoController;
+use App\Http\Controllers\SolicitudController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +60,14 @@ Route::get('periodo-lectivo/buscar-periodo-lectivo-id-carrera/{idCarrera}', [Per
 
 Route::resource('carrera-requisito', CarreraRequisitoController::class);
 Route::get('carrera-requisito/buscar-requisito-id-carrera/{idCarrera}', [CarreraRequisitoController::class, 'buscarRequisitosPorIdCarrera']);
+
+
+Route::resource('carrera-requisito-solicitud', CarreraRequisitoSolicitudController::class);
+Route::get('carrera-requisito-solicitud/buscar-requisito-carrera-solicitud-id-solicitud/{idSolicitud}', [CarreraRequisitoSolicitudController::class, 'buscarCarreraRequisitoPorIdSolicitud']);
+
+Route::resource('solicitud', SolicitudController::class);
+Route::get('solicitud/buscar-por-id-estudiante-carrera/{idEstudianteCarrera}', [SolicitudController::class, 'buscarSolicitudPorIdEstudianteCarrera']);
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
 {
+
+    public function buscarSolicitudPorIdEstudianteCarrera($idEstudianteCarrera)
+    {
+        return solicitud::where('estudiante_carrera_id', $idEstudianteCarrera)->get();
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +42,8 @@ class SolicitudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return solicitud::create($input);
     }
 
     /**
@@ -67,9 +75,11 @@ class SolicitudController extends Controller
      * @param  \App\Models\solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, solicitud $solicitud)
+    public function update(Request $request,  $id)
     {
-        //
+        $input = $request->all();
+        solicitud::where('id', $id)->update($input);
+        return solicitud::find($id);
     }
 
     /**

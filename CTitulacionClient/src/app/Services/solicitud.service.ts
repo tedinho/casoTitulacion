@@ -11,15 +11,15 @@ export class SolicitudService {
 
   constructor(private http: HttpClient) { }
 
-  guardarEstudianteCarrera(solicitud) {
+  guardarSolicitud(solicitud) {
     return this.http.post(API_URL + 'solicitud/', solicitud);
   }
 
-  buscarEstudianteCarreraPorIdEstudiante(id: number): Observable<Solicitud[]> {
+  buscarSolicitudPorIdEstudianteCarrera(id: number): Observable<Solicitud[]> {
     return this.http.get<Solicitud[]>(API_URL + 'solicitud/buscar-por-id-estudiante-carrera/' + id + '');
   }
 
-  actualizarEstudianteCarrera(solicitud, id) {
+  actualizarSolicitud(solicitud, id) {
     return this.http.put(API_URL + 'solicitud/' + id, solicitud);
   }
 
