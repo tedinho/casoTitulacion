@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 declare var Swal: any;
@@ -14,14 +15,14 @@ export class CargaDocumentoFinalComponent {
   tieneFecha: boolean;
   documentos: any;;
 
-  constructor(private archivos: GestionProyectoService) {
+  constructor(private archivos: GestionProyectoService,
+      private router: Router) {
 
     this.archivos.obtenerUsuarioId(localStorage['email'])
       .subscribe(resp =>{
         this.archivos.obtenerDocumento(resp['id'])
           .subscribe(res =>{
-            this.documentos = res;
-            console.log(this.documentos);
+            this.documentos = res;            
           });
         this.archivos.obtenerFechaEntrega(resp['id'])
           .subscribe(resp2 =>{            
@@ -58,13 +59,12 @@ export class CargaDocumentoFinalComponent {
     formData.append('nombre_archivo', documentes['arch']['name']);
 
     this.archivos.cargaDocumento(formData)
-      .subscribe((respu: any) => {
-        console.log(respu.message);
+      .subscribe((respu: any) => {        
         this.cargarDocumento.reset();
+        this.redirigir();
         Swal.fire({
           text: `${respu.message}`,
-          icon: 'info',
-          confirmButtonText: 'Ok'
+          icon: 'info',                  
         });
       }, (errorServer) => {
         this.cargarDocumento.reset();
@@ -75,6 +75,10 @@ export class CargaDocumentoFinalComponent {
           confirmButtonText: 'Ok'
         });
       });
+  }
+
+  redirigir(){
+    this.router.navigate(['home']);
   }
 
 }

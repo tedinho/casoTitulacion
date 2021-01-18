@@ -31,3 +31,8 @@ Y como punto final ejecutar el siguiente comando para la generacion de un nuevo 
 ```
 php artisan passport:install
 ```
+
+Se debe ejecutar el siguiente comando para poder visualizar los archivos subidos por los estudiantes este comando es importante para el correcto funcionamiento de la aplicacion 
+```
+php artisan storage:link
+```
