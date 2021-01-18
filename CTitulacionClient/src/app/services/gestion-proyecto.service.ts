@@ -19,6 +19,10 @@ export class GestionProyectoService {
     return this.http.get(`${API_URL}fecha/${user_id}`);
   }
 
+  obtenerEstudiantesInformes(user_id){
+    return this.http.get(`${API_URL}getUserM/${user_id}`);
+  }
+
   obtenerInforme() {
     return this.http.get(`${API_URL}informe`);
   }

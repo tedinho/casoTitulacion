@@ -23,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('storefile', [ArchivosController::class, 'store']);
 Route::post('getfile/{user_id}', [ArchivosController::class, 'obtenerDocumentos']);
 Route::get('getUser/{id}', [ArchivosController::class, 'getUserById']);
+Route::get('getUserM/{id}', [ArchivosController::class, 'getUserByM']);
+
+
 
 //Route::get('downfile/{id}', [ArchivosController::class, 'descargarDocumento']);
 

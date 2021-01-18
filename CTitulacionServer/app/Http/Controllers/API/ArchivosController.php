@@ -44,6 +44,14 @@ class ArchivosController extends BaseController
 
         return $user;
     }
+
+    public function getUserByM($id)
+    {
+        $user = User::where('id', $id)
+            ->first();
+
+        return $user;
+    }
     
 
 
@@ -132,10 +140,13 @@ class ArchivosController extends BaseController
                         //store file into document folder
                         $file = $request->file->store('public/documents');
 
+                        $archiv = $request->file->store('storage/documents');
+
                         //store your file into database
                         $evidencia = new Evidencia();
                         $evidencia->nombre_archivo = $request['nombre_archivo'];
                         $evidencia->ruta_archivo = $file;
+                        $evidencia->url = $archiv;
                         $evidencia->tipo_archivo = $request['tipo_archivo'];
                         $evidencia->user_id = $usuario->id;
                         $evidencia->save();
@@ -156,14 +167,5 @@ class ArchivosController extends BaseController
                 ]);
             }
         }
-    }
-
-    public function descargarDocumento($id)
-    {
-        $documento = Evidencia::find($id);
-
-        $ruta_archivo = $documento->ruta_archivo;
-
-        return response()->download($ruta_archivo);
     }
 }

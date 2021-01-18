@@ -40,7 +40,13 @@
                             <tbody>
                                 <tr *ngFor="let informe of informes; let i = index">
                                     <td>{{ i + 1 }}</td>
-                                    <td>{{ informe.user_id }}</td>
+                                    <td >
+                                        <div *ngFor="let estudiante of nombresArr">                                            
+                                            <p *ngIf="informe.user_id == estudiante.id">
+                                                {{ estudiante.name }}
+                                            </p> 
+                                        </div>
+                                    </td>
                                     <td>{{ informe.titulo }}</td>
                                     <td>{{ informe.cuerpo }}</td>
                                     <td>{{ informe.observacion }}</td>

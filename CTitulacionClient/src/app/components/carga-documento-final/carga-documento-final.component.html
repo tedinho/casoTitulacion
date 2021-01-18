@@ -78,8 +78,10 @@
                     <div class="card-tools">
                     </div>
                 </div>
-                <div class="card-body">
-                    {{ documento.nombre_archivo }}
+                <div class="card-body">                    
+                    <a href="http://localhost:8000/{{ documento.url }}" target="_blank"><i class="far fa-fw fa-file-pdf"></i>{{ documento.nombre_archivo }}</a>
+                    <hr>
+                    <p *ngIf="documento.nota_archivo != null">La calificacion por parte del docente es: {{documento.nota_archivo}}</p>
                 </div>
                 <!-- /.card-body -->
             </div>
