@@ -46,7 +46,9 @@
                                     <td>
                                         <table *ngFor="let dato of datos">
                                             <tr *ngIf="dato.user_id == nombre.id">
-                                                <td *ngIf="dato.nombre_archivo"><a href="http://localhost:8000/{{ dato.url }}" target="_blank">{{ dato.nombre_archivo }}</a></td>
+                                                <td *ngIf="dato.nombre_archivo"><a
+                                                        href="http://localhost:8000/{{ dato.url }}" target="_blank">{{
+                                                        dato.nombre_archivo }}</a></td>
                                                 <td *ngIf="dato.nota_archivo"> <small>{{ dato.nota_archivo }}/10
                                                     </small></td>
                                                 <td *ngIf="!dato.nombre_archivo">

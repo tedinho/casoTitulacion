@@ -22,9 +22,11 @@ export class LoginService {
   obtenerUsuario() {
     let username = localStorage.getItem('email');
     let rol = localStorage.getItem('rol');
+    let correo = localStorage.getItem('email');
     return {
       user: username,
-      role: rol
+      role: rol,
+      email: correo
     };
   }
 

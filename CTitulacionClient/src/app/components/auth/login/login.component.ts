@@ -37,7 +37,7 @@ export class LoginComponent {
         localStorage.setItem('rol', resp.data.rol);
         localStorage.setItem('username', resp.data.name);
         localStorage.setItem('id', resp.data.id);
-        localStorage.setItem('email', resp.data.name);
+        localStorage.setItem('email', resp.data.email);
         this.router.navigate(['/home']);
       }, (errorServer) => {
         Swal.fire({

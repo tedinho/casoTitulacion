@@ -52,7 +52,7 @@ class AuthController extends BaseController
             $success['name'] =  $user->name;
             $success['id'] =  $user->id;
             $success['rol'] = Auth::user()->roles->first()->description;
-
+            $success['email'] =  $user->email;
             return $this->sendResponse($success, 'User login successfully.');
         } else {
             return $this->sendError('No autorizado.', ['error' => 'Error o contraseña incorrectas']);

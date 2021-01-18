@@ -8,6 +8,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\FechaConfiguracione;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use SebastianBergmann\Environment\Console;
 use Validator, Redirect, Response, File;
 
 
@@ -20,11 +21,11 @@ class ArchivosController extends BaseController
         $docs = Evidencia::where('user_id', $user_id)
             ->first();
 
-        if($docs){
+        if ($docs) {
             return Evidencia::where('user_id', $user_id)
-            ->get();           
+                ->get();
         }
-        if(!$docs){
+        if (!$docs) {
             $docu = new Evidencia();
             $docu->id = "";
             $docu->nombre_archivo = "";
@@ -34,7 +35,6 @@ class ArchivosController extends BaseController
 
             return [$docu];
         }
-
     }
 
     public function getUserById($id)
@@ -52,7 +52,7 @@ class ArchivosController extends BaseController
 
         return $user;
     }
-    
+
 
 
     public function nota(Request $request, $id)
@@ -60,15 +60,15 @@ class ArchivosController extends BaseController
         $documentoVerificado = $this->verificarDocumento($id, 'nota_archivo');
         if ($documentoVerificado) {
 
-            $documento = Evidencia::find($id);
-            $documento->nota_archivo = $request['nota_archivo'];
+            $documento = Evidencia::where('user_id', '=', $id)->get();
+            $documento[0]->nota_archivo = $request['nota_archivo'];
 
-            $documento->save();
+            $documento[0]->save();
 
             return response()->json([
                 "success" => true,
                 "message" => "Se guardo la nota del documento",
-                "documento" => $documento['nota_archivo']
+                "documento" => $documento[0]['nota_archivo']
             ]);
         }
 
@@ -82,7 +82,7 @@ class ArchivosController extends BaseController
 
     protected function verificarDocumento($id, $campo)
     {
-        $verificarDocumento = Evidencia::where($campo, '=', null)->find($id);
+        $verificarDocumento = Evidencia::where($campo, '=', null)->where('user_id', '=', $id)->get();
 
         if ($verificarDocumento != null) {
             return true;

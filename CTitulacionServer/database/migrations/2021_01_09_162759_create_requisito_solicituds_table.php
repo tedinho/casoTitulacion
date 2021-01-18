@@ -19,7 +19,7 @@ class CreateRequisitoSolicitudsTable extends Migration
             $table->bigInteger('carrera_requisito_id')->unsigned();
             $table->foreign('carrera_requisito_id')
                 ->references('id')
-                ->on('carrera_requisito')
+                ->on('carrera_requisitos')
                 ->onDelete('cascade');
             $table->bigInteger('solicitud_id')->unsigned();
             $table->foreign('solicitud_id')

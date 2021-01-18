@@ -15,7 +15,7 @@ export class FechaEntregaFinalComponent {
 
   });
 
-  nombres:any;
+  nombres: any;
   datos: Array<any> = [];
 
 
@@ -23,22 +23,23 @@ export class FechaEntregaFinalComponent {
 
     this.documento.obtenerEstudiantes()
       .subscribe(respu => {
-        this.nombres = respu;        
+        this.nombres = respu;
         this.nombres.forEach(nombr => {
           this.documento.obtenerDocumento(nombr['id'])
-            .subscribe(respu2 => {                      
+            .subscribe(respu2 => {
               let i;
               for (i in respu2) {
                 this.datos.push(respu2[i]);
-              }                   
-            });      
+              }
+            });
         });
 
       });
   }
 
   guardarNota(user_id: any) {
-
+    console.log(user_id);
+    console.log(this.notaDocumento.value);
     this.documento.registrarNota(this.notaDocumento.value, user_id)
       .subscribe(resp => {
         Swal.fire({
@@ -46,8 +47,8 @@ export class FechaEntregaFinalComponent {
           text: resp['message'],
           icon: 'info',
           confirmButtonText: 'Ok'
-        });        
-        this.notaDocumento.reset();        
+        });
+        this.notaDocumento.reset();
       }, (errorSrv) => {
         console.log(errorSrv);
       });

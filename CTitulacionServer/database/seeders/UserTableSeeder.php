@@ -15,6 +15,14 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+
+        $user = new User();
+        $user->password = bcrypt("12345678");
+        $user->name = "Administrador";
+        $user->email = "admin@yavirac.edu.ec";
+        $user->save();
+        $user->roles()->attach(Role::where('name', 'admin')->first());
+
         $user = new User();
         $user->password = bcrypt("123");
         $user->name = "Alumno Numero 1";
@@ -143,7 +151,7 @@ class UserTableSeeder extends Seeder
         $user->email = "r3@mail.com";
         $user->save();
         $user->roles()->attach(Role::where('name', 'revisor')->first());
-        
+
         $user = new User();
         $user->password = bcrypt("123");
         $user->name = "Revisor Numero 4";
@@ -157,6 +165,5 @@ class UserTableSeeder extends Seeder
         $user->email = "r5@mail.com";
         $user->save();
         $user->roles()->attach(Role::where('name', 'revisor')->first());
-
     }
 }

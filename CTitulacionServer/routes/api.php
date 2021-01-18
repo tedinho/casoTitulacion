@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ArchivosController;
+use App\Http\Controllers\API\FechaConfiguracioneController;
+use App\Http\Controllers\API\InformeController;
+use App\Http\Controllers\API\RevisorController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\CarreraRequisitoController;
 use App\Http\Controllers\DocenteCarreraController;
@@ -23,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('storefile', [ArchivosController::class, 'store']);
+Route::post('getfile/{user_id}', [ArchivosController::class, 'obtenerDocumentos']);
+Route::get('getUser/{id}', [ArchivosController::class, 'getUserById']);
+Route::get('getUserM/{id}', [ArchivosController::class, 'getUserByM']);
 
 
 Route::post('informe', [InformeController::class, 'store']);

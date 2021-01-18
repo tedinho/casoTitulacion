@@ -47,6 +47,9 @@ export class DashboardComponent {
                 estudianteCrear.id = +localStorage.getItem('id');
                 estudianteCrear.fecha_ingreso = new Date();
                 estudianteCrear.actualizar_datos = true;
+                estudianteCrear.correo = this.dataUser.email;
+                console.log(estudianteCrear);
+
                 this.estudianteServicio
                   .guardarEstudiante(estudianteCrear)
                   .subscribe(
