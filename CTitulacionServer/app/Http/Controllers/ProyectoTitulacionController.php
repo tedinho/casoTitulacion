@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\proyecto_titulacion;
 use Illuminate\Http\Request;
+use Validator,Redirect,Response,File;
 
 class ProyectoTitulacionController extends Controller
 {
@@ -35,7 +36,23 @@ class ProyectoTitulacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->file('file')) {
+             
+            //store file into document folder
+            $file = $request->file->store('public/documents');
+ 
+            //store your file into database
+            $rubrica = new proyecto_titulacion();     
+            $rubrica->rubrica = $file;
+            $rubrica->save();
+              
+            return response()->json([
+                "success" => true,
+                "message" => "Rubrica Subida exitosamente",
+                "file" => $file
+            ]);
+  
+        }
     }
 
     /**

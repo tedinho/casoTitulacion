@@ -5,6 +5,7 @@ use App\Http\Controllers\API\ArchivosController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\AnteproyectoController;
 use App\Http\Controllers\ObservacionAnteproyectoController;
+use App\Http\Controllers\ProyectoTitulacionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::resource('carreras', CarreraController::class);
 Route::resource('anteproyectos', AnteproyectoController::class);
 Route::resource('observacionAnteproyecto', ObservacionAnteproyectoController::class);
+Route::post('proyectoTitulacion', [ProyectoTitulacionController::class, 'store']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

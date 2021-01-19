@@ -3,22 +3,26 @@
 <hr>
 <div class="row">
   <div class="col">
-    <label>Formato de rúbrica</label>
-    <div class="form-group">
-      <button type="button" class="btn btn-primary">
-        Descargar
+    <form [formGroup]="subirRubricaForm" (ngSubmit)="enviarRubrica()">
+      <div class="form-group">
+        <label>Subir Rúbrica</label>
+        <input
+          type="file"
+          class="form-control-file"
+          id="arch" 
+          name="arch"
+          required
+          (change)="onFileSelect($event)"
+        >
+      </div>
+      <button type="submit" class="btn btn-outline-success">Enviar rubrica</button>&nbsp;
+      <button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
+        Cancelar
       </button>
-    </div>
-  </div>
-  <div class="col">
-    <div class="form-group">
-      <label>Subir Rúbrica</label>
-      <input type="file" class="form-control" placeholder="Estudiante">
-    </div>
+    </form>
   </div>
 </div>
-<app-guias-proyecto></app-guias-proyecto>
+<div class="alert alert-success m-5" *ngIf="existenMensajes">
+  {{mensaje}} 
+</div>
 <br>
-<button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
-  Cancelar
-</button>
