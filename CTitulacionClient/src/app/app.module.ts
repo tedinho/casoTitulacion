@@ -23,6 +23,7 @@ import { ModificacionRevisorComponent } from './components/modificacion-revisor/
 import { InformesComponent } from './components/informes/informes.component';
 import localEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { EstudiantesSolicitudComponent } from './estudiantes-solicitud/estudiantes-solicitud.component';
 
 registerLocaleData(localEs);
 
@@ -43,6 +44,7 @@ registerLocaleData(localEs);
     CargaDocumentoFinalComponent,
     ModificacionRevisorComponent,
     InformesComponent,
+    EstudiantesSolicitudComponent,
   ],
   imports: [
     BrowserModule,

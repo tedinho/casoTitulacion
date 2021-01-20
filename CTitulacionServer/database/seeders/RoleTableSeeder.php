@@ -18,12 +18,12 @@ class RoleTableSeeder extends Seeder
         $role->name = 'admin';
         $role->description = 'Administrator';
         $role->save();
-        
+
         $role = new Role();
         $role->name = 'student';
         $role->description = 'Estudiante';
         $role->save();
-        
+
         $role = new Role();
         $role->name = 'revisor';
         $role->description = 'Revisor';
@@ -32,6 +32,11 @@ class RoleTableSeeder extends Seeder
         $role = new Role();
         $role->name = 'tutor';
         $role->description = 'Tutor';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'teacher';
+        $role->description = 'Docente';
         $role->save();
 
         //Si se requiere mas roles se colocan aqui

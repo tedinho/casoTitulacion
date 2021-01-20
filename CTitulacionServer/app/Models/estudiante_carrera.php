@@ -16,4 +16,14 @@ class estudiante_carrera extends Model
     {
         return $this->belongsTo(carrera::class);
     }
+
+    public function estudiante()
+    {
+        return $this->belongsTo(estudiante::class);
+    }
+
+    public function solicitudes()
+    {
+        return $this->hasMany(solicitud::class);
+    }
 }

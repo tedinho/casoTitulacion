@@ -17,6 +17,7 @@ class CreateSolicitudsTable extends Migration
             $table->bigIncrements('id');
             $table->date('fecha_creacion');
             $table->string('estado');
+            $table->string('observacion')->nullable(true);
             $table->date('fecha_envio')->nullable(true);
             $table->bigInteger('estudiante_carrera_id')->unsigned();
             $table->foreign('estudiante_carrera_id')

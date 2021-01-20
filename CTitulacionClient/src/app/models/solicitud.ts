@@ -6,4 +6,5 @@ export class Solicitud {
   fecha_envio: Date;
   estado: string;
   estudiante_carrera_id: number;
+  observacion: string;
 }

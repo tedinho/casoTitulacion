@@ -172,6 +172,7 @@ export class CarreraFormComponent implements OnInit {
             console.log(error);
           });
       }, error => {
+        console.log(error);
         this.userDocente = null;
       });
   }
@@ -185,7 +186,7 @@ export class CarreraFormComponent implements OnInit {
   }
 
   makeRandom() {
-    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,./;'[]\=-)(*&^%$#@!~`";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.";
     let text = "";
     for (let i = 0; i < 8; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\docente_carrera;
 use App\Models\estudiante_carrera;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,21 @@ class EstudianteCarreraController extends Controller
         $estu = estudiante_carrera::create($input);
         $estu->carrera;
         return $estu;
+    }
+
+    public function buscarPorIdDocente($idDocente)
+    {
+        $docentes = docente_carrera::where('usuario_id', '=', $idDocente)->get();
+        $idsCarreras = array();
+        foreach ($docentes as $doc) {
+            array_push($idsCarreras, $doc->carrera_id);
+        }
+        $estudiantes = estudiante_carrera::whereIn('carrera_id', $idsCarreras)->get();
+        foreach ($estudiantes as $est) {
+            $est->solicitudes;
+            $est->estudiante;
+        }
+        return $estudiantes;
     }
 
     public function buscarPorIdEstudiante($idEstudiante)

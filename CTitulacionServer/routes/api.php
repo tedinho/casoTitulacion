@@ -52,6 +52,7 @@ Route::resource('carreras', CarreraController::class);
 Route::resource('estudiantes', EstudianteController::class);
 Route::resource('estudiante-carrera', EstudianteCarreraController::class);
 Route::get('estudiante-carrera/buscar-por-id-estudiante/{idEstudiante}', [EstudianteCarreraController::class, 'buscarPorIdEstudiante']);
+Route::get('estudiante-carrera/buscar-por-id-docente/{idDocente}', [EstudianteCarreraController::class, 'buscarPorIdDocente']);
 Route::resource('docente-carrera', DocenteCarreraController::class);
 Route::get('docente-carrera/buscar-docente-id-carrera/{idCarrera}', [DocenteCarreraController::class, 'buscarDocentesPorIdCarrera']);
 Route::resource('periodo-lectivo', PeriodoLectivoController::class);

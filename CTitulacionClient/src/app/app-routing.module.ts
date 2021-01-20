@@ -13,6 +13,7 @@ import { InformesComponent } from './components/informes/informes.component';
 import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
 import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
+import { EstudiantesSolicitudComponent } from './estudiantes-solicitud/estudiantes-solicitud.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -43,6 +44,12 @@ const routes: Routes = [
    {
       path: 'estudiante-carrera',
       component: EstudianteCarreraComponent,
+      canActivate: [AuthGuardService]
+
+   },
+   {
+      path: 'estudiantes-solicitud',
+      component: EstudiantesSolicitudComponent,
       canActivate: [AuthGuardService]
 
    },

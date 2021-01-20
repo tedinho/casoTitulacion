@@ -42,4 +42,9 @@ export class SideBarComponent {
     return this.dataUser.role == 'Revisor';
   }
 
+  isDocente() {
+    this.dataUser = this.authService.obtenerUsuario();
+    return this.dataUser.role == 'Docente';
+  }
+
 }

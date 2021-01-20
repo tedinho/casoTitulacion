@@ -65,6 +65,16 @@
                         </a>
                     </li>
                 </div>
+
+                <div *ngIf="isDocente()">
+                    <li class="nav-item">
+                        <a [routerLink]="['/estudiantes-solicitud']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-user-graduate"></i>
+                            <p style="    margin-left: 10px;"> Solicitudes</p>
+                        </a>
+                    </li>
+                </div>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

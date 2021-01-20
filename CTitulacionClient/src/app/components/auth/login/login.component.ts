@@ -40,6 +40,7 @@ export class LoginComponent {
         localStorage.setItem('email', resp.data.email);
         this.router.navigate(['/home']);
       }, (errorServer) => {
+        console.log(errorServer);
         Swal.fire({
           title: 'Error!',
           text: 'El usuario o contraseña no coinciden',
