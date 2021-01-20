@@ -18,6 +18,7 @@ class CreateAnteproyectosTable extends Migration
             $table->string('estado');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
+            $table->string('observacion');
             $table->bigInteger('id_solicitud')->unsigned();
         });
     }

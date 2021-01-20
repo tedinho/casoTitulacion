@@ -6,8 +6,10 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <label>Estudiante</label>
-        <input type="text" class="form-control" placeholder="Estudiante">
+        <label>Seleccionar Estudiante para Informe</label>
+        <select class="form-control">
+            <option value="" selected disabled>Seleccionar estudiante</option>
+        </select>
       </div>
     </div>
     <div class="col">
@@ -35,11 +37,17 @@
       </div>
     </div>
   </div>
-  <div>
-    <app-observacion-anteproyecto></app-observacion-anteproyecto>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label>Observación</label>
+        <textarea name="observaciones" id="" cols="30" rows="10" class="form-control" formControlName="observacion"></textarea>
+      </div>
+    </div>
   </div>
   <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
   <button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
     Cancelar
   </button>
 </form>
+<br>

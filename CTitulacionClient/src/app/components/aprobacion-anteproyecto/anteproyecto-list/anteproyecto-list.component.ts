@@ -21,6 +21,10 @@ export class AnteproyectoListComponent implements OnInit {
     this.getAnteproyectos();
   }
 
+  findDetails(a) {
+    return this.anteproyectos.filter(x => x.id === a.id);
+  }
+
   getAnteproyectos() {
     this.AnteproyectoServicio
       .getAnteproyectos(this.txtNombre)

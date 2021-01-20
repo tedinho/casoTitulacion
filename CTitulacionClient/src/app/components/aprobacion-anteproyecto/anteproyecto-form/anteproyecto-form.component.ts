@@ -19,6 +19,7 @@ export class AnteproyectoFormComponent implements OnInit {
     estado: new FormControl(''),
     fecha_inicio: new FormControl(''),
     fecha_fin: new FormControl(''),
+    observacion: new FormControl(''),
     id_solicitud: new FormControl(1),
   });
   
@@ -81,6 +82,7 @@ export class AnteproyectoFormComponent implements OnInit {
             estado: new FormControl(''),
             fecha_inicio: new FormControl(''),
             fecha_fin: new FormControl(''),
+            observacion: new FormControl(''),
             id_solicitud: new FormControl(1),
           });
           console.log(anteproyecto);
