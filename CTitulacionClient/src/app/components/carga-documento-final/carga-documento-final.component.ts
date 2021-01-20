@@ -96,7 +96,7 @@ export class CargaDocumentoFinalComponent {
   }
 
   redirigir(){
-    this.router.navigate(['home']);
+    this.router.navigate(['cargaDocFinal']);
   }
 
 }

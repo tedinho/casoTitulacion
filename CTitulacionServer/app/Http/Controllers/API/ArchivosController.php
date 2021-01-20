@@ -67,7 +67,7 @@ class ArchivosController extends BaseController
 
             return response()->json([
                 "success" => true,
-                "message" => "Se guardo la nota del documento". $request['nota_archivo'],
+                "message" => "Se guardo la nota del documento es: ". $request['nota_archivo'],
                 "documento" => $documento[0]['nota_archivo']
             ]);
         }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 declare var Swal: any;
@@ -19,7 +20,8 @@ export class FechaEntregaFinalComponent {
   datos: Array<any> = [];
 
 
-  constructor(private documento: GestionProyectoService) {
+  constructor(private documento: GestionProyectoService, 
+      private router: Router) {
 
     this.documento.obtenerEstudiantes()
       .subscribe(respu => {
@@ -46,12 +48,13 @@ export class FechaEntregaFinalComponent {
           text: resp['message'],
           icon: 'info',
           confirmButtonText: 'Ok'
-        });        
-        this.notaDocumento.reset();        
+        });                
+        location.reload();        
       }, (errorSrv) => {
         console.log(errorSrv);
       });
   }
+
 
 
 }
