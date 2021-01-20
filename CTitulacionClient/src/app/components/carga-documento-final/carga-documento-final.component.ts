@@ -13,10 +13,27 @@ export class CargaDocumentoFinalComponent {
 
   fechaMaxima: Array<any> = [];
   tieneFecha: boolean;
-  documentos: any;;
+  documentos: any;
+  todayDate: any;
+  dateComparar: any;
+  
 
   constructor(private archivos: GestionProyectoService,
       private router: Router) {
+        
+      let date_ob = new Date();
+
+      // adjust 0 before single digit date
+      let date = ("0" + date_ob.getDate()).slice(-2);
+
+      // current month
+      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+      // current year
+      let year = date_ob.getFullYear();
+
+      // prints date in YYYY-MM-DD format
+      this.todayDate = year + "-" + month + "-" + date;
 
     this.archivos.obtenerUsuarioId(localStorage['email'])
       .subscribe(resp =>{
@@ -30,7 +47,8 @@ export class CargaDocumentoFinalComponent {
             for(i in resp2)
             {
               this.fechaMaxima.push(resp2[i]);
-            }
+            }                
+            this.dateComparar = this.fechaMaxima[2]['fecha'];
             this.tieneFecha = this.fechaMaxima[0];
           });
       });

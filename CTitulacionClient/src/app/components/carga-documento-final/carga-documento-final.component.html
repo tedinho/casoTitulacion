@@ -30,6 +30,7 @@
                     {{ fechaMaxima[1] }}
                     <p *ngFor="let fecha of fechaMaxima">
                         {{ fecha.fecha | date:'fullDate' }}
+                                           
                     </p>
                 </div>
                 <!-- /.card-body -->
@@ -37,7 +38,7 @@
             <!-- /.card -->
 
         </section>
-        <div class="row" *ngIf="tieneFecha">
+        <div class="row" *ngIf="tieneFecha && dateComparar > todayDate">
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">
@@ -59,6 +60,21 @@
                             </div>
                         </form>
 
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <div class="row" *ngIf="tieneFecha && dateComparar < todayDate">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Fecha expirada</h3>
+                    </div>
+                    <div class="card-body p-0 m-3">
+                       
+                        La fecha para subir el documento a expirado el día {{ dateComparar | date: 'fullDate'}}
                     </div>
                     <!-- /.card-body -->
                 </div>

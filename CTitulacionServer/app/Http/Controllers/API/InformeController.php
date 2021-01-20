@@ -57,7 +57,7 @@ class InformeController extends BaseController
     
             return response()->json([
                 "success" => true,
-                "message" => "Se ha guardado el informe de forma correcta y se a asignado una fecha de entrega del proyecto",
+                "message" => "Guardado el informe de forma correcta y se a asignado una fecha de entrega del proyecto",
                 "informe" => $informe,
                 "fecha" => $fecha
             ]);
