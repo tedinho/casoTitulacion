@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\proyecto_titulacion;
 use Illuminate\Http\Request;
-use Validator,Redirect,Response,File;
 
 class ProyectoTitulacionController extends Controller
 {
@@ -15,7 +14,7 @@ class ProyectoTitulacionController extends Controller
      */
     public function index()
     {
-        //
+        return proyecto_titulacion::get();
     }
 
     /**
@@ -36,23 +35,8 @@ class ProyectoTitulacionController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->file('file')) {
-             
-            //store file into document folder
-            $file = $request->file->store('public/documents');
- 
-            //store your file into database
-            $rubrica = new proyecto_titulacion();     
-            $rubrica->rubrica = $file;
-            $rubrica->save();
-              
-            return response()->json([
-                "success" => true,
-                "message" => "Rubrica Subida exitosamente",
-                "file" => $file
-            ]);
-  
-        }
+        $input = $request->all();
+        return proyecto_titulacion::create($input);
     }
 
     /**
@@ -61,9 +45,9 @@ class ProyectoTitulacionController extends Controller
      * @param  \App\Models\proyecto_titulacion  $proyecto_titulacion
      * @return \Illuminate\Http\Response
      */
-    public function show(proyecto_titulacion $proyecto_titulacion)
+    public function show($id)
     {
-        //
+        return proyecto_titulacion::find($id);
     }
 
     /**
@@ -84,9 +68,11 @@ class ProyectoTitulacionController extends Controller
      * @param  \App\Models\proyecto_titulacion  $proyecto_titulacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, proyecto_titulacion $proyecto_titulacion)
+    public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        proyecto_titulacion::where('id', $id)->update($input);
+        return proyecto_titulacion::find($id);
     }
 
     /**

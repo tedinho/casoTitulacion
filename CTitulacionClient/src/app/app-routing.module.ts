@@ -9,6 +9,7 @@ import { CarreraFormComponent } from './carrera-form/carrera-form.component';
 import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component'
 import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component'
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component'
+import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component'
 const routes: Routes = [
    {
       path: 'login',
@@ -43,6 +44,11 @@ const routes: Routes = [
    {
       path: 'rubrica',
       component: RubricaComponent,
+      canActivate: [AuthGuardService]
+   },
+   {
+      path: 'cronograma',
+      component: CronogramaComponent,
       canActivate: [AuthGuardService]
    },
    {

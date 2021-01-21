@@ -28,7 +28,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::resource('carreras', CarreraController::class);
 Route::resource('anteproyectos', AnteproyectoController::class);
-Route::post('proyectoTitulacion', [ProyectoTitulacionController::class, 'store']);
+Route::resource('proyectoTitulacion', ProyectoTitulacionController::class);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

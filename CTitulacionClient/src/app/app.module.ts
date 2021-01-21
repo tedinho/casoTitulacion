@@ -23,8 +23,15 @@ import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/
 import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
+import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
+import localeEs from '@angular/common/locales/es';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
+
 
 @NgModule({
+  providers: [ { provide: LOCALE_ID, useValue: 'es' } ],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -44,6 +51,7 @@ import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proy
     AnteproyectoListComponent,
     RubricaComponent,
     GuiasProyectoComponent,
+    CronogramaComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +61,6 @@ import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proy
     ReactiveFormsModule,
     NgxPaginationModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,9 +14,9 @@ class CreateProyectoTitulacionsTable extends Migration
     public function up()
     {
         Schema::create('proyecto_titulacions', function (Blueprint $table) {
-            $table->id();
-            $table->string('rubrica');
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->date('fecha');
+            $table->string('asunto');
         });
     }
 
