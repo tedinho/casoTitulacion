@@ -158,5 +158,12 @@ class UserTableSeeder extends Seeder
         $user->save();
         $user->roles()->attach(Role::where('name', 'revisor')->first());
 
+        $user = new User();
+        $user->password = bcrypt("123");
+        $user->name = "Revisor Numero 5";
+        $user->email = "admin@mail.com";
+        $user->save();
+        $user->roles()->attach(Role::where('name', 'admin')->first());
+
     }
 }

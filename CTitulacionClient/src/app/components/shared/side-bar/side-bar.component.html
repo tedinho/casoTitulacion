@@ -58,6 +58,22 @@
                     </a>
                 </li>
             </ul>
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" *ngIf="role == 'Administrator'">
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Inicio</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/revisor']" routerLinkActive="active" class="nav-link">
+                        <i class="nav-icon fas fa-list-ul"></i>
+                        <p>Revisor</p>
+                    </a>
+                </li>
+            </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>

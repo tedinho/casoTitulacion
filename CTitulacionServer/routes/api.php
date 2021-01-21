@@ -40,6 +40,10 @@ Route::get('fecha/{id}', [FechaConfiguracioneController::class, 'show']);
 Route::post('nota/{id}', [ArchivosController::class, 'nota']);
 
 Route::get('revisor', [RevisorController::class, 'index']);
+Route::post('revisor', [RevisorController::class, 'show']);
+Route::get('getEstudiante', [RevisorController::class, 'ObtenerEstudiantes']);
+Route::get('getRevisor', [RevisorController::class, 'ObtenerRevisores']);
+Route::post('revisorsave', [RevisorController::class, 'store']);
 Route::post('revisor/{id}', [RevisorController::class, 'update']);
 
 

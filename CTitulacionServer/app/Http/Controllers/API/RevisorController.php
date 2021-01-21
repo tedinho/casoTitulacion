@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Revisore;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,7 +31,15 @@ class RevisorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $revisor = new Revisore();
+        $revisor->student_id = $request['student_id'];
+        $revisor->revisor_id = $request['revisor_id'];
+        $request->save();
+
+        return response()->json([
+            "success" => true,
+            "message" => "Se a asignado un revisor"
+        ]);
     }
 
     /**
@@ -39,9 +48,24 @@ class RevisorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $usuario = User::where('email', $request['email'])->first();        
+        $usuarioID = $usuario['id'];
+        return $usuarioID;
+    }
+
+    public function ObtenerEstudiantes()
+    {
+        $estudiante = Role::with('users')->where('name', 'student')->first();        
+
+        return $estudiante;
+    }
+    public function ObtenerRevisores()
+    {        
+        $revisor = Role::with('users')->where('name', 'Revisor')->first();
+
+        return $revisor;
     }
 
     /**

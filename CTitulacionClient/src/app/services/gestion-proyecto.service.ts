@@ -11,6 +11,17 @@ export class GestionProyectoService {
 
   constructor(private http: HttpClient) { }
 
+
+  registrarRevisor(Revisor: Object){
+    return this.http.post(`${API_URL}revisorsave`, Revisor);
+  }
+  getEstudiante(){
+    return this.http.get(`${API_URL}getEstudiante`);
+  }
+  getRevisor(){
+    return this.http.get(`${API_URL}getRevisor`);
+  }
+
   registrarInforme(Informe: Object) {
     return this.http.post(`${API_URL}informe`, Informe);
   }
