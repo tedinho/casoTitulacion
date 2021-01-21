@@ -1,0 +1,28 @@
+<br>
+<h1>Rúbrica</h1>
+<hr>
+<div class="row">
+  <div class="col">
+    <form [formGroup]="subirRubricaForm" (ngSubmit)="enviarRubrica()">
+      <div class="form-group">
+        <label>Subir Rúbrica</label>
+        <input
+          type="file"
+          class="form-control-file"
+          id="arch" 
+          name="arch"
+          required
+          (change)="onFileSelect($event)"
+        >
+      </div>
+      <button type="submit" class="btn btn-outline-success">Enviar rubrica</button>&nbsp;
+      <button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
+        Cancelar
+      </button>
+    </form>
+  </div>
+</div>
+<div class="alert alert-success m-5" *ngIf="existenMensajes">
+  {{mensaje}} 
+</div>
+<br>

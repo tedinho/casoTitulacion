@@ -50,6 +50,18 @@
                             <p style="    margin-left: 10px;"> Carreras</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/anteproyecto-list']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-list-ul"></i>
+                            <p style="    margin-left: 10px;"> Aprobación Anteproyecto</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/cronograma']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-list-ul"></i>
+                            <p style="    margin-left: 10px;"> Cronograma</p>
+                        </a>
+                    </li>
                 </div>
                 <div *ngIf="isEstudiante()">
                     <li class="nav-item">

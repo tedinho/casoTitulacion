@@ -24,6 +24,11 @@ import { InformesComponent } from './components/informes/informes.component';
 import localEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { EstudiantesSolicitudComponent } from './estudiantes-solicitud/estudiantes-solicitud.component';
+import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
+import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
+import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
+import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
+import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
 
 registerLocaleData(localEs);
 
@@ -45,6 +50,11 @@ registerLocaleData(localEs);
     ModificacionRevisorComponent,
     InformesComponent,
     EstudiantesSolicitudComponent,
+    AnteproyectoFormComponent,
+    AnteproyectoListComponent,
+    RubricaComponent,
+    GuiasProyectoComponent,
+    CronogramaComponent,
   ],
   imports: [
     BrowserModule,

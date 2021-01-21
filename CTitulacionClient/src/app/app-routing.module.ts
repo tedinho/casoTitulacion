@@ -14,6 +14,10 @@ import { ModificacionRevisorComponent } from './components/modificacion-revisor/
 import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
 import { EstudiantesSolicitudComponent } from './estudiantes-solicitud/estudiantes-solicitud.component';
+import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
+import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
+import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
+import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -52,6 +56,26 @@ const routes: Routes = [
       component: EstudiantesSolicitudComponent,
       canActivate: [AuthGuardService]
 
+   },
+   {
+      path: 'anteproyecto-form',
+      component: AnteproyectoFormComponent,
+      canActivate: [AuthGuardService]
+   },
+   {
+      path: 'anteproyecto-list',
+      component: AnteproyectoListComponent,
+      canActivate: [AuthGuardService]
+   },
+   {
+      path: 'rubrica',
+      component: RubricaComponent,
+      canActivate: [AuthGuardService]
+   },
+   {
+      path: 'cronograma',
+      component: CronogramaComponent,
+      canActivate: [AuthGuardService]
    },
    { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
    { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },

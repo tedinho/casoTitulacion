@@ -14,7 +14,7 @@ class ProyectoTitulacionController extends Controller
      */
     public function index()
     {
-        //
+        return proyecto_titulacion::get();
     }
 
     /**
@@ -35,7 +35,8 @@ class ProyectoTitulacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        return proyecto_titulacion::create($input);
     }
 
     /**
@@ -44,9 +45,9 @@ class ProyectoTitulacionController extends Controller
      * @param  \App\Models\proyecto_titulacion  $proyecto_titulacion
      * @return \Illuminate\Http\Response
      */
-    public function show(proyecto_titulacion $proyecto_titulacion)
+    public function show($id)
     {
-        //
+        return proyecto_titulacion::find($id);
     }
 
     /**
@@ -67,9 +68,11 @@ class ProyectoTitulacionController extends Controller
      * @param  \App\Models\proyecto_titulacion  $proyecto_titulacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, proyecto_titulacion $proyecto_titulacion)
+    public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        proyecto_titulacion::where('id', $id)->update($input);
+        return proyecto_titulacion::find($id);
     }
 
     /**

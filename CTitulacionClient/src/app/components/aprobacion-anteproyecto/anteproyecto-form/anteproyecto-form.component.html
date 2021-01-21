@@ -1,0 +1,54 @@
+<br>
+<h1>Aprobación / Rechazo Anteproyecto</h1>
+<h4 class="card-subtitle text-muted">Insertar</h4>
+<hr>
+<form [formGroup]="formularioAnteproyecto" (ngSubmit)="guardar()">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label>Seleccionar Estudiante para Informe</label>
+        <select class="form-control">
+            <option value="" selected disabled>Seleccionar estudiante</option>
+            <option value="">Juan</option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label>Estado</label>
+        <select class="form-control" formControlName="estado">
+          <option value="" selected disabled>Seleccionar estado</option>
+          <option *ngFor="let est of estado" [ngValue]="est">
+            {{est}}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label>Fecha inicio</label>
+        <input type="date" class="form-control" formControlName="fecha_inicio">
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label>Fecha fin</label>
+        <input type="date" class="form-control" formControlName="fecha_fin">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label>Observación</label>
+        <textarea name="observaciones" id="" cols="30" rows="10" class="form-control" formControlName="observacion"></textarea>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
+  <button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
+    Cancelar
+  </button>
+</form>
+<br>

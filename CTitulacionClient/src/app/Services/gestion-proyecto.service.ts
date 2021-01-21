@@ -1,25 +1,47 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { API_URL } from 'src/environments/environment';
+import { GestionProyecto } from '../models/gestion-proyecto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GestionProyectoService {
 
-  datos = {email: localStorage.getItem('email')};
+  datos = { email: localStorage.getItem('email') };
 
   constructor(private http: HttpClient) { }
+
+  enviarRubrica(Archivo: any) {
+    return this.http.post(`${API_URL}storefile`, Archivo);
+  }
+
+  getCronogramas(nombre: string): Observable<GestionProyecto[]> {
+    return this.http.get<GestionProyecto[]>(API_URL + 'proyectoTitulacion');
+  }
+
+  buscarCronograma(llave: number): Observable<GestionProyecto> {
+    return this.http.get<GestionProyecto>(API_URL + 'proyectoTitulacion/' + llave + '');
+  }
+
+  actualizarCronograma(gestionProyecto, id) {
+    return this.http.put(API_URL + 'proyectoTitulacion/' + id, gestionProyecto);
+  }
+
+  guardarCronograma(gestionProyecto) {
+    return this.http.post(API_URL + 'proyectoTitulacion/', gestionProyecto);
+  }
 
   registrarInforme(Informe: Object) {
     return this.http.post(`${API_URL}informe`, Informe);
   }
 
-  obtenerFechaEntrega(user_id: number){
+  obtenerFechaEntrega(user_id: number) {
     return this.http.get(`${API_URL}fecha/${user_id}`);
   }
 
-  obtenerEstudiantesInformes(user_id){
+  obtenerEstudiantesInformes(user_id) {
     return this.http.get(`${API_URL}getUserM/${user_id}`);
   }
 
