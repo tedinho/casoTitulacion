@@ -10,15 +10,24 @@ declare var Swal: any;
 })
 export class ModificacionRevisorComponent  {
 
-  estudiantes: any;
+  estudiantes: Array<any> = [];
 
   constructor(private gestionService: GestionProyectoService) { 
-    this.gestionService.obtenerEstudiantes()  
-      .subscribe((resp: any) =>{
-        this.estudiantes = resp;
-      }, (errorSrv)=> {
-        console.log(errorSrv);
-      });
+    
+
+      this.gestionService.pivotRevisor()
+        .subscribe(re =>{
+          let i;
+          for(i in re){            
+            this.gestionService.pivotEstudiante(re[i]['student_id'])
+              .subscribe(res =>{
+                let i;
+                for(i in res){
+                  this.estudiantes.push(res[i])
+                }
+              });
+          }
+        });
 
   }
   //Formulario Reactivo de login

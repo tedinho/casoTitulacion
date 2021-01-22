@@ -18,9 +18,9 @@ class RevisorController extends Controller
      */
     public function index()
     {
-        $userArr = User::with('roles')->get();
+        $revisor = Revisore::get();
 
-        return $userArr;
+        return $revisor;
     }
 
     /**
@@ -34,7 +34,7 @@ class RevisorController extends Controller
         $revisor = new Revisore();
         $revisor->student_id = $request['student_id'];
         $revisor->revisor_id = $request['revisor_id'];
-        $request->save();
+        $revisor->save();
 
         return response()->json([
             "success" => true,
@@ -42,17 +42,30 @@ class RevisorController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
+
+    public function Fusion($id)
     {
-        $usuario = User::where('email', $request['email'])->first();        
-        $usuarioID = $usuario['id'];
-        return $usuarioID;
+        $revisor = Revisore::where('revisor_id', $id)->first();  
+        
+        if($revisor){
+
+            $student = User::where('id', $revisor['student_id'])->first();
+            $rev = User::where('id', $revisor['revisor_id'])->first();
+            return response()->json([
+                "nombreEstudiante" => $student['name'],
+                "idEstudiante" => $student['id'],
+                "nombreRevisor" => $rev['name'],
+                "idRevisor" => $rev['id'],
+            ]);
+        }
+        
+        return response()->json([
+            "nombreEstudiante" => " ",
+            "idEstudiante" => " ",
+            "nombreRevisor" => " ",
+            "idRevisor" => " ",
+        ]);             
+
     }
 
     public function ObtenerEstudiantes()
@@ -68,23 +81,22 @@ class RevisorController extends Controller
         return $revisor;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id)
+    public function obtenerEstudiantesId($email)
     {
-        $user = User::where('id', $id)->with('roles')->first();
-        $rol = User::where('id', $id)->with('roles')->first();        
-        // $rol->roles()->detach();
-        // $rol->delete();
-        // $user->roles()->attach(Role::where('name', 'revisor')->first());        
-        // $user->save();
+        $revi = User::where('email', $email)->first();
 
-        return $rol;
+        $revisorPivot = Revisore::where('revisor_id', $revi['id'])->get();
+        
+
+        return $revisorPivot;
     }
+
+    public function obtenerEstu($id)
+    {
+        $datosEstudiante = User::where('id', $id)->get();
+
+        return $datosEstudiante;
+    }
+
 
 }

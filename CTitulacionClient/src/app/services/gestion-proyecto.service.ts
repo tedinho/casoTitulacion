@@ -9,6 +9,8 @@ export class GestionProyectoService {
 
   datos = {email: localStorage.getItem('email')};
 
+  mai = localStorage.getItem('email');
+
   constructor(private http: HttpClient) { }
 
 
@@ -20,6 +22,14 @@ export class GestionProyectoService {
   }
   getRevisor(){
     return this.http.get(`${API_URL}getRevisor`);
+  }
+
+  obtenerRevisores() {
+    return this.http.get(`${API_URL}revisor`);
+  }
+
+  fusion(revisorId: number){
+    return this.http.get(`${API_URL}fusion/${revisorId}`);
   }
 
   registrarInforme(Informe: Object) {
@@ -53,12 +63,16 @@ export class GestionProyectoService {
     return this.http.post(`${API_URL}nota/${Id}`, Nota);
   }
 
-  obtenerRevisores() {
-    return this.http.get(`${API_URL}revisor`);
-  }
-
   obtenerEstudiantes() {
     return this.http.get(`${API_URL}getStudents`);
+  }
+
+  pivotRevisor(){
+    return this.http.get(`${API_URL}obtEstudia/${this.mai}`);
+  }
+
+  pivotEstudiante(estudianteId: number){
+    return this.http.get(`${API_URL}obtenerEstu/${estudianteId}`);
   }
 
 }

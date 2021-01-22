@@ -1,51 +1,96 @@
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Informe Revisor</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                    <li class="breadcrumb-item active">Informe Revisor</li>
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Informe Revisor</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+          <li class="breadcrumb-item active">Informe Revisor</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
 </div>
 <!-- /.row -->
 <div class="row">
-    <div class="col-md-12">
-        <div class="card card-default">
-            <div class="card-header">
-                <h3 class="card-title">Registro de Informe(Revisor)</h3>
+  <div class="col-md-12">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Registro de Informe(Revisor)</h3>
+      </div>
+      <form [formGroup]="revisorForm" (ngSubmit)="registrarInforme()">
+        <div class="card-body p-0 m-3">
+          <!-- your steps content here -->
+          <div id="general-part" class="content">
+            <div class="form-group">
+              <label for="notaTutor">Seleccionar Revisor</label>
+              <select
+                class="form-control"
+                style="width: 100%"
+                formControlName="revisor_id"
+              >
+                <option *ngFor="let revisor of revisores" [value]="revisor.id">
+                  {{ revisor.name }}
+                </option>
+              </select>
             </div>
-            <form [formGroup]="revisorForm" (ngSubmit)="registrarInforme()">                
-
-                <div class="card-body p-0 m-3">
-
-                    <!-- your steps content here -->
-                    <div id="general-part" class="content">
-                        <div class="form-group">
-                            <label for="notaTutor">Seleccionar Revisor</label>
-                            <select class="form-control" style="width: 100%;" formControlName="id">
-                                <option *ngFor="let revisor of revisores" [value]="revisor.id">{{ revisor.name  }} </option>                            
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="notaTutor">Seleccionar Estudiante</label>
-                            <select class="form-control" style="width: 100%;" formControlName="id">
-                                <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id">{{ estudiante.name  }} </option>                            
-                            </select>
-                        </div>
-                        <button class="btn btn-primary">Guardar</button>
-                    </div>
-
-                </div>
-            </form>
-            <!-- /.card-body -->
+            <div class="form-group">
+              <label for="notaTutor">Seleccionar Estudiante</label>
+              <select
+                class="form-control"
+                style="width: 100%"
+                formControlName="student_id"
+              >
+                <option
+                  *ngFor="let estudiante of estudiantes"
+                  [value]="estudiante.id"
+                >
+                  {{ estudiante.name }}
+                </option>
+              </select>
+            </div>
+            <button class="btn btn-primary">Guardar</button>
+          </div>
         </div>
-        <!-- /.card -->
+      </form>
+      <!-- /.card-body -->
     </div>
+    <!-- /.card -->
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Registros de revisores</h3>
+      </div>
+
+      <div class="card-body p-0 m-3">
+        <!-- your steps content here -->
+        <div id="general-part" class="content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre de revisor</th>
+                <th>Nombre de estudiante</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let stu of alu; let i = index">
+                <td>{{ i + 1 }}</td>                
+                <td>{{ stu.nombreRevisor }}</td>
+                <td>{{ stu.nombreEstudiante }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- /.card-body -->
+    </div>
+  </div>
 </div>
 <!-- /.row -->
