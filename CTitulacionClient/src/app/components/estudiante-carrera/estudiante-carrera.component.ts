@@ -12,6 +12,9 @@ import { EstudianteService } from '../../Services/estudiante.service';
 import { LoginService } from '../../Services/login.service';
 import { SolicitudService } from '../../Services/solicitud.service';
 import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
+import { EvidenciaCarreraService } from 'src/app/evidencia-carrera.service';
+import { CarreraRequisito } from 'src/app/models/carrera-requisito';
+import { EvidenciaCarrera } from 'src/app/models/evidencia-carrera';
 
 @Component({
   selector: 'app-estudiante-carrera',
@@ -25,8 +28,9 @@ export class EstudianteCarreraComponent implements OnInit {
   modalidades: string[];
   requisitos: CarreraRequisitoSolicitud[];
   solicitud: Solicitud;
+  evidenciasLista: EvidenciaCarrera[];
 
-  constructor(private archivos: GestionProyectoService, private carreraRequisitoSolicitudService: CarreraRequisitoSolicitudService, private carreraRequisitoService: CarreraRequisitoService, private solicitudServicio: SolicitudService, private estudianteServicio: EstudianteService, private carreraServicio: CarreraService, private estudianteCarreraServicio: EstudianteCarreraService, private router: Router, private authService: LoginService) { }
+  constructor(private evidenciaCarreraService: EvidenciaCarreraService, private archivos: GestionProyectoService, private carreraRequisitoSolicitudService: CarreraRequisitoSolicitudService, private carreraRequisitoService: CarreraRequisitoService, private solicitudServicio: SolicitudService, private estudianteServicio: EstudianteService, private carreraServicio: CarreraService, private estudianteCarreraServicio: EstudianteCarreraService, private router: Router, private authService: LoginService) { }
 
   dataUser: any;
   estudianteLogeado: any;
@@ -47,7 +51,7 @@ export class EstudianteCarreraComponent implements OnInit {
   cargarDocumento = new FormGroup({
     arch: new FormControl(''),
     tipo_archivo: new FormControl('requisito'),
-    email: new FormControl(localStorage.getItem('email')),
+    email: new FormControl(localStorage.getItem('email'))
   });
 
   ngOnInit(): void {
@@ -62,6 +66,14 @@ export class EstudianteCarreraComponent implements OnInit {
       const file = event.target.files[0];
       this.cargarDocumento.get('arch').setValue(file);
     }
+  }
+
+  getArchivosEvidencia() {
+    this.evidenciaCarreraService
+      .buscarEvidenciasPorIdCarrera(this.estudianteCarrera.carrera_id)
+      .subscribe(evidencias => {
+        this.evidenciasLista = evidencias;
+      });
   }
 
   guardarEvidencia(crs: CarreraRequisitoSolicitud) {
@@ -101,6 +113,7 @@ export class EstudianteCarreraComponent implements OnInit {
               requi => {
                 console.log(requi);
                 this.requisitos = requi;
+                this.getArchivosEvidencia();
               }
             );
         }

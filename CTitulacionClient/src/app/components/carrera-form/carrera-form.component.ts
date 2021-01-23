@@ -12,6 +12,9 @@ import { User } from '../../models/user';
 import { PeriodoLectivoService } from '../../Services/periodo-lectivo.service';
 import { AuthService } from '../../Services/auth.service';
 import { CarreraService } from '../../Services/carrera.service';
+import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
+import { EvidenciaCarrera } from 'src/app/models/evidencia-carrera';
+import { EvidenciaCarreraService } from 'src/app/evidencia-carrera.service';
 
 @Component({
   selector: 'app-carrera-form',
@@ -32,7 +35,9 @@ export class CarreraFormComponent implements OnInit {
   userDocente: User;
   docentesCarreras: DocenteCarrera[];
   periodosLista: PeriodoLectivo[];
+  evidenciasLista: EvidenciaCarrera[];
   requisitosLista: CarreraRequisito[];
+  mensajeArchivo: string;
 
   formularioCarrera = new FormGroup({
     nombre: new FormControl(''),
@@ -50,6 +55,13 @@ export class CarreraFormComponent implements OnInit {
     password_repeat: new FormControl('')
   });
 
+  formularioArchivos = new FormGroup({
+    nombre: new FormControl(''),
+    arch: new FormControl(''),
+    tipo_archivo: new FormControl('archivo_carrera'),
+    email: new FormControl(localStorage.getItem('email'))
+  });
+
   formularioPeriodoLectivo = new FormGroup({
     nombre: new FormControl(''),
     fecha_inicio: new FormControl(''),
@@ -64,7 +76,7 @@ export class CarreraFormComponent implements OnInit {
     carrera_id: new FormControl('')
   });
 
-  constructor(private carreraRequisitoService: CarreraRequisitoService, private periodoLectivoServicio: PeriodoLectivoService, private docenteCarreraService: DocenteCarreraService, private carreraServicio: CarreraService, private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
+  constructor(private evidenciaCarreraService: EvidenciaCarreraService, private archivos: GestionProyectoService, private carreraRequisitoService: CarreraRequisitoService, private periodoLectivoServicio: PeriodoLectivoService, private docenteCarreraService: DocenteCarreraService, private carreraServicio: CarreraService, private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.mensajeDatosGenerales = '';
@@ -140,6 +152,7 @@ export class CarreraFormComponent implements OnInit {
           this.getListaDocentes();
           this.getPeriodosLectivos();
           this.getRequisitos();
+          this.getArchivosEvidencia();
         },
         error => this.errorMessage = <any>error
       );
@@ -209,10 +222,63 @@ export class CarreraFormComponent implements OnInit {
       });
   }
 
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formularioArchivos.get('arch').setValue(file);
+    }
+  }
+
+  guardarEvidenciaCarrera() {
+    let nombre = this.formularioArchivos.get('nombre').value;
+    const formData = new FormData();
+    formData.append('file', this.formularioArchivos.get('arch').value);
+    formData.append('tipo_archivo', this.formularioArchivos.get('tipo_archivo').value);
+    formData.append('email', this.formularioArchivos.get('email').value);
+    formData.append('validar', 'false');
+    const documentes = this.formularioArchivos.value;
+    formData.append('nombre_archivo', documentes['arch']['name']);
+    this.archivos.cargaDocumento(formData)
+      .subscribe(respu => {
+        this.formularioArchivos.reset();
+        let stringJson = JSON.stringify(respu);
+        let stringObject = JSON.parse(stringJson);
+        let eviCarre = new EvidenciaCarrera();
+        eviCarre.carrera_id = this.id;
+        eviCarre.nombre = nombre;
+        eviCarre.evidencia_id = stringObject.id
+
+        this.evidenciaCarreraService
+          .guardarEvidenciaCarrera(eviCarre)
+          .subscribe(
+            evi => {
+              console.log(evi);
+              this.getArchivosEvidencia();
+              this.mensajeArchivo = 'Se ha guardado el Archivo correctamente';
+            }
+          );
+
+      }, (errorServer) => {
+        this.formularioArchivos.reset();
+        console.log(errorServer);
+      });
+
+
+
+  }
+
   getPeriodosLectivos() {
     this.periodoLectivoServicio.buscarPeriodoLectivoPorIdCarrera(this.carrera.id)
       .subscribe(listaPeriodos => {
         this.periodosLista = listaPeriodos;
+      });
+  }
+
+  getArchivosEvidencia() {
+    this.evidenciaCarreraService
+      .buscarEvidenciasPorIdCarrera(this.carrera.id)
+      .subscribe(evidencias => {
+        this.evidenciasLista = evidencias;
       });
   }
 

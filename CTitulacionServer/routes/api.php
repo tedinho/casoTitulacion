@@ -12,6 +12,8 @@ use App\Http\Controllers\CarreraRequisitoSolicitudController;
 use App\Http\Controllers\DocenteCarreraController;
 use App\Http\Controllers\EstudianteCarreraController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\EvidenciaCarreraController;
+use App\Http\Controllers\EvidenciaController;
 use App\Http\Controllers\PeriodoLectivoController;
 use App\Http\Controllers\ProyectoTitulacionController;
 use App\Http\Controllers\SolicitudController;
@@ -59,6 +61,9 @@ Route::resource('docente-carrera', DocenteCarreraController::class);
 Route::get('docente-carrera/buscar-docente-id-carrera/{idCarrera}', [DocenteCarreraController::class, 'buscarDocentesPorIdCarrera']);
 Route::resource('periodo-lectivo', PeriodoLectivoController::class);
 Route::get('periodo-lectivo/buscar-periodo-lectivo-id-carrera/{idCarrera}', [PeriodoLectivoController::class, 'buscarPeriodosLectivoPorIdCarrera']);
+
+Route::resource('evidencia-carrera', EvidenciaCarreraController::class);
+Route::get('evidencia-carrera/buscar-evidencia-por-id-carrera/{idCarrera}', [EvidenciaCarreraController::class, 'buscarEvidenciasPorIdCarrera']);
 
 
 Route::resource('carrera-requisito', CarreraRequisitoController::class);
