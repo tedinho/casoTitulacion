@@ -17,6 +17,7 @@ use App\Http\Controllers\EvidenciaController;
 use App\Http\Controllers\PeriodoLectivoController;
 use App\Http\Controllers\ProyectoTitulacionController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\SolicitudProrrogaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,8 @@ Route::resource('solicitud', SolicitudController::class);
 Route::get('solicitud/buscar-por-id-estudiante-carrera/{idEstudianteCarrera}', [SolicitudController::class, 'buscarSolicitudPorIdEstudianteCarrera']);
 Route::resource('anteproyectos', AnteproyectoController::class);
 Route::resource('proyectoTitulacion', ProyectoTitulacionController::class);
+
+Route::resource("solicitudProrroga", SolicitudProrrogaController::class);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

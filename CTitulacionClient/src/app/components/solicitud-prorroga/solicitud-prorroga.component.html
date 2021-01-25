@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Solicitud de Prórroga</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Solicitud de Prórroga</h4>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="onSubmit()">
+                    <!-- Fecha -->
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input"
+                                data-target="#reservationdate" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+                                <div *ngIf="f.fecha.errors.required">fecha es requerida</div>
+                                <div *ngIf="f.fecha.errors.fecha">debe ser una fecha válida</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duración -->
+                    <div class="form-group">
+                        <label>Duración</label>
+                        <input type="text" formControlName="duracion" class="form-control" />
+                        <div *ngIf="submitted && f.duracion.errors" class="invalid-feedback">
+                        </div>
+
+                    </div>
+                    <!-- Motivo -->
+                    <div class="form-group">
+                        <label>Motivo</label>
+                        <input type="text" formControlName="motivo" class="form-control" />
+                        <div *ngIf="submitted && f.motivo.errors" class="invalid-feedback">
+                            <div *ngIf="f.motivo.errors.required">motivo es requerido</div>
+                            <div *ngIf="f.motivo.errors.minlength">debe tener al menos 20 palabras</div>
+                        </div>
+                    </div>
+                    <!-- Observación -->
+                    <label>Observación</label>
+                   
+
+                    <div class="form-group form-check">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="hide()">Close</button>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<br />
+
+<div class="card">
+    <div class="card-header">
+        <div class="container text-left">
+            <h1 class="text-center">Solicitud de Prórroga</h1>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="show()">Ingresar</button>
+    </div>
+
+    <!-- /.card-header -->
+    <div class="card-body">
+        <span class="help is-info" *ngIf="isLoading">Loading...</span>
+        <span class="help is-error" *ngIf="errorMessage">{{ errorMessage }}</span>
+        <table id="soliPro" class="table table-bordered table-striped" *ngIf="!isLoading && !errorMessage">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Duración</th>
+                    <th>Motivo</th>
+                    <th>Observación</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let solicitudPro of solisPro">
+                    <td>{{ solicitudPro.id }}</td>
+                    <td>{{ solicitudPro.fecha }}</td>
+                    <td>{{ solicitudPro.duracion }}</td>
+                    <td>{{ solicitudPro.motivo }}</td>
+                    <td>{{ solicitudPro.obsevacion }}</td>
+                    <td>
+                        <button title="Editar" [routerLink]="['/carrera-form']" [queryParams]="{id : solicitudPro.id}"
+                            class="btn btn-success">
+                            Editar
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="show()">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+
+
+</html>

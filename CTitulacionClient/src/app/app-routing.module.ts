@@ -18,6 +18,7 @@ import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/
 import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
+import { SolicitudProrrogaComponent } from './components/solicitud-prorroga/solicitud-prorroga.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -93,6 +94,10 @@ const routes: Routes = [
       path: 'home',
       component: DashboardComponent,
       canActivate: [AuthGuardService]
+
+   }, {
+      path: 'prorroga',
+      component: SolicitudProrrogaComponent
 
    },
    {
