@@ -36,11 +36,12 @@ export class ModificacionRevisorComponent  {
     titulo: new FormControl(''),
     cuerpo: new FormControl(''),
     observacion: new FormControl(''),
+    validacion: new FormControl(''),
     id: new FormControl('')
 
   });
 
-  registrarInforme(){    
+  registrarInforme(){        
     this.gestionService.registrarInforme(this.informeForm.value)
       .subscribe(respu =>{        
         Swal.fire({          
@@ -48,7 +49,7 @@ export class ModificacionRevisorComponent  {
           icon: 'info',
           confirmButtonText: 'Ok'
         });
-        this.informeForm.reset();        
+        this.informeForm.reset();          
       }, (errorSrv)=>{
         console.log(errorSrv);
         Swal.fire({

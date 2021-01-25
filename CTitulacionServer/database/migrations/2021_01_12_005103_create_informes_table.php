@@ -18,6 +18,7 @@ class CreateInformesTable extends Migration
             $table->string('titulo');
             $table->string('cuerpo');
             $table->text('observacion');
+            $table->string('revisor_email');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             

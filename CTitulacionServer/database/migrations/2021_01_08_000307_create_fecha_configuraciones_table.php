@@ -15,8 +15,8 @@ class CreateFechaConfiguracionesTable extends Migration
     {
         Schema::create('fecha_configuraciones', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_fecha')->nullable();
-            $table->date('fecha');
+            $table->boolean('aceptacionInforme')->nullable();
+            $table->date('fecha')->nullable();
 
             $table->unsignedBigInteger('user_id');                
 

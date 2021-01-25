@@ -75,4 +75,8 @@ export class GestionProyectoService {
     return this.http.get(`${API_URL}obtenerEstu/${estudianteId}`);
   }
 
+  getInformeEstudiante(userId: number){
+    return this.http.get(`${API_URL}informe/${userId}`);
+  }
+
 }

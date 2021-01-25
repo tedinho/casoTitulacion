@@ -35,6 +35,7 @@
                                     <th>Titulo</th>
                                     <th>Descripción</th>
                                     <th>Observaciones</th>
+                                    <th>Detalles</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,6 +51,7 @@
                                     <td>{{ informe.titulo }}</td>
                                     <td>{{ informe.cuerpo }}</td>
                                     <td>{{ informe.observacion }}</td>
+                                    <td> <a [routerLink]="['/informeestudiante/',  informe.user_id]" class="btn btn-info btn-block">Ver más</a></td>
                                 </tr>
                             </tbody>
                         </table>

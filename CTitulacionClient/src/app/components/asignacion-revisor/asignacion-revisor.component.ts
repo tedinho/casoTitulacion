@@ -23,9 +23,8 @@ export class AsignacionRevisorComponent {
         this.revisor
           .fusion(elemntos['revisor_id'])
           .subscribe((re) => {
-            this.alu.push(re);  
-          });        
-          console.log(this.alu);
+            this.alu.push(re);                          
+          });               
       });
     });
 

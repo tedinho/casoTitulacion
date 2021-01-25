@@ -10,6 +10,6 @@ class FechaConfiguracione extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tipo_fecha', 'fecha', 'user_id'
+        'aceptacionInforme', 'fecha', 'user_id'
     ];
 }

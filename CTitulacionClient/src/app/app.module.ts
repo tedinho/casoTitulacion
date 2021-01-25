@@ -23,6 +23,7 @@ import { CargaDocumentoFinalComponent } from './components/carga-documento-final
 import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
 import { InformesComponent } from './components/informes/informes.component';
 import { AsignacionRevisorComponent } from './components/asignacion-revisor/asignacion-revisor.component';
+import { InformeEstudianteComponent } from './components/informe-estudiante/informe-estudiante.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AsignacionRevisorComponent } from './components/asignacion-revisor/asig
     ModificacionRevisorComponent,
     InformesComponent,
     AsignacionRevisorComponent,
+    InformeEstudianteComponent,
   ],
   imports: [
     BrowserModule,

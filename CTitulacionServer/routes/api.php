@@ -28,6 +28,7 @@ Route::get('getUserM/{id}', [ArchivosController::class, 'getUserByM']);
 
 Route::post('informe', [InformeController::class, 'store']);
 Route::get('informe', [InformeController::class, 'index']);
+Route::get('informe/{id}', [InformeController::class, 'show']);
 Route::get('getStudents', [InformeController::class, 'obtenerEstudiantes']);
 Route::get('obtEstudia/{email}', [RevisorController::class, 'obtenerEstudiantesId']);
 
