@@ -10,7 +10,7 @@ class Informe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titulo', 'cuerpo', 'observacion', 'user_id',
+        'titulo', 'cuerpo', 'observacion', 'user_id', 'revisor_email'
     ];
 
     public function users()

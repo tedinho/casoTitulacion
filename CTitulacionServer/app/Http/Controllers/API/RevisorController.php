@@ -31,23 +31,39 @@ class RevisorController extends Controller
      */
     public function store(Request $request)
     {
-        $revisor = new Revisore();
-        $revisor->student_id = $request['student_id'];
-        $revisor->revisor_id = $request['revisor_id'];
-        $revisor->save();
 
-        return response()->json([
-            "success" => true,
-            "message" => "Se a asignado un revisor"
-        ]);
+        $revId = Revisore::where('student_id', $request['student_id'])
+            ->first();
+
+        if ($revId) {
+            return response()->json([
+                "success" => false,
+                "message" => "El estudiante ya tiene asignado un revisor",
+            ]);
+        }
+        if(!$revId){
+
+            $revisor = new Revisore();
+            $revisor->student_id = $request['student_id'];
+            $revisor->revisor_id = $request['revisor_id'];
+            $revisor->save();
+    
+            return response()->json([
+                "success" => true,
+                "message" => "Se a asignado un revisor al estudiante"
+            ]);
+
+        }
+
+        
     }
 
 
     public function Fusion($id)
     {
-        $revisor = Revisore::where('revisor_id', $id)->first();  
-        
-        if($revisor){
+        $revisor = Revisore::where('student_id', $id)->first();
+
+        if ($revisor) {
 
             $student = User::where('id', $revisor['student_id'])->first();
             $rev = User::where('id', $revisor['revisor_id'])->first();
@@ -58,24 +74,23 @@ class RevisorController extends Controller
                 "idRevisor" => $rev['id'],
             ]);
         }
-        
+
         return response()->json([
             "nombreEstudiante" => " ",
             "idEstudiante" => " ",
             "nombreRevisor" => " ",
             "idRevisor" => " ",
-        ]);             
-
+        ]);
     }
 
     public function ObtenerEstudiantes()
     {
-        $estudiante = Role::with('users')->where('name', 'student')->first();        
+        $estudiante = Role::with('users')->where('name', 'student')->first();
 
         return $estudiante;
     }
     public function ObtenerRevisores()
-    {        
+    {
         $revisor = Role::with('users')->where('name', 'Revisor')->first();
 
         return $revisor;
@@ -86,7 +101,7 @@ class RevisorController extends Controller
         $revi = User::where('email', $email)->first();
 
         $revisorPivot = Revisore::where('revisor_id', $revi['id'])->get();
-        
+
 
         return $revisorPivot;
     }
@@ -97,6 +112,4 @@ class RevisorController extends Controller
 
         return $datosEstudiante;
     }
-
-
 }

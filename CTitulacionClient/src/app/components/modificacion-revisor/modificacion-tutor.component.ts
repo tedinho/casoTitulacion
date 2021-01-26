@@ -10,10 +10,10 @@ declare var Swal: any;
 })
 export class ModificacionRevisorComponent  {
 
-  estudiantes: Array<any> = [];
+  estudiantes: Array<any> = [];  
+  correo = localStorage['email'];
 
-  constructor(private gestionService: GestionProyectoService) { 
-    
+  constructor(private gestionService: GestionProyectoService) {     
 
       this.gestionService.pivotRevisor()
         .subscribe(re =>{
@@ -37,7 +37,8 @@ export class ModificacionRevisorComponent  {
     cuerpo: new FormControl(''),
     observacion: new FormControl(''),
     validacion: new FormControl(''),
-    id: new FormControl('')
+    id: new FormControl(''),
+    revisor_email: new FormControl(this.correo),
 
   });
 

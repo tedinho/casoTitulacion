@@ -2,18 +2,17 @@ import { Component } from '@angular/core';
 import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 @Component({
-  selector: 'app-informes',
-  templateUrl: './informes.component.html'
+  selector: 'app-informes-admin',
+  templateUrl: './informes-admin.component.html'
 })
-export class InformesComponent {
+export class InformesAdminComponent {
 
   informes: any;
   nombresArr: Array<any> = [];
-  correo = localStorage['email'];
 
   constructor(private informe: GestionProyectoService) { 
 
-    this.informe.obtenerInformeRevisor(this.correo)
+    this.informe.obtenerInforme()
       .subscribe(resp=>{
         this.informes = resp; 
 
@@ -27,7 +26,8 @@ export class InformesComponent {
       }, (errorSrv) =>{
         console.log(errorSrv);
       });
-
+      
   }
+
 
 }

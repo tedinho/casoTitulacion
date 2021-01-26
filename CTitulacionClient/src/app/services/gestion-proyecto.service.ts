@@ -48,6 +48,10 @@ export class GestionProyectoService {
     return this.http.get(`${API_URL}informe`);
   }
 
+  obtenerInformeRevisor(email: string) {
+    return this.http.get(`${API_URL}informemail/${email}`);
+  }
+
   cargaDocumento(Archivo: any) {
     return this.http.post(`${API_URL}storefile`, Archivo);
   }

@@ -27,11 +27,10 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {{ fechaMaxima[1] }}
-                    <p *ngFor="let fecha of fechaMaxima">
-                        {{ fecha.fecha | date:'fullDate' }}
-                                           
-                    </p>
+                    {{ fechaMaxima[1] }}                
+                    <div *ngFor="let fecha of fechaMaxima">
+                        {{ fecha.fecha | date:'fullDate' }}                        
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>

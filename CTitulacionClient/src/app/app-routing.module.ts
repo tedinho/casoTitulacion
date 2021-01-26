@@ -7,6 +7,7 @@ import { CargaDocumentoFinalComponent } from './components/carga-documento-final
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
 import { InformeEstudianteComponent } from './components/informe-estudiante/informe-estudiante.component';
+import { InformesAdminComponent } from './components/informes-admin/informes-admin.component';
 import { InformesComponent } from './components/informes/informes.component';
 import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
@@ -17,11 +18,12 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
     { path: 'revisor', component: AsignacionRevisorComponent, canActivate: [AuthGuardService], data: { role: 'Administrator' } },
-    { path: 'informeestudiante/:id', component: InformeEstudianteComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
+    { path: 'informeestudiante/:id', component: InformeEstudianteComponent, canActivate: [AuthGuardService], data: { role: ['Revisor', 'Administrator'], } },
     
     { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },
     { path: 'realizarInforme', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
     { path: 'informes', component: InformesComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
+    { path: 'informead', component: InformesAdminComponent, canActivate: [AuthGuardService], data: { role: 'Administrator' } },
     { path: 'home', component: DashboardComponent, canActivate: [AuthGuardService] },
     { path: '**', redirectTo: 'home' }
 

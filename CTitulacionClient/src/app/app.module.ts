@@ -24,6 +24,7 @@ import { ModificacionRevisorComponent } from './components/modificacion-revisor/
 import { InformesComponent } from './components/informes/informes.component';
 import { AsignacionRevisorComponent } from './components/asignacion-revisor/asignacion-revisor.component';
 import { InformeEstudianteComponent } from './components/informe-estudiante/informe-estudiante.component';
+import { InformesAdminComponent } from './components/informes-admin/informes-admin.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { InformeEstudianteComponent } from './components/informe-estudiante/info
     InformesComponent,
     AsignacionRevisorComponent,
     InformeEstudianteComponent,
+    InformesAdminComponent,
   ],
   imports: [
     BrowserModule,

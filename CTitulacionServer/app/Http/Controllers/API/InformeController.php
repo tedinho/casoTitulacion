@@ -44,7 +44,7 @@ class InformeController extends BaseController
 
             $validacionInforme = $request['validacion'];
 
-            if ($validacionInforme) {
+            if ($validacionInforme == true) {
 
                 $fecha = new FechaConfiguracione();
                 $fecha->fecha = date('Y-m-d', strtotime("+8 days"));
@@ -56,6 +56,7 @@ class InformeController extends BaseController
                 $informe->titulo = $request['titulo'];
                 $informe->cuerpo = $request['cuerpo'];
                 $informe->observacion = $request['observacion'];
+                $informe->revisor_email = $request['revisor_email'];
                 $informe->user_id = $request['id'];
 
                 $informe->save();
@@ -67,7 +68,7 @@ class InformeController extends BaseController
                     "validacion" => $validacionInforme
                 ]);
             }
-            if (!$validacionInforme) {
+            if ($validacionInforme == false) {
 
                 $fecha = new FechaConfiguracione();
                 $fecha->user_id = $request['id'];
@@ -78,6 +79,7 @@ class InformeController extends BaseController
                 $informe->titulo = $request['titulo'];
                 $informe->cuerpo = $request['cuerpo'];
                 $informe->observacion = $request['observacion'];
+                $informe->revisor_email = $request['revisor_email'];
                 $informe->user_id = $request['id'];
 
                 $informe->save();
@@ -112,15 +114,12 @@ class InformeController extends BaseController
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
+    public function obtenerInformeEmail($email)
+    {        
+
+        $informe = Informe::where('revisor_email', $email)->get();
+
+        return $informe;
     }
 
     public function obtenerEstudiantes($student = "student")

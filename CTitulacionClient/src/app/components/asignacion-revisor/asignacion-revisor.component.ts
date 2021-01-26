@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { element } from 'protractor';
 import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
+
+declare var Swal: any;
 
 @Component({
   selector: 'app-asignacion-revisor',
@@ -18,12 +19,13 @@ export class AsignacionRevisorComponent {
 
   constructor(private revisor: GestionProyectoService) {
     this.revisor.obtenerRevisores().subscribe((respRxE) => {
-      this.revisorEstudianteArr = respRxE;      
+      this.revisorEstudianteArr = respRxE;     
+      console.log(respRxE);  
       this.revisorEstudianteArr.forEach((elemntos) => {
-        this.revisor
-          .fusion(elemntos['revisor_id'])
+        this.revisor.fusion(elemntos['student_id'])
           .subscribe((re) => {
-            this.alu.push(re);                          
+            this.alu.push(re);   
+            console.log(re);
           });               
       });
     });
@@ -43,8 +45,19 @@ export class AsignacionRevisorComponent {
   });
 
   registrarInforme() {
-    this.revisor.registrarRevisor(this.revisorForm.value).subscribe((resp) => {
-      console.log(resp);
+    this.revisor.registrarRevisor(this.revisorForm.value).subscribe((resp: any) => {      
+      this.revisorForm.reset();
+      Swal.fire({
+        text: `${resp.message}`,
+        icon: 'info',                  
+      });
+    }, (errorSvr)=>{
+      console.log(errorSvr);
+      this.revisorForm.reset();
+      Swal.fire({
+        icon: 'error',
+        text: 'Error al asignar revisor',                
+      });
     });
   }
 }
