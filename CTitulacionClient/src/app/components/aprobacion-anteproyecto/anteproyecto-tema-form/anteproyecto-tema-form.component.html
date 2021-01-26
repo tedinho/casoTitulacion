@@ -1,0 +1,38 @@
+<br>
+<h1>Aprobación o Rechazo de Tema de Anteproyecto</h1>
+<h4 class="card-subtitle text-muted">Insertar</h4>
+<hr>
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label>Seleccionar Estudiante</label>
+      <select class="form-control">
+        <option value="" selected disabled>Seleccionar estudiante</option>
+        <option value="">Juan</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label>Estado</label>
+      <select class="form-control">
+        <option value="" selected disabled>Seleccionar estado</option>
+        <option *ngFor="let est of estado" [ngValue]="est">
+          {{est}}
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label>Tema de Anteproyecto</label>
+      <input type="text" class="form-control">
+    </div>
+  </div>
+</div>
+<button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
+<button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
+  Cancelar
+</button>
+

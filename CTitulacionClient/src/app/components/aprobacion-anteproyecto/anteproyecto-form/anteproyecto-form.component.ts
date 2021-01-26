@@ -21,13 +21,22 @@ export class AnteproyectoFormComponent implements OnInit {
     fecha_fin: new FormControl(''),
     observacion: new FormControl(''),
     id_solicitud: new FormControl(1),
+    id: new FormControl('')
   });
   
   estado: string[];
+  estudiantes: any;
 
   name = new FormControl('');
 
-  constructor(private anteproyectoServicio:AnteproyectoService,private route:ActivatedRoute, private router: Router) { }
+  constructor(private anteproyectoServicio:AnteproyectoService,private route:ActivatedRoute, private router: Router) {
+    this.anteproyectoServicio.obtenerEstudiantes()
+      .subscribe((resp: any) => {
+        this.estudiantes = resp;
+      }, (errorSrv) => {
+        console.log(errorSrv);
+      });
+   }
 
   ngOnInit(): void {
     this.getEstado();

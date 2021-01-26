@@ -1,49 +1,80 @@
-<br>
-<h1>Aprobación / Rechazo Anteproyecto</h1>
-<hr>
-<div class="row">
-  <div class="col">
-    <button title="Nuevo" [routerLink]="['/anteproyecto-form']" class="btn btn-primary">
-    Insertar
-  </button>
+<div class="content-header">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item active">Aprobación o Rechazo de Anteproyecto</li>
+    </ol>
   </div>
 </div>
-<br>
-<table class="table table-bordered">
-  <thead class="thead-dark">
-    <tr>
-      <th></th>
-      <th>#</th>
-      <th>Estudiante</th>
-      <th>Estado</th>
-      <th>Fecha Inicio</th>
-      <th>Fecha Fin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let a of anteproyectos">
-      <tr (click)="a.expanded = !a.expanded">
-        <td>{{ a.expanded ? '&ndash;' : '+'}}</td>
-        <td>{{anteproyectos.indexOf(a)+1}}</td>
-        <td>Juan</td>
-        <td>{{a.estado}}</td>
-        <td>{{a.fecha_inicio}}</td>
-        <td>{{a.fecha_fin}}</td>
-      </tr>
-    <ng-container *ngIf="a.expanded">
-      <tr *ngFor="let av of findDetails(a)">
-        <th>Observación:</th>
-        <td colspan="5"> {{av.observacion}} </td>
-      </tr>
-    </ng-container>
-    </ng-container>
-  </tbody>
-</table>
-
-<div *ngIf="anteproyectos==null||anteproyectos.length==0">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container text-center">
-      <p class="lead">No existe Anteproyecto</p>
+<div class="content-header">
+  <div class="container-fluid">
+      <div class="row mb-2">
+          <div class="col-sm-6">
+              <h1 class="m-0">Aprobación o Rechazo de Anteproyecto</h1>
+          </div>
+      </div>
+  </div>
+</div>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <button title="Nuevo" [routerLink]="['/anteproyecto-form']" class="btn btn-primary">
+        Insertar
+      </button>
+      </div>
+    </div>
+    <br>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th></th>
+          <th>#</th>
+          <th>Estudiante</th>
+          <th>Estado</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let a of anteproyectos">
+          <tr (click)="a.expanded = !a.expanded">
+            <td>{{ a.expanded ? '&ndash;' : '+'}}</td>
+            <td>{{anteproyectos.indexOf(a)+1}}</td>
+            <td>Juan</td>
+            <td>{{a.estado}}</td>
+            <td>{{a.fecha_inicio}}</td>
+            <td>{{a.fecha_fin}}</td>
+            <td>
+              <div class="d-grid gap-2 col-6 mx-auto">
+                <button
+                  class="btn btn-outline-primary"
+                  style="min-width: 1.8em; padding: .05em !important; margin-left: .1em; margin-right: .1em;"
+                  title="Editar"
+                  [routerLink]="['/anteproyecto-form']"
+                  [queryParams]="{id : a.id}"
+                >
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        <ng-container *ngIf="a.expanded">
+          <tr *ngFor="let av of findDetails(a)">
+            <th>Observación:</th>
+            <td colspan="5"> {{av.observacion}} </td>
+          </tr>
+        </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+    <div *ngIf="anteproyectos==null||anteproyectos.length==0">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+          <p class="lead">No existe Anteproyecto</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>

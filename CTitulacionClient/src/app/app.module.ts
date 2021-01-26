@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InjectionToken, NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,8 @@ import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { AnteproyectoTemaFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-form/anteproyecto-tema-form.component';
 
 registerLocaleData(localEs);
 
@@ -55,6 +58,7 @@ registerLocaleData(localEs);
     RubricaComponent,
     GuiasProyectoComponent,
     CronogramaComponent,
+    AnteproyectoTemaFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +67,8 @@ registerLocaleData(localEs);
     ReactiveFormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    NgxMaterialTimepickerModule,
+    BrowserAnimationsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]

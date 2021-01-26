@@ -1,71 +1,77 @@
-<h1>Generacion de Cronograma de Tutorias</h1>
-<!-- <form [formGroup]="formularioGestionProyecto" (ngSubmit)="guardar()">
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label>Fecha</label>
-        <input type="date" class="form-control" formControlName="fecha">
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
-        <label>Asunto</label>
-        <input type="text" class="form-control" formControlName="asunto">
-      </div>
-    </div>
+<div class="content-header">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item active">Generacion de Cronograma de Tutorias</li>
+    </ol>
   </div>
-  <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
-  <button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
-    Cancelar
-  </button>
-</form> -->
-<form [formGroup]="formularioGestionProyecto" (ngSubmit)="guardar()">
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label>Seleccionar Estudiante para Informe</label>
-        <select class="form-control">
-            <option value="" selected disabled>Seleccionar estudiante</option>
-            <option value="">Juan</option>
-        </select>
+</div>
+<div class="content-header">
+  <div class="container-fluid">
+      <div class="row mb-2">
+          <div class="col-sm-6">
+              <h1 class="m-0">Generacion de Cronograma de Tutorias</h1>
+          </div>
       </div>
-    </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label>Fecha</label>
-        <input type="date" class="form-control" formControlName="fecha">
+</div>
+<section class="content-header">
+  <div class="container-fluid">
+    <form [formGroup]="formularioGestionProyecto" (ngSubmit)="guardar()">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>Seleccionar Estudiante para Informe</label>
+            <select class="form-control">
+                <option value="" selected disabled>Seleccionar estudiante</option>
+                <option value="">Juan</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Asunto</label>
+            <input type="text" class="form-control" formControlName="asunto">
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
-        <label>Asunto</label>
-        <input type="text" class="form-control" formControlName="asunto">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>Fecha</label>
+            <input type="date" class="form-control" formControlName="fecha">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Hora</label>
+            <input [ngxTimepicker]="picker" class="form-control" placeholder="Seleccione la hora">
+            <ngx-material-timepicker #picker></ngx-material-timepicker>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group"></div>
+          <label></label>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="form-group"></div>
-      <label></label>
-      <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
-      <button type="submit" class="btn btn-primary" (click)="exit()">Actualizar</button>
-    </div>
+    </form>
+    <br>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Estudiante</th>
+          <th>Fecha y hora</th>
+          <th>Asunto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of gestionProyectos">
+          <td>Juan</td>
+          <td>{{a.fecha | date:'fullDate'}}</td>
+          <td>{{a.asunto}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</form>
-<br>
-<table class="table table-bordered">
-  <thead class="thead-dark">
-    <tr>
-      <th>Estudiante</th>
-      <th>Fecha</th>
-      <th>Asunto</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let a of gestionProyectos">
-      <td>Juan</td>
-      <td>{{a.fecha | date:'fullDate'}}</td>
-      <td>{{a.asunto}}</td>
-    </tr>
-  </tbody>
-</table>
+</section>

@@ -27,4 +27,8 @@ export class AnteproyectoService {
     return this.http.post(API_URL + 'anteproyectos/', anteproyecto);
   }
 
+  obtenerEstudiantes() {
+    return this.http.get(`${API_URL}getStudents`);
+  }
+
 }
