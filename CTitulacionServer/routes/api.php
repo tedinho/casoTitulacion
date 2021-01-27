@@ -14,6 +14,7 @@ use App\Http\Controllers\EstudianteCarreraController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\PeriodoLectivoController;
 use App\Http\Controllers\ProyectoTitulacionController;
+use App\Http\Controllers\ObservacionAnteproyectoController;
 use App\Http\Controllers\SolicitudController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,8 @@ Route::get('carrera-requisito-solicitud/buscar-requisito-carrera-solicitud-id-so
 Route::resource('solicitud', SolicitudController::class);
 Route::get('solicitud/buscar-por-id-estudiante-carrera/{idEstudianteCarrera}', [SolicitudController::class, 'buscarSolicitudPorIdEstudianteCarrera']);
 Route::resource('anteproyectos', AnteproyectoController::class);
+Route::resource('temaAnteproyectos', ObservacionAnteproyectoController::class);
+Route::get('getEstudiantes', [AnteproyectoController::class, 'obtenerEstudiantes']);
 Route::resource('proyectoTitulacion', ProyectoTitulacionController::class);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

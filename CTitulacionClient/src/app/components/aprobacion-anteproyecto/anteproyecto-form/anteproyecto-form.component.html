@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="anteproyecto-list">Aprobación o Rechazo de Anteproyecto</a></li>
+        <li class="breadcrumb-item"><a href="anteproyecto-list">Gestión Anteproyecto</a></li>
         <li class="breadcrumb-item active">Insertar</li>
     </ol>
   </div>
@@ -11,7 +11,7 @@
   <div class="container-fluid">
       <div class="row mb-2">
           <div class="col-sm-6">
-              <h1 class="m-0">Aprobación o Rechazo de Anteproyecto</h1>
+              <h1 class="m-0">Gestión Anteproyecto</h1>
               <h5 class="card-subtitle text-muted">Insertar</h5>
           </div>
       </div>
@@ -24,7 +24,7 @@
         <div class="col">
           <div class="form-group">
             <label for="notaTutor">Seleccionar Estudiante</label>
-            <select class="form-control" style="width: 100%;" formControlName="id">
+            <select class="form-control" style="width: 100%;" formControlName="user_id">
               <option value="" selected disabled>Seleccionar estudiante</option>
               <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id">{{ estudiante.name }}</option>
             </select>
@@ -58,8 +58,11 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label>Revisor</label>
-            <input type="text" class="form-control" placeholder="Seleccione revisor">
+            <label>Asignación de Director</label>
+            <select class="form-control">
+              <option value="" selected disabled>Seleccionar revisor</option>
+              <option value="Profesor1">Revisor1</option>
+            </select>
           </div>
         </div>
       </div>

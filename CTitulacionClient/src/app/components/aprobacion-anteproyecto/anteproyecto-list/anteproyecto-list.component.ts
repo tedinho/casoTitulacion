@@ -11,10 +11,13 @@ import { AnteproyectoService } from 'src/app/Services/anteproyecto.service';
 export class AnteproyectoListComponent implements OnInit {
 
   anteproyectos: Anteproyecto[];
+  nombresArr: Array<any> = [];
   errorMessage: string;
   txtNombre: string;
 
-  constructor(private AnteproyectoServicio: AnteproyectoService) { }
+  constructor(private AnteproyectoServicio: AnteproyectoService) {
+
+  }
 
   ngOnInit(): void {
     this.txtNombre = "";
@@ -31,6 +34,13 @@ export class AnteproyectoListComponent implements OnInit {
       .subscribe(
         anteproyectos => {
           this.anteproyectos = anteproyectos
+
+          this.anteproyectos.forEach(nombres => {
+            this.AnteproyectoServicio.obtenerEstudiantesInformes(nombres['user_id'])
+              .subscribe(resp2 => {
+                this.nombresArr.push(resp2);
+              })
+          })
         }, (error) => {
           console.log(error);
         }

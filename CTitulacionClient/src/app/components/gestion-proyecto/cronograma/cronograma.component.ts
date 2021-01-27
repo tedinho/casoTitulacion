@@ -15,15 +15,27 @@ export class CronogramaComponent implements OnInit {
   id: number;
   errorMessage: string;
   gestionProyectos: GestionProyecto[];
+  nombresArr: Array<any> = [];
   txtNombre: string;
   formularioGestionProyecto = new FormGroup({
     fecha: new FormControl(''),
+    hora: new FormControl(''),
     asunto: new FormControl(''),
+    user_id: new FormControl('')
   });
+
+  estudiantes: any;
 
   name = new FormControl();
 
-  constructor(private GestionProyectoServicio: GestionProyectoService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private GestionProyectoServicio: GestionProyectoService, private route: ActivatedRoute, private router: Router) {
+    this.GestionProyectoServicio.obtenerEstudiantes()
+      .subscribe((resp: any) => {
+        this.estudiantes = resp;
+      }, (errorSrv) => {
+        console.log(errorSrv);
+      });
+  }
 
   ngOnInit(): void {
     this.gestionProyecto = new GestionProyecto();
@@ -68,6 +80,13 @@ export class CronogramaComponent implements OnInit {
       .subscribe(
         gestionProyecto => {
           this.gestionProyectos = gestionProyecto
+
+          this.gestionProyectos.forEach(nombres => {
+            this.GestionProyectoServicio.obtenerEstudiantesInformes(nombres['user_id'])
+              .subscribe(resp2 => {
+                this.nombresArr.push(resp2);
+              })
+          })
         }, (error) => {
           console.log(error);
         }

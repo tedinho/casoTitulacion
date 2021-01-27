@@ -20,8 +20,7 @@ export class AnteproyectoFormComponent implements OnInit {
     fecha_inicio: new FormControl(''),
     fecha_fin: new FormControl(''),
     observacion: new FormControl(''),
-    id_solicitud: new FormControl(1),
-    id: new FormControl('')
+    user_id: new FormControl('')
   });
   
   estado: string[];
@@ -52,7 +51,7 @@ export class AnteproyectoFormComponent implements OnInit {
   }
 
   getEstado() {
-    this.estado = ['Aprobado', 'Rechazado'];
+    this.estado = ['Aprobado', 'Rechazado', 'Pausa'];
   }
 
   guardar() {
@@ -92,7 +91,7 @@ export class AnteproyectoFormComponent implements OnInit {
             fecha_inicio: new FormControl(''),
             fecha_fin: new FormControl(''),
             observacion: new FormControl(''),
-            id_solicitud: new FormControl(1),
+            user_id: new FormControl(''),
           });
           console.log(anteproyecto);
           this.anteproyecto = anteproyecto;

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\anteproyecto;
 use Illuminate\Http\Request;
+use App\Models\Role;
+use App\Models\User;
 
 class AnteproyectoController extends Controller
 {
@@ -84,5 +86,18 @@ class AnteproyectoController extends Controller
     public function destroy(anteproyecto $anteproyecto)
     {
         //
+    }
+
+    public function obtenerEstudiantes($student = "student")
+    {
+        $rol = $this->obtenerRol($student);
+        return $rol;
+    }
+
+    protected function obtenerRol($rol_nombre)
+    {
+        $rol = Role::with('users')->where('name', $rol_nombre)->first();
+
+        return $rol['users'];
     }
 }

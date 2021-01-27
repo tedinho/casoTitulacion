@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-        <li class="breadcrumb-item active">Aprobación o Rechazo de Anteproyecto</li>
+        <li class="breadcrumb-item active">Gestión Anteproyecto</li>
     </ol>
   </div>
 </div>
@@ -10,7 +10,7 @@
   <div class="container-fluid">
       <div class="row mb-2">
           <div class="col-sm-6">
-              <h1 class="m-0">Aprobación o Rechazo de Anteproyecto</h1>
+              <h1 class="m-0">Gestión Anteproyecto</h1>
           </div>
       </div>
   </div>
@@ -42,8 +42,20 @@
           <tr (click)="a.expanded = !a.expanded">
             <td>{{ a.expanded ? '&ndash;' : '+'}}</td>
             <td>{{anteproyectos.indexOf(a)+1}}</td>
-            <td>Juan</td>
-            <td>{{a.estado}}</td>
+            <td>
+              <div *ngFor="let estudiante of nombresArr">
+                <p *ngIf="a.user_id == estudiante.id">
+                  {{ estudiante.name }}
+                </p>
+              </div>
+            </td>
+            <td>
+              <div class="d-grid gap-2 col-6 mx-auto">
+                <span *ngIf="a.estado == 'Aprobado'" class="badge bg-success">Aprobado</span>
+                <span *ngIf="a.estado == 'Rechazado'" class="badge bg-danger">Rechazado</span>
+                <span *ngIf="a.estado == 'Pausa'" class="badge bg-warning text-dark">Corrección</span>
+              </div>
+            </td>
             <td>{{a.fecha_inicio}}</td>
             <td>{{a.fecha_fin}}</td>
             <td>
@@ -63,7 +75,9 @@
         <ng-container *ngIf="a.expanded">
           <tr *ngFor="let av of findDetails(a)">
             <th>Observación:</th>
-            <td colspan="5"> {{av.observacion}} </td>
+            <td colspan="4"> {{av.observacion}} </td>
+            <th>Revisor:</th>
+            <td>Revisor1</td>
           </tr>
         </ng-container>
         </ng-container>

@@ -21,12 +21,12 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label>Seleccionar Estudiante para Informe</label>
-            <select class="form-control">
-                <option value="" selected disabled>Seleccionar estudiante</option>
-                <option value="">Juan</option>
+            <label for="notaTutor">Seleccionar Estudiante</label>
+            <select class="form-control" style="width: 100%;" formControlName="user_id">
+              <option value="" selected disabled>Seleccionar estudiante</option>
+              <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id">{{ estudiante.name }}</option>
             </select>
-          </div>
+        </div>
         </div>
         <div class="col">
           <div class="form-group">
@@ -45,8 +45,9 @@
         <div class="col">
           <div class="form-group">
             <label>Hora</label>
-            <input [ngxTimepicker]="picker" class="form-control" placeholder="Seleccione la hora">
-            <ngx-material-timepicker #picker></ngx-material-timepicker>
+            <input type="text" class="form-control" placeholder="Ingrese la hora" formControlName="hora">
+            <!-- <input [ngxTimepicker]="picker" class="form-control" placeholder="Seleccione la hora" formControlName="hora">
+            <ngx-material-timepicker #picker></ngx-material-timepicker> -->
           </div>
         </div>
         <div class="col">
@@ -67,8 +68,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let a of gestionProyectos">
-          <td>Juan</td>
-          <td>{{a.fecha | date:'fullDate'}}</td>
+          <td>
+            <div *ngFor="let estudiante of nombresArr">
+              <p *ngIf="a.user_id == estudiante.id">
+                {{ estudiante.name }}
+              </p>
+            </div>
+          </td>
+          <td>{{a.fecha | date:'fullDate'}} a las {{a.hora}}</td>
           <td>{{a.asunto}}</td>
         </tr>
       </tbody>

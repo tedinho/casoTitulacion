@@ -19,7 +19,7 @@ import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/
 import { AnteproyectoTemaFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-form/anteproyecto-tema-form.component';
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
-import { from } from 'rxjs';
+import { AnteproyectoTemaListComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-list/anteproyecto-tema-list.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -72,6 +72,11 @@ const routes: Routes = [
    {
       path: 'anteproyecto-tema',
       component: AnteproyectoTemaFormComponent,
+      canActivate: [AuthGuardService]
+   },
+   {
+      path: 'anteproyecto-tema-list',
+      component: AnteproyectoTemaListComponent,
       canActivate: [AuthGuardService]
    },
    {

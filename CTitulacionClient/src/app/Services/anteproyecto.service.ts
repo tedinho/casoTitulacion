@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Anteproyecto } from 'src/app/models/anteproyecto';
+import { TemaAnteproyecto } from 'src/app/models/tema-anteproyecto';
 const API_URL: string = 'http://localhost:8000/api/';
 
 @Injectable({
@@ -28,7 +29,27 @@ export class AnteproyectoService {
   }
 
   obtenerEstudiantes() {
-    return this.http.get(`${API_URL}getStudents`);
+    return this.http.get(`${API_URL}getEstudiantes`);
+  }
+
+  obtenerEstudiantesInformes(user_id) {
+    return this.http.get(`${API_URL}getUserM/${user_id}`);
+  }
+
+  guardarTemaAnteproyecto(temaAnteproyecto) {
+    return this.http.post(API_URL + 'temaAnteproyectos/', temaAnteproyecto);
+  }
+
+  getTemaAnteproyectos(nombre: string): Observable<TemaAnteproyecto[]> {
+    return this.http.get<TemaAnteproyecto[]>(API_URL + 'temaAnteproyectos');
+  }
+
+  buscarTemaAnteproyecto(llave: number): Observable<TemaAnteproyecto> {
+    return this.http.get<TemaAnteproyecto>(API_URL + 'temaAnteproyectos/' + llave + '');
+  }
+
+  actualizarTemaAnteproyecto(temaAnteproyecto, id) {
+    return this.http.put(API_URL + 'temaAnteproyectos/' + id, temaAnteproyecto);
   }
 
 }

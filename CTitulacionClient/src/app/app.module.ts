@@ -32,6 +32,7 @@ import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proy
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { AnteproyectoTemaFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-form/anteproyecto-tema-form.component';
+import { AnteproyectoTemaListComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-list/anteproyecto-tema-list.component';
 
 registerLocaleData(localEs);
 
@@ -59,6 +60,7 @@ registerLocaleData(localEs);
     GuiasProyectoComponent,
     CronogramaComponent,
     AnteproyectoTemaFormComponent,
+    AnteproyectoTemaListComponent,
   ],
   imports: [
     BrowserModule,
