@@ -1,54 +1,83 @@
-<br>
-<h1>Aprobación / Rechazo Anteproyecto</h1>
-<h4 class="card-subtitle text-muted">Insertar</h4>
-<hr>
-<form [formGroup]="formularioAnteproyecto" (ngSubmit)="guardar()">
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label>Seleccionar Estudiante para Informe</label>
-        <select class="form-control">
-            <option value="" selected disabled>Seleccionar estudiante</option>
-            <option value="">Juan</option>
-        </select>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
-        <label>Estado</label>
-        <select class="form-control" formControlName="estado">
-          <option value="" selected disabled>Seleccionar estado</option>
-          <option *ngFor="let est of estado" [ngValue]="est">
-            {{est}}
-        </select>
-      </div>
-    </div>
+<div class="content-header">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="anteproyecto-list">Gestión Anteproyecto</a></li>
+        <li class="breadcrumb-item active">Insertar</li>
+    </ol>
   </div>
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label>Fecha inicio</label>
-        <input type="date" class="form-control" formControlName="fecha_inicio">
+</div>
+<div class="content-header">
+  <div class="container-fluid">
+      <div class="row mb-2">
+          <div class="col-sm-6">
+              <h1 class="m-0">Gestión Anteproyecto</h1>
+              <h5 class="card-subtitle text-muted">Insertar</h5>
+          </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
-        <label>Fecha fin</label>
-        <input type="date" class="form-control" formControlName="fecha_fin">
-      </div>
-    </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label>Observación</label>
-        <textarea name="observaciones" id="" cols="30" rows="10" class="form-control" formControlName="observacion"></textarea>
+</div>
+<div class="content-header">
+  <div class="container-fluid">
+    <form [formGroup]="formularioAnteproyecto" (ngSubmit)="guardar()">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="notaTutor">Seleccionar Estudiante</label>
+            <select class="form-control" style="width: 100%;" formControlName="user_id">
+              <option value="" selected disabled>Seleccionar estudiante</option>
+              <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id">{{ estudiante.name }}</option>
+            </select>
+        </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Estado</label>
+            <select class="form-control" formControlName="estado">
+              <option value="" selected disabled>Seleccionar estado</option>
+              <option *ngFor="let est of estado" [ngValue]="est">
+                {{est}}
+            </select>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>Fecha inicial</label>
+            <input type="date" class="form-control" formControlName="fecha_inicio">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Fecha final</label>
+            <input type="date" class="form-control" formControlName="fecha_fin">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>Asignación de Director</label>
+            <select class="form-control">
+              <option value="" selected disabled>Seleccionar revisor</option>
+              <option value="Profesor1">Revisor1</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>Observación</label>
+            <textarea  name="observaciones" cols="30" rows="10" class="form-control" formControlName="observacion"></textarea>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
+      <button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
+        Cancelar
+      </button>
+    </form>
   </div>
-  <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;
-  <button type="button" [routerLink]="['/anteproyecto-list']" class="btn btn-outline-danger">
-    Cancelar
-  </button>
-</form>
-<br>
+</div>

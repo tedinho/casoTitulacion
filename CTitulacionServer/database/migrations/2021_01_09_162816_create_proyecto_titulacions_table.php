@@ -16,7 +16,14 @@ class CreateProyectoTitulacionsTable extends Migration
         Schema::create('proyecto_titulacions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('fecha');
+            $table->string('hora');
             $table->string('asunto');
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

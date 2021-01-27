@@ -19,7 +19,13 @@ class CreateAnteproyectosTable extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('observacion');
-            $table->bigInteger('id_solicitud')->unsigned();
+            // $table->bigInteger('id_solicitud')->unsigned();
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

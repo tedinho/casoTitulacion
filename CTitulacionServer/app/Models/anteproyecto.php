@@ -9,6 +9,6 @@ class anteproyecto extends Model
 {
     protected $table = 'anteproyectos';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'estado', 'fecha_inicio', 'fecha_fin', 'observacion', 'id_solicitud'];
+    protected $fillable = ['id', 'estado', 'fecha_inicio', 'fecha_fin', 'observacion', 'user_id'];
     public $timestamps = false;
 }

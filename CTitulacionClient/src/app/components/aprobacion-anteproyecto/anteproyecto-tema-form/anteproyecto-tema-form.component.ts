@@ -1,33 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Anteproyecto } from 'src/app/models/anteproyecto';
+import { TemaAnteproyecto } from 'src/app/models/tema-anteproyecto';
 import { AnteproyectoService } from 'src/app/Services/anteproyecto.service';
 
 @Component({
-  selector: 'app-anteproyecto-form',
-  templateUrl: './anteproyecto-form.component.html',
-  styleUrls: ['./anteproyecto-form.component.css']
+  selector: 'app-anteproyecto-tema-form',
+  templateUrl: './anteproyecto-tema-form.component.html',
+  styleUrls: ['./anteproyecto-tema-form.component.css']
 })
-
-export class AnteproyectoFormComponent implements OnInit {
-  anteproyecto:Anteproyecto;
+export class AnteproyectoTemaFormComponent implements OnInit {
+  temaAnteproyecto:TemaAnteproyecto;
   id: number;
   errorMessage: string;
-  formularioAnteproyecto = new FormGroup({
+  formularioTemaAnteproyecto = new FormGroup({
     estado: new FormControl(''),
-    fecha_inicio: new FormControl(''),
-    fecha_fin: new FormControl(''),
-    observacion: new FormControl(''),
+    tema: new FormControl(''),
     user_id: new FormControl('')
   });
-  
+
   estado: string[];
   estudiantes: any;
 
   name = new FormControl('');
-
+  
   constructor(private anteproyectoServicio:AnteproyectoService,private route:ActivatedRoute, private router: Router) {
     this.anteproyectoServicio.obtenerEstudiantes()
       .subscribe((resp: any) => {
@@ -35,42 +31,34 @@ export class AnteproyectoFormComponent implements OnInit {
       }, (errorSrv) => {
         console.log(errorSrv);
       });
-   }
+  }
 
   ngOnInit(): void {
     this.getEstado();
-    this.anteproyecto = new Anteproyecto();
-
-    this.route.queryParams
-      .subscribe(params => {
-        this.id = params.id;
-        if (this.id != null) {
-          this.getAnteproyecto();
-     }    
-  });
+    this.temaAnteproyecto = new TemaAnteproyecto();
   }
 
   getEstado() {
-    this.estado = ['Aprobado', 'Rechazado', 'Pausa'];
+    this.estado = ['Aprobado', 'Rechazado'];
   }
 
   guardar() {
-    if (this.anteproyecto.id == null) {
-      console.log(this.formularioAnteproyecto.value);
+    if (this.temaAnteproyecto.id == null) {
+      console.log(this.formularioTemaAnteproyecto.value);
       this.anteproyectoServicio
-        .guardarAnteproyecto(this.formularioAnteproyecto.value)
+        .guardarTemaAnteproyecto(this.formularioTemaAnteproyecto.value)
         .subscribe(
-          anteproyecto => {
-            console.log(anteproyecto);
+          temaAnteproyecto => {
+            console.log(temaAnteproyecto);
             this.router.navigate(['/anteproyecto-list']);
           }
         );
     } else {
       this.anteproyectoServicio
-        .actualizarAnteproyecto(this.formularioAnteproyecto.value, this.id)
+        .actualizarTemaAnteproyecto(this.formularioTemaAnteproyecto.value, this.id)
         .subscribe(
-          anteproyecto => {
-            console.log(anteproyecto);
+          temaAnteproyecto => {
+            console.log(temaAnteproyecto);
             this.router.navigate(['/anteproyecto-list']);
           },
           error => {
@@ -80,24 +68,25 @@ export class AnteproyectoFormComponent implements OnInit {
     }
   }
 
-  getAnteproyecto() {
+  /* getAnteproyecto() {
     this.anteproyectoServicio
       .buscarAnteproyecto(this.id)
       .subscribe(
-        anteproyecto => {
-          this.formularioAnteproyecto = new FormGroup({
+        temaAnteproyecto => {
+          this.formularioTemaAnteproyecto = new FormGroup({
             id: new FormControl(null),
             estado: new FormControl(''),
             fecha_inicio: new FormControl(''),
             fecha_fin: new FormControl(''),
             observacion: new FormControl(''),
-            user_id: new FormControl(''),
+            id_solicitud: new FormControl(1),
           });
-          console.log(anteproyecto);
-          this.anteproyecto = anteproyecto;
-          this.formularioAnteproyecto.setValue(anteproyecto);
+          console.log(temaAnteproyecto);
+          this.temaAnteproyecto = temaAnteproyecto;
+          this.formularioTemaAnteproyecto.setValue(temaAnteproyecto);
         },
         error => this.errorMessage = <any>error
       );
-  }
+  } */
+
 }
