@@ -29,6 +29,7 @@ import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
+import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 
 registerLocaleData(localEs);
 
@@ -55,6 +56,7 @@ registerLocaleData(localEs);
     RubricaComponent,
     GuiasProyectoComponent,
     CronogramaComponent,
+    ProrrogaComponent,
   ],
   imports: [
     BrowserModule,

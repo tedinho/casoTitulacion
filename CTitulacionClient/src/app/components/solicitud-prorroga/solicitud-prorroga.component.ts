@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SolicitudProrroga } from 'src/app/models/solicitud-prorroga';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SolicitudProrrogaService } from 'src/app/Services/solicitud-prorroga.service';
 
 @Component({
@@ -12,7 +13,8 @@ import { SolicitudProrrogaService } from 'src/app/Services/solicitud-prorroga.se
 
 export class SolicitudProrrogaComponent implements OnInit {
 
-
+  solicitudProrroga: SolicitudProrroga;
+  id: number;
   solisPro: SolicitudProrroga[];
   errorMessage: string;
   isLoading: boolean = true;
@@ -23,6 +25,15 @@ export class SolicitudProrrogaComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   formadata;
+
+  formularioSolicitudPro = new FormGroup({
+    fecha: new FormControl(''),
+    duracion: new FormControl(''),
+    motivo: new FormControl(''),
+    observacion: new FormControl(''),
+  });
+
+  name = new FormControl('');
 
   constructor(private formBuilder: FormBuilder, private solicitudProrrogaService: SolicitudProrrogaService) { }
 
@@ -43,19 +54,18 @@ export class SolicitudProrrogaComponent implements OnInit {
     this.showModal = false;
   }
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      fecha: ['', [Validators.required]],
-      motivo: ['', [Validators.required, Validators.minLength(100)]]
-    });
-
-    this.formadata = this.formBuilder.group({
-      observacion: ['', [Validators.required,
-      Validators.maxLength(400), Validators.minLength(100)]]
-    });
-
     this.txtNombre = "";
     this.getSolicitudesProrroga();
 
+    // this.registerForm = this.formBuilder.group({
+    //   fecha: ['', [Validators.required]],
+    //   motivo: ['', [Validators.required, Validators.minLength(100)]]
+    // });
+
+    // this.formadata = this.formBuilder.group({
+    //   observacion: ['', [Validators.required,
+    //   Validators.maxLength(400), Validators.minLength(100)]]
+    // });
 
   }
 
@@ -74,16 +84,40 @@ export class SolicitudProrrogaComponent implements OnInit {
   }
 
 
-  getSolicitudesProrroga() {
+  getSolicitudes() {
     this.solicitudProrrogaService
       .getSolicitudesProrroga(this.txtNombre)
       .subscribe(
-        solisPro => {
-          // this.solisPro = solisPro
+        solicitudPro => {
+          this.solisPro = solicitudPro
         }, (error) => {
           console.log(error);
         }
       );
+  }
+
+  buscar() {
+    this.getSolicitudesProrroga();
+  }
+
+  getSolicitudesProrroga() {
+    this.solicitudProrrogaService
+    .buscarSolicitudProrroga(this.id)
+    .subscribe(
+      solicitudProrroga => {
+        this.formularioSolicitudPro = new FormGroup({
+          id: new FormControl(null),
+          fecha: new FormControl(''),
+          duracion: new FormControl(''),
+          motivo: new FormControl(''),
+          observacion: new FormControl(''),
+        });
+        console.log(solicitudProrroga);
+        this.solicitudProrroga = solicitudProrroga;
+        this.formularioSolicitudPro.setValue(solicitudProrroga);
+      },
+      error => this.errorMessage = <any>error
+    );
   }
 
 
@@ -95,5 +129,30 @@ export class SolicitudProrrogaComponent implements OnInit {
   //   return this.findSolicitudProrroga(id).isUpdating;
   // }
 
+  guardar() {
+    if (this.solicitudProrroga.id == null) {
+      console.log(this.formularioSolicitudPro.value);
+      this.solicitudProrrogaService
+        .guardarSolicitudProrroga(this.formularioSolicitudPro.value)
+        .subscribe(
+          anteproyecto => {
+            console.log(anteproyecto);
+            // this.router.navigate(['/solicitud-list']);
+          }
+        );
+    } else {
+      this.solicitudProrrogaService
+        .actualizarSolicitudProrroga(this.formularioSolicitudPro.value, this.id)
+        .subscribe(
+          anteproyecto => {
+            console.log(anteproyecto);
+            // this.router.navigate(['/solicitud-list']);
+          },
+          error => {
+            this.errorMessage = error.json().errors;
+          }
+        );
+    }
+  }
 
 }

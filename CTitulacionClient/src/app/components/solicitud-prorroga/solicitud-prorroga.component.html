@@ -7,6 +7,7 @@
     <title>Solicitud de Prórroga</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 </head>
 
 <div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog"
@@ -17,46 +18,40 @@
                 <h4 class="modal-title" id="myModalLabel">Solicitud de Prórroga</h4>
             </div>
             <div class="modal-body">
-                <form (ngSubmit)="onSubmit()">
+                <form  (ngSubmit)="guardar()">
                     <!-- Fecha -->
                     <div class="form-group">
                         <label>Fecha</label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input"
-                                data-target="#reservationdate" />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                            <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
-                                <div *ngIf="f.fecha.errors.required">fecha es requerida</div>
-                                <div *ngIf="f.fecha.errors.fecha">debe ser una fecha válida</div>
-                            </div>
-                        </div>
-                    </div>
+                        <input type="date" class="form-control" formControlName="fecha">
+                      </div>
                     <!-- Duración -->
                     <div class="form-group">
                         <label>Duración</label>
                         <input type="text" formControlName="duracion" class="form-control" />
-                        <div *ngIf="submitted && f.duracion.errors" class="invalid-feedback">
-                        </div>
+                        <!-- <div *ngIf="submitted && f.duracion.errors" class="invalid-feedback">
+                        </div> -->
 
                     </div>
                     <!-- Motivo -->
                     <div class="form-group">
                         <label>Motivo</label>
                         <input type="text" formControlName="motivo" class="form-control" />
-                        <div *ngIf="submitted && f.motivo.errors" class="invalid-feedback">
+                        <!-- <div *ngIf="submitted && f.motivo.errors" class="form-control invalid-feedback">
                             <div *ngIf="f.motivo.errors.required">motivo es requerido</div>
                             <div *ngIf="f.motivo.errors.minlength">debe tener al menos 20 palabras</div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Observación -->
                     <label>Observación</label>
-                   
-
+                    <div class="box-body pad">
+                        <form>
+                            <textarea class="form-control" formControlName="observacion" class="textarea" placeholder="Ingresar las observaciones aquí..."
+                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        </form>
+                    </div>
                     <div class="form-group form-check">
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -81,9 +76,9 @@
 
     <!-- /.card-header -->
     <div class="card-body">
-        <span class="help is-info" *ngIf="isLoading">Loading...</span>
-        <span class="help is-error" *ngIf="errorMessage">{{ errorMessage }}</span>
-        <table id="soliPro" class="table table-bordered table-striped" *ngIf="!isLoading && !errorMessage">
+        <!-- <span class="help is-info" *ngIf="isLoading">Loading...</span>
+        <span class="help is-error" *ngIf="errorMessage">{{ errorMessage }}</span> -->
+        <table class="table table-bordered table-striped">  <!-- *ngIf="!isLoading && !errorMessage" -->
             <thead>
                 <tr>
                     <th>ID</th>
@@ -95,18 +90,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let solicitudPro of solisPro">
-                    <td>{{ solicitudPro.id }}</td>
-                    <td>{{ solicitudPro.fecha }}</td>
-                    <td>{{ solicitudPro.duracion }}</td>
-                    <td>{{ solicitudPro.motivo }}</td>
-                    <td>{{ solicitudPro.obsevacion }}</td>
+                <tr>
+                <!-- <tr *ngFor="let s of solisPro"> -->
+                    
+                    <!-- <td>{{ s.id }}</td>
+                    <td>{{ s.fecha }}</td>
+                    <td>{{ s.duracion }}</td>
+                    <td>{{ s.motivo }}</td>
+                    <td>{{ s.obsevacion }}</td> -->
+                    <td>1</td>
+                    <td>20/01/2021</td>
+                    <td>4 días</td>
+                    <td>Retraso del proyecto</td>
+                    <td>Por el motivo que se pide ....</td>
                     <td>
-                        <button title="Editar" [routerLink]="['/carrera-form']" [queryParams]="{id : solicitudPro.id}"
-                            class="btn btn-success">
+                        <!--[routerLink]="['/carrera-form']" [queryParams]="{id : s.id}"  -->
+                        <button title="Editar" 
+                            class="btn btn-success" (click)="show()">
                             Editar
                         </button>
-                        <button type="button" class="btn btn-danger" (click)="show()">Eliminar</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                            Enviar
+                          </button>
+                        <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
@@ -117,7 +123,26 @@
     <!-- /.card-body -->
 </div>
 
-
+  <!-- Modal Enviar -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enviar Solicitud Prórroga</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            ¿Esta seguro de enviar la Solicitud de Prorroga el Tutor?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </html>
