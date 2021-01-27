@@ -34,6 +34,7 @@ import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.
 import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 registerLocaleData(localEs);
 
