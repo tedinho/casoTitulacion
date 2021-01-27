@@ -7,8 +7,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Simple Tables</li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/home']">Inicio</a></li>
+                    <li class="breadcrumb-item active">Estudiantes</li>
                 </ol>
             </div>
         </div>
@@ -46,9 +46,7 @@
                                     <td>
                                         <table *ngFor="let dato of datos">
                                             <tr *ngIf="dato.user_id == nombre.id">
-                                                <td *ngIf="dato.nombre_archivo"><a
-                                                        href="http://localhost:8000/{{ dato.url }}" target="_blank">{{
-                                                        dato.nombre_archivo }}</a></td>
+                                                <td *ngIf="dato.nombre_archivo"><a href="http://localhost:8000/{{ dato.url }}" target="_blank">{{ dato.nombre_archivo }}</a></td>
                                                 <td *ngIf="dato.nota_archivo"> <small>{{ dato.nota_archivo }}/10
                                                     </small></td>
                                                 <td *ngIf="!dato.nombre_archivo">

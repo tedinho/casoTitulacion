@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 
+declare var Swal: any;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,7 +16,7 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService) {
     this.existenMensajes = false;
-   }
+  }
 
   //Formulario Reactivo de register
   registerForm = new FormGroup({
@@ -24,21 +26,25 @@ export class RegisterComponent {
     password: new FormControl(''),
     password_repeat: new FormControl('')
 
-  });  
+  });
 
-  register()
-  {
+  register() {
     this.authService.postRegister(this.registerForm.value)
-      .subscribe(resp =>{        
-        this.mensaje = resp.message;
-        this.registerForm.reset();        
-        this.existenMensajes = true;
-      }, (errorServicio)=>{
-        if(errorServicio.message == "Http failure response for http://localhost:8000/api/register: 0 Unknown Error"){
-          this.mensaje = "Error con la conexión con el servidor, por favor contactese con el administrador";
-        }      
-        console.log(errorServicio);
-        this.existenMensajes = true;
+      .subscribe(resp => {
+        this.registerForm.reset();
+        Swal.fire({
+          title: 'Registro exitoso!',
+          text: 'Se ha registrado de forma exitosa, por favor inicia sesión',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+      }, (errorServicio) => {
+        Swal.fire({
+          title: 'Registro fallido!',
+          text: 'No se a podido registrar, es posible que el usuario ya tenga una cuenta asignada',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
       });
   }
 

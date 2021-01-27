@@ -41,18 +41,17 @@
                             <tbody>
                                 <tr *ngFor="let informe of informes; let i = index">
                                     <td>{{ i + 1 }}</td>
-                                    <td>
-                                        <div *ngFor="let estudiante of nombresArr">
+                                    <td >
+                                        <div *ngFor="let estudiante of nombresArr">                                            
                                             <p *ngIf="informe.user_id == estudiante.id">
                                                 {{ estudiante.name }}
-                                            </p>
+                                            </p> 
                                         </div>
                                     </td>
                                     <td>{{ informe.titulo }}</td>
                                     <td>{{ informe.cuerpo }}</td>
                                     <td>{{ informe.observacion }}</td>
-                                    <td> <a [routerLink]="['/informeestudiante/',  informe.user_id]"
-                                            class="btn btn-info btn-block">Ver más</a></td>
+                                    <td> <a [routerLink]="['/informeestudiante/',  informe.user_id]" class="btn btn-info btn-block">Ver más</a></td>
                                 </tr>
                             </tbody>
                         </table>

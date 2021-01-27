@@ -50,16 +50,23 @@ class FechaConfiguracioneController extends Controller
             ->first();
 
         if($fecha){
+            if($fecha['fecha'] == null){
+                return response()->json([
+                    "success" => true,
+                    "message" => "No aprobado, por favor contactese con su tutor",
+                    "fecha" => $fecha
+                ]);
+            }
             return response()->json([
                 "success" => true,
-                "message" => "Tiene una fecha maxima para subir el archivo",
-                "fecha" => $fecha
+                "message" => "Tiene una fecha máxima para subir el archivo",
+                "fecha" => $fecha,
             ]);
         }
         if(!$fecha){
             return response()->json([
                 "success" => false,
-                "message" => "No tiene asignado fecha para la entrega del trabajo contactese con su revisor", 
+                "message" => "No tiene asignado fecha para la entrega del trabajo contactese con su docente", 
                 "fecha" => " "
             ]);
         }

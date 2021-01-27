@@ -41,13 +41,23 @@ Route::get('getUserM/{id}', [ArchivosController::class, 'getUserByM']);
 
 Route::post('informe', [InformeController::class, 'store']);
 Route::get('informe', [InformeController::class, 'index']);
+Route::get('informe/{id}', [InformeController::class, 'show']);
+Route::get('informemail/{email}', [InformeController::class, 'obtenerInformeEmail']);
+
 Route::get('getStudents', [InformeController::class, 'obtenerEstudiantes']);
+Route::get('obtEstudia/{email}', [RevisorController::class, 'obtenerEstudiantesId']);
 
 Route::post('fecha/{id}', [FechaConfiguracioneController::class, 'store']);
 Route::get('fecha/{id}', [FechaConfiguracioneController::class, 'show']);
 Route::post('nota/{id}', [ArchivosController::class, 'nota']);
 
 Route::get('revisor', [RevisorController::class, 'index']);
+Route::get('fusion/{id}', [RevisorController::class, 'Fusion']);
+Route::get('obtenerEstu/{id}', [RevisorController::class, 'obtenerEstu']);
+
+Route::get('getEstudiante', [RevisorController::class, 'ObtenerEstudiantes']);
+Route::get('getRevisor', [RevisorController::class, 'ObtenerRevisores']);
+Route::post('revisorsave', [RevisorController::class, 'store']);
 Route::post('revisor/{id}', [RevisorController::class, 'update']);
 
 

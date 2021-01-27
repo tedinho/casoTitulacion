@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInformesTable extends Migration
+class CreateRevisoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,24 @@ class CreateInformesTable extends Migration
      */
     public function up()
     {
-        Schema::create('informes', function (Blueprint $table) {
+        Schema::create('revisores', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->string('cuerpo');
-            $table->text('observacion');
-            $table->string('revisor_email');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
             
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('revisor_id');
+
+            $table->timestamps();
+
+            $table->foreign('student_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+                
+            $table->foreign('revisor_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
         });
     }
 
@@ -36,6 +41,6 @@ class CreateInformesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informes');
+        Schema::dropIfExists('revisores');
     }
 }

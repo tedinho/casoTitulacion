@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
+import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 declare var Swal: any;
 
@@ -10,14 +10,23 @@ declare var Swal: any;
 })
 export class ModificacionRevisorComponent {
 
-  estudiantes: any;
+  estudiantes: Array<any> = [];
+  correo = localStorage['email'];
 
   constructor(private gestionService: GestionProyectoService) {
-    this.gestionService.obtenerEstudiantes()
-      .subscribe((resp: any) => {
-        this.estudiantes = resp;
-      }, (errorSrv) => {
-        console.log(errorSrv);
+
+    this.gestionService.pivotRevisor()
+      .subscribe(re => {
+        let i;
+        for (i in re) {
+          this.gestionService.pivotEstudiante(re[i]['student_id'])
+            .subscribe(res => {
+              let i;
+              for (i in res) {
+                this.estudiantes.push(res[i])
+              }
+            });
+        }
       });
 
   }
@@ -27,7 +36,9 @@ export class ModificacionRevisorComponent {
     titulo: new FormControl(''),
     cuerpo: new FormControl(''),
     observacion: new FormControl(''),
-    id: new FormControl('')
+    validacion: new FormControl(''),
+    id: new FormControl(''),
+    revisor_email: new FormControl(this.correo),
 
   });
 

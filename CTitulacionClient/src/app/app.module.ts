@@ -22,19 +22,9 @@ import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fec
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
 import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
 import { InformesComponent } from './components/informes/informes.component';
-import localEs from '@angular/common/locales/es';
-import { registerLocaleData } from '@angular/common';
-import { EstudiantesSolicitudComponent } from './estudiantes-solicitud/estudiantes-solicitud.component';
-import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
-import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
-import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
-import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
-import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { AnteproyectoTemaFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-form/anteproyecto-tema-form.component';
-import { AnteproyectoTemaListComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-list/anteproyecto-tema-list.component';
-
-registerLocaleData(localEs);
+import { AsignacionRevisorComponent } from './components/asignacion-revisor/asignacion-revisor.component';
+import { InformeEstudianteComponent } from './components/informe-estudiante/informe-estudiante.component';
+import { InformesAdminComponent } from './components/informes-admin/informes-admin.component';
 
 @NgModule({
   declarations: [
@@ -53,14 +43,9 @@ registerLocaleData(localEs);
     CargaDocumentoFinalComponent,
     ModificacionRevisorComponent,
     InformesComponent,
-    EstudiantesSolicitudComponent,
-    AnteproyectoFormComponent,
-    AnteproyectoListComponent,
-    RubricaComponent,
-    GuiasProyectoComponent,
-    CronogramaComponent,
-    AnteproyectoTemaFormComponent,
-    AnteproyectoTemaListComponent,
+    AsignacionRevisorComponent,
+    InformeEstudianteComponent,
+    InformesAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +57,7 @@ registerLocaleData(localEs);
     NgxMaterialTimepickerModule,
     BrowserAnimationsModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

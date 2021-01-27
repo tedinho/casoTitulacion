@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Revisore;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class RevisorController extends Controller
      */
     public function index()
     {
-        $userArr = User::with('roles')->get();
+        $revisor = Revisore::get();
 
-        return $userArr;
+        return $revisor;
     }
 
     /**
@@ -30,37 +31,85 @@ class RevisorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $revId = Revisore::where('student_id', $request['student_id'])
+            ->first();
+
+        if ($revId) {
+            return response()->json([
+                "success" => false,
+                "message" => "El estudiante ya tiene asignado un revisor",
+            ]);
+        }
+        if(!$revId){
+
+            $revisor = new Revisore();
+            $revisor->student_id = $request['student_id'];
+            $revisor->revisor_id = $request['revisor_id'];
+            $revisor->save();
+    
+            return response()->json([
+                "success" => true,
+                "message" => "Se a asignado un revisor al estudiante"
+            ]);
+
+        }
+
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function Fusion($id)
     {
-        //
+        $revisor = Revisore::where('student_id', $id)->first();
+
+        if ($revisor) {
+
+            $student = User::where('id', $revisor['student_id'])->first();
+            $rev = User::where('id', $revisor['revisor_id'])->first();
+            return response()->json([
+                "nombreEstudiante" => $student['name'],
+                "idEstudiante" => $student['id'],
+                "nombreRevisor" => $rev['name'],
+                "idRevisor" => $rev['id'],
+            ]);
+        }
+
+        return response()->json([
+            "nombreEstudiante" => " ",
+            "idEstudiante" => " ",
+            "nombreRevisor" => " ",
+            "idRevisor" => " ",
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id)
+    public function ObtenerEstudiantes()
     {
-        $user = User::where('id', $id)->with('roles')->first();
-        $rol = User::where('id', $id)->with('roles')->first();        
-        // $rol->roles()->detach();
-        // $rol->delete();
-        // $user->roles()->attach(Role::where('name', 'revisor')->first());        
-        // $user->save();
+        $estudiante = Role::with('users')->where('name', 'student')->first();
 
-        return $rol;
+        return $estudiante;
+    }
+    public function ObtenerRevisores()
+    {
+        $revisor = Role::with('users')->where('name', 'Revisor')->first();
+
+        return $revisor;
     }
 
+    public function obtenerEstudiantesId($email)
+    {
+        $revi = User::where('email', $email)->first();
+
+        $revisorPivot = Revisore::where('revisor_id', $revi['id'])->get();
+
+
+        return $revisorPivot;
+    }
+
+    public function obtenerEstu($id)
+    {
+        $datosEstudiante = User::where('id', $id)->get();
+
+        return $datosEstudiante;
+    }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
+import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 declare var Swal: any;
 
@@ -13,27 +13,40 @@ export class CargaDocumentoFinalComponent {
 
   fechaMaxima: Array<any> = [];
   tieneFecha: boolean;
-  documentos: any;;
+  documentos: any;
+  todayDate: any;
+  dateComparar: any;
+  
 
   constructor(private archivos: GestionProyectoService,
-    private router: Router) {
+      private router: Router) {
+        
+      let date_ob = new Date();
+      let date = ("0" + date_ob.getDate()).slice(-2);
+      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+      let year = date_ob.getFullYear();
+      this.todayDate = year + "-" + month + "-" + date;
 
     this.archivos.obtenerUsuarioId(localStorage['email'])
-      .subscribe(resp => {
+      .subscribe(resp =>{
         this.archivos.obtenerDocumento(resp['id'])
-          .subscribe(res => {
-            this.documentos = res;
+          .subscribe(res =>{
+            this.documentos = res;                
           });
         this.archivos.obtenerFechaEntrega(resp['id'])
-          .subscribe(resp2 => {
+          .subscribe(resp2 =>{            
+            console.log(resp2);              
             let i;
-            for (i in resp2) {
+            for(i in resp2)
+            {
               this.fechaMaxima.push(resp2[i]);
-            }
+              
+            }                
+            this.dateComparar = this.fechaMaxima[2]['fecha'];
             this.tieneFecha = this.fechaMaxima[0];
           });
       });
-  }
+   }
 
   cargarDocumento = new FormGroup({
     arch: new FormControl(''),
@@ -58,12 +71,12 @@ export class CargaDocumentoFinalComponent {
     formData.append('nombre_archivo', documentes['arch']['name']);
 
     this.archivos.cargaDocumento(formData)
-      .subscribe((respu: any) => {
+      .subscribe((respu: any) => {        
         this.cargarDocumento.reset();
         this.redirigir();
         Swal.fire({
           text: `${respu.message}`,
-          icon: 'info',
+          icon: 'info',                  
         });
       }, (errorServer) => {
         this.cargarDocumento.reset();
@@ -76,8 +89,8 @@ export class CargaDocumentoFinalComponent {
       });
   }
 
-  redirigir() {
-    this.router.navigate(['home']);
+  redirigir(){
+    this.router.navigate(['cargaDocFinal']);
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
+import { Router } from '@angular/router';
+import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
 
 declare var Swal: any;
 
@@ -19,7 +20,8 @@ export class FechaEntregaFinalComponent {
   datos: Array<any> = [];
 
 
-  constructor(private documento: GestionProyectoService) {
+  constructor(private documento: GestionProyectoService,
+    private router: Router) {
 
     this.documento.obtenerEstudiantes()
       .subscribe(respu => {
@@ -38,8 +40,6 @@ export class FechaEntregaFinalComponent {
   }
 
   guardarNota(user_id: any) {
-    console.log(user_id);
-    console.log(this.notaDocumento.value);
     this.documento.registrarNota(this.notaDocumento.value, user_id)
       .subscribe(resp => {
         Swal.fire({
@@ -48,7 +48,7 @@ export class FechaEntregaFinalComponent {
           icon: 'info',
           confirmButtonText: 'Ok'
         });
-        this.notaDocumento.reset();
+        location.reload();
       }, (errorSrv) => {
         console.log(errorSrv);
       });

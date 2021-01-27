@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AsignacionRevisorComponent } from './components/asignacion-revisor/asignacion-revisor.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
@@ -9,9 +10,11 @@ import { CarreraFormComponent } from './components/carrera-form/carrera-form.com
 import { ActualizarDatosComponent } from './components/actualizar-datos/actualizar-datos.component';
 import { EstudianteCarreraComponent } from './components/estudiante-carrera/estudiante-carrera.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
+import { InformeEstudianteComponent } from './components/informe-estudiante/informe-estudiante.component';
+import { InformesAdminComponent } from './components/informes-admin/informes-admin.component';
 import { InformesComponent } from './components/informes/informes.component';
 import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
-import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
 import { EstudiantesSolicitudComponent } from './estudiantes-solicitud/estudiantes-solicitud.component';
 import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
@@ -19,11 +22,8 @@ import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/
 import { AnteproyectoTemaFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-form/anteproyecto-tema-form.component';
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
-<<<<<<< HEAD
-import { SolicitudProrrogaComponent } from './components/solicitud-prorroga/solicitud-prorroga.component';
-=======
 import { AnteproyectoTemaListComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-list/anteproyecto-tema-list.component';
->>>>>>> origin/Juan
+import { SolicitudProrrogaComponent } from './components/solicitud-prorroga/solicitud-prorroga.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -117,7 +117,19 @@ const routes: Routes = [
    },
    {
       path: '**', redirectTo: 'home'
-   }
+   },
+   { path: 'login', component: LoginComponent },
+   { path: 'register', component: RegisterComponent },
+   { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
+   { path: 'revisor', component: AsignacionRevisorComponent, canActivate: [AuthGuardService], data: { role: 'Administrator' } },
+   { path: 'informeestudiante/:id', component: InformeEstudianteComponent, canActivate: [AuthGuardService], data: { role: ['Revisor', 'Administrator'], } },
+
+   { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },
+   { path: 'realizarInforme', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
+   { path: 'informes', component: InformesComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
+   { path: 'informead', component: InformesAdminComponent, canActivate: [AuthGuardService], data: { role: 'Administrator' } },
+   { path: 'home', component: DashboardComponent, canActivate: [AuthGuardService] },
+   { path: '**', redirectTo: 'home' }
 
 ];
 

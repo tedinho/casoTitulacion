@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 .center{
-  text-align: center;    
+    text-align: center;    
 }
 
 .toast-success {
-  position: relative ;
-  display: block;
-  padding-left: 80px;
-  text-align: center;
-  background-position: 35% !important;
+    position: relative ;
+    display: block;
+    padding-left: 80px;
+    text-align: center;
+    background-position: 35% !important;
 }
