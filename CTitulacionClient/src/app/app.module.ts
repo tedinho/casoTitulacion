@@ -25,6 +25,17 @@ import { InformesComponent } from './components/informes/informes.component';
 import { AsignacionRevisorComponent } from './components/asignacion-revisor/asignacion-revisor.component';
 import { InformeEstudianteComponent } from './components/informe-estudiante/informe-estudiante.component';
 import { InformesAdminComponent } from './components/informes-admin/informes-admin.component';
+import localEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+import { EstudiantesSolicitudComponent } from './estudiantes-solicitud/estudiantes-solicitud.component';
+import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
+import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
+import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
+import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
+import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
+import { ProrrogaComponent } from './components/prorroga/prorroga.component';
+
+registerLocaleData(localEs);
 
 @NgModule({
   declarations: [
@@ -46,6 +57,13 @@ import { InformesAdminComponent } from './components/informes-admin/informes-adm
     AsignacionRevisorComponent,
     InformeEstudianteComponent,
     InformesAdminComponent,
+    EstudiantesSolicitudComponent,
+    AnteproyectoFormComponent,
+    AnteproyectoListComponent,
+    RubricaComponent,
+    GuiasProyectoComponent,
+    CronogramaComponent,
+    ProrrogaComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +75,7 @@ import { InformesAdminComponent } from './components/informes-admin/informes-adm
     NgxMaterialTimepickerModule,
     BrowserAnimationsModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es'}],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
