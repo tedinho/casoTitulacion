@@ -147,7 +147,7 @@ export class EstudianteCarreraComponent implements OnInit {
   }
 
   getModalidades() {
-    this.modalidades = ['Complexivo', 'Tesis'];
+    this.modalidades = ['Complexivo', 'Proyecto de Titulación'];
   }
 
   getCarreras() {

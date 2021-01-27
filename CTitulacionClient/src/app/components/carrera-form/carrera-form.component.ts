@@ -94,7 +94,7 @@ export class CarreraFormComponent implements OnInit {
   }
 
   getOpcionesGraduacion() {
-    this.opcionesGraduacion = ['Complexivo', 'Tesis', 'Complexivo y Tesis'];
+    this.opcionesGraduacion = ['Complexivo', 'Proyecto de Titulación', 'Complexivo y Proyecto de Titulación'];
   }
 
   getModalidades() {
