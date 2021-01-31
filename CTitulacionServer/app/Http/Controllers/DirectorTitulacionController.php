@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\junta_academica;
+use App\Models\DirectorTitulacion;
 use Illuminate\Http\Request;
 
-class JuntaAcademicaController extends Controller
+class DirectorTitulacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class JuntaAcademicaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\junta_academica  $junta_academica
+     * @param  \App\Models\DirectorTitulacion  $directorTitulacion
      * @return \Illuminate\Http\Response
      */
-    public function show(junta_academica $junta_academica)
+    public function show(DirectorTitulacion $directorTitulacion)
     {
         //
     }
@@ -52,10 +52,10 @@ class JuntaAcademicaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\junta_academica  $junta_academica
+     * @param  \App\Models\DirectorTitulacion  $directorTitulacion
      * @return \Illuminate\Http\Response
      */
-    public function edit(junta_academica $junta_academica)
+    public function edit(DirectorTitulacion $directorTitulacion)
     {
         //
     }
@@ -64,10 +64,10 @@ class JuntaAcademicaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\junta_academica  $junta_academica
+     * @param  \App\Models\DirectorTitulacion  $directorTitulacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, junta_academica $junta_academica)
+    public function update(Request $request, DirectorTitulacion $directorTitulacion)
     {
         //
     }
@@ -75,10 +75,10 @@ class JuntaAcademicaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\junta_academica  $junta_academica
+     * @param  \App\Models\DirectorTitulacion  $directorTitulacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(junta_academica $junta_academica)
+    public function destroy(DirectorTitulacion $directorTitulacion)
     {
         //
     }

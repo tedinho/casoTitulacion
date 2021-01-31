@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\docente_anteproyecto;
+use App\Models\TemaAnteproyecto;
 use Illuminate\Http\Request;
 
-class DocenteAnteproyectoController extends Controller
+class TemaAnteproyectoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DocenteAnteproyectoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\docente_anteproyecto  $docente_anteproyecto
+     * @param  \App\Models\TemaAnteproyecto  $temaAnteproyecto
      * @return \Illuminate\Http\Response
      */
-    public function show(docente_anteproyecto $docente_anteproyecto)
+    public function show(TemaAnteproyecto $temaAnteproyecto)
     {
         //
     }
@@ -52,10 +52,10 @@ class DocenteAnteproyectoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\docente_anteproyecto  $docente_anteproyecto
+     * @param  \App\Models\TemaAnteproyecto  $temaAnteproyecto
      * @return \Illuminate\Http\Response
      */
-    public function edit(docente_anteproyecto $docente_anteproyecto)
+    public function edit(TemaAnteproyecto $temaAnteproyecto)
     {
         //
     }
@@ -64,10 +64,10 @@ class DocenteAnteproyectoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\docente_anteproyecto  $docente_anteproyecto
+     * @param  \App\Models\TemaAnteproyecto  $temaAnteproyecto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, docente_anteproyecto $docente_anteproyecto)
+    public function update(Request $request, TemaAnteproyecto $temaAnteproyecto)
     {
         //
     }
@@ -75,10 +75,10 @@ class DocenteAnteproyectoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\docente_anteproyecto  $docente_anteproyecto
+     * @param  \App\Models\TemaAnteproyecto  $temaAnteproyecto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(docente_anteproyecto $docente_anteproyecto)
+    public function destroy(TemaAnteproyecto $temaAnteproyecto)
     {
         //
     }

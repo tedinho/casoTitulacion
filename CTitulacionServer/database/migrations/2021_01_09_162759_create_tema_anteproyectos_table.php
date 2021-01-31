@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProyectoTitulacionsTable extends Migration
+class CreateTemaAnteproyectosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,21 @@ class CreateProyectoTitulacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('proyecto_titulacions', function (Blueprint $table) {
+        Schema::create('tema_anteproyectos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
-            $table->date('fecha_prorroga');
-            $table->bigInteger('anteproyecto_id')->unsigned();
-            $table->foreign('anteproyecto_id')
+            $table->string('nombre');
+            $table->string('estado');
+            $table->bigInteger('solicitud_id')->unsigned();
+            $table->foreign('solicitud_id')
                 ->references('id')
-                ->on('anteproyectos')
+                ->on('solicituds')
                 ->onDelete('cascade');
             $table->bigInteger('evidencia_id')->unsigned()->nullable(true);
             $table->foreign('evidencia_id')
                 ->references('id')
                 ->on('evidencias')
                 ->onDelete('cascade');
+            $table->string('observacion');
         });
     }
 
@@ -38,6 +38,6 @@ class CreateProyectoTitulacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proyecto_titulacions');
+        Schema::dropIfExists('tema_anteproyectos');
     }
 }

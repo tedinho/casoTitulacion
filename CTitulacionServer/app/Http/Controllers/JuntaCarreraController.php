@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\docente_junta;
+use App\Models\JuntaCarrera;
 use Illuminate\Http\Request;
 
-class DocenteJuntaController extends Controller
+class JuntaCarreraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DocenteJuntaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\docente_junta  $docente_junta
+     * @param  \App\Models\JuntaCarrera  $juntaCarrera
      * @return \Illuminate\Http\Response
      */
-    public function show(docente_junta $docente_junta)
+    public function show(JuntaCarrera $juntaCarrera)
     {
         //
     }
@@ -52,10 +52,10 @@ class DocenteJuntaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\docente_junta  $docente_junta
+     * @param  \App\Models\JuntaCarrera  $juntaCarrera
      * @return \Illuminate\Http\Response
      */
-    public function edit(docente_junta $docente_junta)
+    public function edit(JuntaCarrera $juntaCarrera)
     {
         //
     }
@@ -64,10 +64,10 @@ class DocenteJuntaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\docente_junta  $docente_junta
+     * @param  \App\Models\JuntaCarrera  $juntaCarrera
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, docente_junta $docente_junta)
+    public function update(Request $request, JuntaCarrera $juntaCarrera)
     {
         //
     }
@@ -75,10 +75,10 @@ class DocenteJuntaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\docente_junta  $docente_junta
+     * @param  \App\Models\JuntaCarrera  $juntaCarrera
      * @return \Illuminate\Http\Response
      */
-    public function destroy(docente_junta $docente_junta)
+    public function destroy(JuntaCarrera $juntaCarrera)
     {
         //
     }
