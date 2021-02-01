@@ -19,10 +19,8 @@ import { CargaDocumentoFinalComponent } from './components/carga-documento-final
 import { EstudiantesSolicitudComponent } from './estudiantes-solicitud/estudiantes-solicitud.component';
 import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
 import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
-import { AnteproyectoTemaFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-form/anteproyecto-tema-form.component';
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
-import { AnteproyectoTemaListComponent } from './components/aprobacion-anteproyecto/anteproyecto-tema-list/anteproyecto-tema-list.component';
 import { SolicitudProrrogaComponent } from './components/solicitud-prorroga/solicitud-prorroga.component';
 const routes: Routes = [
    {
@@ -71,16 +69,6 @@ const routes: Routes = [
    {
       path: 'anteproyecto-list',
       component: AnteproyectoListComponent,
-      canActivate: [AuthGuardService]
-   },
-   {
-      path: 'anteproyecto-tema',
-      component: AnteproyectoTemaFormComponent,
-      canActivate: [AuthGuardService]
-   },
-   {
-      path: 'anteproyecto-tema-list',
-      component: AnteproyectoTemaListComponent,
       canActivate: [AuthGuardService]
    },
    {

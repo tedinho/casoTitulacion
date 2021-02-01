@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
+import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
 
 declare var Swal: any;
 

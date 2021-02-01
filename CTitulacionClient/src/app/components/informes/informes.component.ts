@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GestionProyectoService } from 'src/app/services/gestion-proyecto.service';
+import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
 
 @Component({
   selector: 'app-informes',
@@ -11,20 +11,20 @@ export class InformesComponent {
   nombresArr: Array<any> = [];
   correo = localStorage['email'];
 
-  constructor(private informe: GestionProyectoService) { 
+  constructor(private informe: GestionProyectoService) {
 
     this.informe.obtenerInformeRevisor(this.correo)
-      .subscribe(resp=>{
-        this.informes = resp; 
+      .subscribe(resp => {
+        this.informes = resp;
 
-        this.informes.forEach(nombres => {          
+        this.informes.forEach(nombres => {
           this.informe.obtenerEstudiantesInformes(nombres['user_id'])
             .subscribe(resp2 => {
               this.nombresArr.push(resp2);
             });
-          });           
-              
-      }, (errorSrv) =>{
+        });
+
+      }, (errorSrv) => {
         console.log(errorSrv);
       });
 
