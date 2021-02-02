@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Solicitud de Prórroga</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-</head>
-
 <div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog"
     aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -76,9 +64,9 @@
 
     <!-- /.card-header -->
     <div class="card-body">
-        <!-- <span class="help is-info" *ngIf="isLoading">Loading...</span>
-        <span class="help is-error" *ngIf="errorMessage">{{ errorMessage }}</span> -->
-        <table class="table table-bordered table-striped">  <!-- *ngIf="!isLoading && !errorMessage" -->
+        <span class="help is-info" *ngIf="isLoading">Loading...</span>
+        <span class="help is-error" *ngIf="errorMessage">{{ errorMessage }}</span>
+        <table class="table table-bordered table-striped" *ngIf="!isLoading && !errorMessage">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -91,21 +79,14 @@
             </thead>
             <tbody>
                 <tr>
-                <!-- <tr *ngFor="let s of solisPro"> -->
-                    
-                    <!-- <td>{{ s.id }}</td>
+                <tr *ngFor="let s of solisPro">
+                    <td>{{ s.id }}</td>
                     <td>{{ s.fecha }}</td>
                     <td>{{ s.duracion }}</td>
                     <td>{{ s.motivo }}</td>
-                    <td>{{ s.obsevacion }}</td> -->
-                    <td>1</td>
-                    <td>20/01/2021</td>
-                    <td>4 días</td>
-                    <td>Retraso del proyecto</td>
-                    <td>Por el motivo que se pide ....</td>
+                    <td>{{ s.obsevacion }}</td>
                     <td>
-                        <!--[routerLink]="['/carrera-form']" [queryParams]="{id : s.id}"  -->
-                        <button title="Editar" 
+                        <button title="Editar" [routerLink]="['/carrera-form']" [queryParams]="{id : s.id}" 
                             class="btn btn-success" (click)="show()">
                             Editar
                         </button>
@@ -145,4 +126,3 @@
   </div>
 
 
-</html>

@@ -8,10 +8,11 @@ use PhpParser\Node\Expr\AssignOp\Pow;
 
 class SolicitudProrrogaController extends Controller
 {
+
     // Listar Solicitud de Prórroga
     public function index()
     {
-        
+
         $result = SolicitudProrroga::get();
         return $result;
         // return SolicitudesProrroga::all();
@@ -27,20 +28,25 @@ class SolicitudProrrogaController extends Controller
     {
         $solicitudProrroga = new SolicitudProrroga();
         $solicitudProrroga->fecha = $request['fecha'];
+        $solicitudProrroga->proyecto_titulacions_id = $request['proyecto_titulacions_id'];
+        $solicitudProrroga->evidencia_id = $request['evidencia_id'];
         $solicitudProrroga->duracion = $request['duracion'];
         $solicitudProrroga->motivo = $request['motivo'];
-        $solicitudProrroga->observacion = $request['observacion']; 
+        $solicitudProrroga->observacion = $request['observacion'];
+        $solicitudProrroga->estado = $request['estado'];
+        $solicitudProrroga->intentos = $request['intentos'];
+        $solicitudProrroga->motivo_desaprobado = $request['motivo_desaprobado'];
         $result = $solicitudProrroga->save();
 
-        if($result){
-            return ["result"=>"Solicitud Prorroga añadida"];
-        }else{
-            return ["result"=>"Solicitud Prorroga no añadida"];
+        if ($result) {
+            return ["result" => "Solicitud Prorroga añadida"];
+        } else {
+            return ["result" => "Solicitud Prorroga no añadida"];
         }
 
         // $solicitudProrroga = $request->all();
         // return SolicitudProrroga::create($solicitudProrroga);
-           
+
     }
 
     /**
@@ -66,15 +72,20 @@ class SolicitudProrrogaController extends Controller
     {
         $solicitudProrroga = SolicitudProrroga::find($id);
         $solicitudProrroga->fecha = $request['fecha'];
+        $solicitudProrroga->proyecto_titulacions_id = $request['proyecto_titulacions_id'];
+        $solicitudProrroga->evidencia_id = $request['evidencia_id'];
         $solicitudProrroga->duracion = $request['duracion'];
         $solicitudProrroga->motivo = $request['motivo'];
-        $solicitudProrroga->observacion = $request['observacion']; 
+        $solicitudProrroga->observacion = $request['observacion'];
+        $solicitudProrroga->estado = $request['estado'];
+        $solicitudProrroga->intentos = $request['intentos'];
+        $solicitudProrroga->motivo_desaprobado = $request['motivo_desaprobado'];
         $result = $solicitudProrroga->save();
 
-        if($result){
-            return ["result"=>"Solicitud Prorroga actualizada"];
-        }else{
-            return ["result"=>"Solicitud Prorroga no actualizada"];
+        if ($result) {
+            return ["result" => "Solicitud Prorroga actualizada"];
+        } else {
+            return ["result" => "Solicitud Prorroga no actualizada"];
         }
     }
 
@@ -89,10 +100,25 @@ class SolicitudProrrogaController extends Controller
         $solicitudProrroga = SolicitudProrroga::find($id);
         $result = $solicitudProrroga->delete();
 
-        if($result){
-            return ["result"=>"Solicitud Prorroga esta eliminada"];
-        }else{
-            return ["result"=>"Solicitud Prorroga no se ha eliminado"];
+        if ($result) {
+            return ["result" => "Solicitud Prorroga esta eliminada"];
+        } else {
+            return ["result" => "Solicitud Prorroga no se ha eliminado"];
         }
+    }
+
+     /**
+     * aprobar solicitud de prorroga.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\SolicitudProrroga  $solicitudProrroga
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function aprobarSolicitud(Request $request, $id)
+    {
+        $input = $request->estado();
+        SolicitudProrroga::where('id',$id)->update($input);
+        return SolicitudProrroga::find($id);
     }
 }

@@ -86,7 +86,7 @@ export class SolicitudProrrogaComponent implements OnInit {
 
   getSolicitudes() {
     this.solicitudProrrogaService
-      .getSolicitudesProrroga(this.txtNombre)
+      .getSolicitudesProrrogas(this.txtNombre)
       .subscribe(
         solicitudPro => {
           this.solisPro = solicitudPro

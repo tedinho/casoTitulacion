@@ -1,69 +1,85 @@
-    <!-- /.card-header -->
-    <div class="card-body">
-        <!-- <span class="help is-info" *ngIf="isLoading">Loading...</span>
-        <span class="help is-error" *ngIf="errorMessage">{{ errorMessage }}</span> -->
-        <table class="table table-bordered table-striped">  <!-- *ngIf="!isLoading && !errorMessage" -->
-            <thead>
-                <tr>
-                    <th>Estudiante</th>
-                    <th>Fecha</th>
-                    <th>Duración</th>
-                    <th>Motivo</th>
-                    <th>Observación</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <!-- <tr *ngFor="let s of solisPro"> -->
-                    
-                    <!-- <td>{{ s.id }}</td>
-                    <td>{{ s.fecha }}</td>
-                    <td>{{ s.duracion }}</td>
-                    <td>{{ s.motivo }}</td>
-                    <td>{{ s.obsevacion }}</td> -->
-                    <td>Carlos Pérez</td>
-                    <td>20/01/2021</td>
-                    <td>4 días</td>
-                    <td>Retraso del proyecto</td>
-                    <td>Por el motivo que se pide ....</td>
-                    <td>
-                        <!--[routerLink]="['/carrera-form']" [queryParams]="{id : s.id}"  -->
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                            Aprobar
-                          </button>
-                        <button title="Editar" 
-                            class="btn btn-darger">
-                            Desaprobar
-                        </button>
-     
-                       
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-            </tfoot>
-        </table>
-    </div>
-    <!-- /.card-body -->
-
-    <!-- Modal Enviar -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Aprobar Solicitud de Prórroga</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+<!-- /.card-header -->
+<div class="card-body">
+  <table class="table table-striped table-over">
+    <thead>
+      <tr>
+        <th>Estudiante</th>
+        <th>Fecha</th>
+        <th>Duración</th>
+        <th>Motivo</th>
+        <th>Observación</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <tr *ngFor="let p of prorrogas">
+        <td>{{p.id}}</td>
+        <td>{{p.fecha}}</td>
+        <td>{{p.duracion}}</td>
+        <td>{{p.motivo}}</td>
+        <td>{{p.obsevacion}}</td>
+        <td>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAprobar">
+            Aprobar
           </button>
-        </div>
-        <div class="modal-body">
-            ¿Esta seguro de enviar la Solicitud de Prorroga el Tutor?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Aprobar</button>
-        </div>
+          &nbsp;
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesprobar">
+            Desaprobar
+          </button>
+
+
+
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+  </table>
+</div>
+<!-- /.card-body -->
+
+<!-- Modal Aprobar -->
+<div class="modal fade" id="modalAprobar" tabindex="-1" role="dialog" aria-labelledby="modalAprobarLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAprobarLabel">Aprobar Solicitud de Prórroga</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de aprobar la Solicitud de Prorroga al estudiante?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Aprobar</button>
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- Modal Desaprobar -->
+<div class="modal fade" id="modalDesprobar" tabindex="-1" role="dialog" aria-labelledby="modalDesprobarLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDesprobarLabel">Aprobar Solicitud de Prórroga</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de desaprobar la Solicitud de Prorroga al estudiante?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Desaprobar</button>
+      </div>
+    </div>
+  </div>
+</div>
