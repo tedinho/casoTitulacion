@@ -14,9 +14,14 @@ class SolicitudProrroga extends Model
     
     protected $fillable = [
         'fecha',
+        'proyecto_titulacions_id',
+        'evidencia_id',
         'duracion',
         'motivo',
         'observacion',
+        'estado',
+        'intentos',
+        'motivo_desaprobado'
     ];
 
  
