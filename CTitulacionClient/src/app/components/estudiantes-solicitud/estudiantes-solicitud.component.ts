@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Solicitud } from '../models';
-import { EstudianteCarrera } from '../models/estudiante_carrera';
-import { CarreraRequisitoSolicitud } from '../models/requisitos-carrera-solicitud';
-import { CarreraRequisitoSolicitudService } from '../Services/carrera-requisito-solicitud.service';
-import { EstudianteCarreraService } from '../Services/estudiante-carrera.service';
-import { SolicitudService } from '../Services/solicitud.service';
+import { Solicitud } from '../../models';
+import { EstudianteCarrera } from '../../models/estudiante_carrera';
+import { CarreraRequisitoSolicitud } from '../../models/requisitos-carrera-solicitud';
+import { CarreraRequisitoSolicitudService } from '../../Services/carrera-requisito-solicitud.service';
+import { EstudianteCarreraService } from '../../Services/estudiante-carrera.service';
+import { SolicitudService } from '../../Services/solicitud.service';
 
 @Component({
   selector: 'app-estudiantes-solicitud',

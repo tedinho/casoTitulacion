@@ -140,6 +140,9 @@
     <button *ngIf="solicitud!=null && (solicitud.estado == 'C' || solicitud.estado == 'R')" type="submit"
         class="btn btn-primary" (click)="enviarSolicitud()">Enviar
         Solicitud</button>
+
+    <button *ngIf="solicitud!=null && (solicitud.estado == 'A')" class="btn btn-primary"
+        [routerLink]="['/tema-anteproyecto']">Proponer Tema AnteProyecto</button>
     <br />
 </div>
 
