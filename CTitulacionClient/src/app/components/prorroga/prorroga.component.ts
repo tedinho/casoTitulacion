@@ -20,8 +20,7 @@ export class ProrrogaComponent implements OnInit {
   ngOnInit(): void {
     this.txtNombre = "";
     this.getSolicitudesProrrogas();
-    console.log("listado"+this.prorrogas);
-    
+        
   }
 
   getSolicitudesProrrogas(){

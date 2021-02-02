@@ -12,14 +12,6 @@ export class SolicitudProrrogaService {
 
   constructor(private http: HttpClient) { }
 
-  getSolicitudesProrrogass(nombre: string): Observable<SolicitudProrroga[]> {
-    if (nombre != '') {
-      return this.http.get<SolicitudProrroga[]>(API_URL + 'solicitudProrroga/porNombre/' + nombre);
-    } else {
-      return this.http.get<SolicitudProrroga[]>(API_URL + 'solicitudProrroga');
-    }
-  }
-
   getSolicitudesProrrogas(nombre: string): Observable<SolicitudProrroga[]> {
     return this.http.get<SolicitudProrroga[]>(API_URL + 'solicitudProrroga');
   }

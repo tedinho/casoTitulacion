@@ -35,7 +35,7 @@ export class SolicitudProrrogaComponent implements OnInit {
 
   name = new FormControl('');
 
-  constructor(private formBuilder: FormBuilder, private solicitudProrrogaService: SolicitudProrrogaService) { }
+  constructor(private formBuilder: FormBuilder, private solicitudProrrogaServicio: SolicitudProrrogaService) { }
 
   onClickSubmit(data) {
     if (this.formadata.invalid) {
@@ -55,24 +55,50 @@ export class SolicitudProrrogaComponent implements OnInit {
   }
   ngOnInit() {
     this.txtNombre = "";
-    this.getSolicitudesProrroga();
+    this.getSolicitudesProrrogas();
 
-    // this.registerForm = this.formBuilder.group({
-    //   fecha: ['', [Validators.required]],
-    //   motivo: ['', [Validators.required, Validators.minLength(100)]]
-    // });
+  }
 
-    // this.formadata = this.formBuilder.group({
-    //   observacion: ['', [Validators.required,
-    //   Validators.maxLength(400), Validators.minLength(100)]]
-    // });
+  // getSolicitudesProrrogas() {
+  //   this.solicitudProrrogaService
+  //   .buscarSolicitudProrroga(this.id)
+  //   .subscribe(
+  //     solicitudProrroga => {
+  //       this.formularioSolicitudPro = new FormGroup({
+  //         id: new FormControl(null),
+  //         fecha: new FormControl(''),
+  //         duracion: new FormControl(''),
+  //         motivo: new FormControl(''),
+  //         observacion: new FormControl(''),
+  //       });
+  //       console.log(solicitudProrroga);
+  //       this.solicitudProrroga = solicitudProrroga;
+  //       this.formularioSolicitudPro.setValue(solicitudProrroga);
+  //     },
+  //     error => this.errorMessage = <any>error
+  //   );
+  // }
 
+  getSolicitudesProrrogas(){
+    this.solicitudProrrogaServicio
+    .getSolicitudesProrrogas(this.txtNombre)
+    .subscribe(
+      prorrogas => {
+        this.solisPro = prorrogas
+      }, (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  buscar() {
+    this.getSolicitudesProrrogas();
   }
 
   get f() { return this.registerForm.controls; }
   onSubmit() {
     this.submitted = true;
-    this.getSolicitudesProrroga();
+    this.getSolicitudesProrrogas();
 
     if (this.registerForm.invalid) {
       return;
@@ -85,7 +111,7 @@ export class SolicitudProrrogaComponent implements OnInit {
 
 
   getSolicitudes() {
-    this.solicitudProrrogaService
+    this.solicitudProrrogaServicio
       .getSolicitudesProrrogas(this.txtNombre)
       .subscribe(
         solicitudPro => {
@@ -95,31 +121,6 @@ export class SolicitudProrrogaComponent implements OnInit {
         }
       );
   }
-
-  buscar() {
-    this.getSolicitudesProrroga();
-  }
-
-  getSolicitudesProrroga() {
-    this.solicitudProrrogaService
-    .buscarSolicitudProrroga(this.id)
-    .subscribe(
-      solicitudProrroga => {
-        this.formularioSolicitudPro = new FormGroup({
-          id: new FormControl(null),
-          fecha: new FormControl(''),
-          duracion: new FormControl(''),
-          motivo: new FormControl(''),
-          observacion: new FormControl(''),
-        });
-        console.log(solicitudProrroga);
-        this.solicitudProrroga = solicitudProrroga;
-        this.formularioSolicitudPro.setValue(solicitudProrroga);
-      },
-      error => this.errorMessage = <any>error
-    );
-  }
-
 
   findSolicitudProrroga(id): SolicitudProrroga {
     return this.solisPro.find(solicitudProrroga => solicitudProrroga.id === id);
@@ -132,7 +133,7 @@ export class SolicitudProrrogaComponent implements OnInit {
   guardar() {
     if (this.solicitudProrroga.id == null) {
       console.log(this.formularioSolicitudPro.value);
-      this.solicitudProrrogaService
+      this.solicitudProrrogaServicio
         .guardarSolicitudProrroga(this.formularioSolicitudPro.value)
         .subscribe(
           anteproyecto => {
@@ -141,7 +142,7 @@ export class SolicitudProrrogaComponent implements OnInit {
           }
         );
     } else {
-      this.solicitudProrrogaService
+      this.solicitudProrrogaServicio
         .actualizarSolicitudProrroga(this.formularioSolicitudPro.value, this.id)
         .subscribe(
           anteproyecto => {
