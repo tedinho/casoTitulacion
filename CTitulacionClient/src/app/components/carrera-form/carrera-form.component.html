@@ -104,12 +104,28 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Email</th>
+                                <th>Usuario Junta</th>
+                                <th>Usuario Titulación</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let dc of docentesCarreras">
                                 <td>{{dc.usuario.name}}</td>
                                 <td>{{dc.usuario.email}}</td>
+                                <td>
+                                    <i *ngIf="dc.usuario.id == carrera.id_usuario_junta" class="fas fa-check"></i>
+                                </td>
+                                <td>
+                                    <i *ngIf="dc.usuario.id == carrera.id_usuario_titulacion" class="fas fa-check"></i>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary" title="Seleccionar como Usuario Junta"
+                                        (click)="seleccionarUsuarioJunta(dc)">Junta</button>
+                                    <button style="margin-left: 2px;" type="submit" class="btn btn-primary"
+                                        title="Seleccionar como Usuario Titulación"
+                                        (click)="seleccionarUsuarioTitulacion(dc)">Titulación</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

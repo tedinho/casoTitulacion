@@ -36,6 +36,7 @@ import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cr
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TemaAnteproyectoComponent } from './components/tema-anteproyecto/tema-anteproyecto.component';
+import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-temas-anteproyecto/aprobacion-temas-anteproyecto.component';
 
 registerLocaleData(localEs);
 
@@ -67,6 +68,7 @@ registerLocaleData(localEs);
     CronogramaComponent,
     ProrrogaComponent,
     TemaAnteproyectoComponent,
+    AprobacionTemasAnteproyectoComponent,
   ],
   imports: [
     BrowserModule,

@@ -27,6 +27,12 @@ class DocenteCarreraController extends Controller
         return $docentes;
     }
 
+    public function buscarDocentesCarreraPorIdDocente($idUsuario)
+    {
+        $docentes = docente_carrera::where('usuario_id', $idUsuario)->get();
+        return $docentes;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

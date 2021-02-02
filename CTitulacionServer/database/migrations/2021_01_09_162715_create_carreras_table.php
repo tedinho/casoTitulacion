@@ -20,7 +20,17 @@ class CreateCarrerasTable extends Migration
             $table->string('opcion_graduacion');
             $table->string('codigo');
             $table->string('estado');
-            $table->bigInteger('id_coordinador')->unsigned();
+            $table->bigInteger('id_coordinador')->nullable(true)->unsigned();
+            $table->bigInteger('id_usuario_junta')->nullable(true)->unsigned();
+            $table->foreign('id_usuario_junta')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->bigInteger('id_usuario_titulacion')->nullable(true)->unsigned();
+            $table->foreign('id_usuario_titulacion')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

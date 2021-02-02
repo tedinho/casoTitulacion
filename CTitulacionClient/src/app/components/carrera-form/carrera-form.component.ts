@@ -45,7 +45,9 @@ export class CarreraFormComponent implements OnInit {
     tipo_carrera: new FormControl(),
     estado: new FormControl('A'),
     id_coordinador: new FormControl(1),
-    opcion_graduacion: new FormControl('')
+    opcion_graduacion: new FormControl(''),
+    id_usuario_titulacion: new FormControl(),
+    id_usuario_junta: new FormControl()
   });
 
   formularioDocente = new FormGroup({
@@ -132,6 +134,34 @@ export class CarreraFormComponent implements OnInit {
     }
   }
 
+  seleccionarUsuarioJunta(docente: DocenteCarrera) {
+    this.carrera.id_usuario_junta = docente.usuario_id;
+    this.carreraServicio
+      .actualizarCarrera(this.carrera, this.id)
+      .subscribe(
+        carrera => {
+          this.carrera = carrera as Carrera;
+          this.id = this.carrera.id;
+          console.log(carrera);
+          this.mensajeDocentes = "El docente ha sido registrado como Usuario Junta";
+        }
+      );
+  }
+
+  seleccionarUsuarioTitulacion(docente: DocenteCarrera) {
+    this.carrera.id_usuario_titulacion = docente.usuario_id;
+    this.carreraServicio
+      .actualizarCarrera(this.carrera, this.id)
+      .subscribe(
+        carrera => {
+          this.carrera = carrera as Carrera;
+          this.id = this.carrera.id;
+          console.log(carrera);
+          this.mensajeDocentes = "El docente ha sido registrado como Usuario Coordinación de Titulación";
+        }
+      );
+  }
+
   getCarrera() {
     this.carreraServicio
       .buscarCarrera(this.id)
@@ -144,7 +174,9 @@ export class CarreraFormComponent implements OnInit {
             tipo_carrera: new FormControl(),
             estado: new FormControl('A'),
             id_coordinador: new FormControl(1),
-            opcion_graduacion: new FormControl('')
+            opcion_graduacion: new FormControl(''),
+            id_usuario_titulacion: new FormControl(),
+            id_usuario_junta: new FormControl(),
           });
           console.log(carrera);
           this.carrera = carrera;

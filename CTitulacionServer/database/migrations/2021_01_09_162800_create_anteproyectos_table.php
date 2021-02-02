@@ -18,7 +18,7 @@ class CreateAnteproyectosTable extends Migration
             $table->string('estado');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->string('observacion');
+            $table->string('observacion')->nullable(true);
             $table->bigInteger('tema_ante_proyecto_id')->unsigned();
             $table->foreign('tema_ante_proyecto_id')
                 ->references('id')

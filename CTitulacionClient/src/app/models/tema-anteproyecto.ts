@@ -4,4 +4,5 @@ export class TemaAnteproyecto {
   nombre: string;
   evidencia_id: number;
   solicitud_id: number;
+  observacion: string;
 }

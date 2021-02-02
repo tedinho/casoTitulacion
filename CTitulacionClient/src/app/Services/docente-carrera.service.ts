@@ -19,4 +19,8 @@ export class DocenteCarreraService {
     return this.http.get<DocenteCarrera[]>(API_URL + 'docente-carrera/buscar-docente-id-carrera/' + idCarrera);
   }
 
+  buscarDocentesCarreraPorIdDocente(idDocente: number): Observable<DocenteCarrera[]> {
+    return this.http.get<DocenteCarrera[]>(API_URL + 'docente-carrera/buscar-docente-id-docente/' + idDocente);
+  }
+
 }

@@ -27,7 +27,7 @@ class CreateTemaAnteproyectosTable extends Migration
                 ->references('id')
                 ->on('evidencias')
                 ->onDelete('cascade');
-            $table->string('observacion');
+            $table->string('observacion')->nullable(true);
         });
     }
 

@@ -1,0 +1,140 @@
+<br />
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3><b>Temas AnteProyectos</b></h3>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="alert alert-info alert-dismissible" *ngIf='mensaje'>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        {{mensaje}}
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre Estudiante</th>
+                <th>Tema</th>
+                <th>Archivo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of temas">
+                <td>{{temas.indexOf(t)+1}}</td>
+                <td>
+                    <div *ngIf="t.solicitud != null">
+                        {{t.solicitud.estudiante_carrera.estudiante.nombre}}
+                        {{t.solicitud.estudiante_carrera.estudiante.apellido}}
+                    </div>
+                </td>
+                <td>{{t.nombre}}</td>
+                <td>
+                    <div *ngIf="t.evidencia != null">
+                        <a href="http://localhost:8000/{{ t.evidencia.url }}" target="_blank"><i
+                                class="far fa-fw fa-file-pdf"></i>{{ t.evidencia.nombre_archivo }}</a>
+                    </div>
+                </td>
+                <td>
+                    <p *ngIf="t.estado == 'E'">Enviado</p>
+                    <p *ngIf="t.estado == 'C'">Pendiente Envio</p>
+                    <p *ngIf="t.estado == 'R'">Rechazado</p>
+                    <p *ngIf="t.estado == 'A'">Aprobado</p>
+                </td>
+                <td>
+                    <button *ngIf="t.estado == 'E'" data-toggle="modal" data-target="#requisitoModal" type="submit"
+                        class="btn btn-primary" (click)="abrirPopVerRequisitos(t)">Aprobar</button>
+
+                    <button style="    background-color: red;
+                        border-color: red;
+                        margin-left: 2px;" *ngIf="t.estado == 'E'" data-toggle="modal" data-target="#rechazoModal"
+                        type="submit" class="btn btn-primary" (click)="abrirPopRechazar(t)">Rechazar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="temas==null||temas.length==0">
+    <div>
+        <p>No Existen Temas Por Aprobar</p>
+    </div>
+</div>
+
+<div class="modal fade" id="requisitoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="requisitoModalLabel">Atención</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="formularioNuevo">
+                <div class="modal-body">
+                    <h6>Anteproyecto</h6>
+                    <div class="form-group">
+                        <label>
+                            Fecha Inicio:
+                            <input class="form-control" type="date" formControlName="fecha_inicio">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Fecha Fin:
+                            <input class="form-control" type="date" formControlName="fecha_fin">
+                        </label>
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button data-dismiss="modal" type="submit" class="btn btn-primary" (click)="aceptarTema()">Aceptar
+                        Tema</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- pop rechazar -->
+<div class="modal fade" id="rechazoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rechazoModalLabel">Atención</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="formularioRechazo">
+                <div class="modal-body">
+                    <p> Se va a rechazar el Tema ¿Está seguro?</p>
+
+
+                    <div class="form-group">
+                        <label>
+                            Observación:
+                            <input class="form-control" type="text" formControlName="descripcion">
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" type="submit" class="btn btn-primary" (click)="rechazarTema()">Rechazar
+                        Tema</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

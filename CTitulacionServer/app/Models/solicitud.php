@@ -16,4 +16,9 @@ class solicitud extends Model
     {
         return $this->hasMany(requisito_solicitud::class);
     }
+
+    public function estudiante_carrera()
+    {
+        return $this->belongsTo(estudiante_carrera::class);
+    }
 }

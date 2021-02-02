@@ -11,15 +11,19 @@ export class TemaAnteproyectoService {
   constructor(private http: HttpClient) { }
 
   guardarTema(temaAnte) {
-    return this.http.post(API_URL + 'estudiante-carrera/', temaAnte);
+    return this.http.post(API_URL + 'tema-anteproyecto/', temaAnte);
   }
 
-  buscarTemaAnteproyectoPorIdEstudiante(id: number): Observable<TemaAnteproyecto[]> {
-    return this.http.get<TemaAnteproyecto[]>(API_URL + 'estudiante-carrera/buscar-por-id-estudiante/' + id + '');
+  buscarTemaAnteproyectoPorIdSolicitud(id: number): Observable<TemaAnteproyecto[]> {
+    return this.http.get<TemaAnteproyecto[]>(API_URL + 'tema-anteproyecto/buscar-por-id-solicitud/' + id + '');
   }
 
   actualizarTemaAnteproyecto(temaAnte, id) {
-    return this.http.put(API_URL + 'estudiante-carrera/' + id, temaAnte);
+    return this.http.put(API_URL + 'tema-anteproyecto/' + id, temaAnte);
+  }
+
+  buscarTemasPorAprobarPorIdCarrera(idCarrea: number): Observable<TemaAnteproyecto[]> {
+    return this.http.get<TemaAnteproyecto[]>(API_URL + 'tema-anteproyecto/buscar-por-aprobar-id-carrera/' + idCarrea + '');
   }
 
 }

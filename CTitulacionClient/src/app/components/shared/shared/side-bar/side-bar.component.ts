@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CarreraService } from 'src/app/Services/carrera.service';
+import { DocenteCarreraService } from 'src/app/Services/docente-carrera.service';
 import { LoginService } from 'src/app/Services/login.service';
 
 @Component({
@@ -9,7 +11,7 @@ export class SideBarComponent {
 
   dataUser: any;
 
-  constructor(private authService: LoginService) {
+  constructor(private authService: LoginService, private docenteCarreraServicio: DocenteCarreraService, private carreraServicio: CarreraService) {
     console.log("sdfs");
     this.obtenerDatos();
   }
@@ -21,6 +23,29 @@ export class SideBarComponent {
     else {
       this.dataUser = {};
     }
+  }
+
+  isMostrarMenuJunta() {
+    if (this.isDocente()) {
+      this.docenteCarreraServicio
+        .buscarDocentesCarreraPorIdDocente(+localStorage.getItem('id'))
+        .subscribe(
+          docentes => {
+            this.carreraServicio
+              .buscarCarrera(docentes[0].carrera_id)
+              .subscribe(
+                carrera => {
+                  if (carrera.id_usuario_junta == docentes[0].usuario_id) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                }
+              );
+          }
+        );
+    }
+    return false;
   }
 
   isLogin() {

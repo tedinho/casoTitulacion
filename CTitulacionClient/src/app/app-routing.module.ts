@@ -22,6 +22,8 @@ import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
 import { SolicitudProrrogaComponent } from './components/solicitud-prorroga/solicitud-prorroga.component';
+import { TemaAnteproyectoComponent } from './components/tema-anteproyecto/tema-anteproyecto.component';
+import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-temas-anteproyecto/aprobacion-temas-anteproyecto.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -60,6 +62,16 @@ const routes: Routes = [
       component: EstudiantesSolicitudComponent,
       canActivate: [AuthGuardService]
 
+   },
+   {
+      path: 'tema-anteproyecto',
+      component: TemaAnteproyectoComponent,
+      canActivate: [AuthGuardService]
+   },
+   {
+      path: 'aprobacion-temas-anteproyectos',
+      component: AprobacionTemasAnteproyectoComponent,
+      canActivate: [AuthGuardService]
    },
    {
       path: 'anteproyecto-form',

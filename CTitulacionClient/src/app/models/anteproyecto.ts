@@ -3,5 +3,7 @@ export class Anteproyecto {
   estado: string;
   fecha_inicio: Date;
   fecha_fin: Date;
-  user_id: number;
+  evidencia_id: number;
+  observacion: string;
+  tema_ante_proyecto_id: number;
 }
