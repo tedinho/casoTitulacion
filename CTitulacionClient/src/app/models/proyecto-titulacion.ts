@@ -6,4 +6,5 @@ export interface ProyectoTitulacion {
   estado: string;
   periodo: string;
   notaJunta: string;
+  estadoAceptacion: string;
 }
