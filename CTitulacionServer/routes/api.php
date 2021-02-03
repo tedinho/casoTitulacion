@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnteproyectoController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ArchivosController;
+use App\Http\Controllers\API\DirectoresController;
 use App\Http\Controllers\API\FechaConfiguracioneController;
 use App\Http\Controllers\API\InformeController;
 use App\Http\Controllers\API\RevisorController;
@@ -38,6 +39,8 @@ Route::post('storefile', [ArchivosController::class, 'store']);
 Route::post('getfile/{user_id}', [ArchivosController::class, 'obtenerDocumentos']);
 Route::get('getUser/{id}', [ArchivosController::class, 'getUserById']);
 Route::get('getUserM/{id}', [ArchivosController::class, 'getUserByM']);
+
+Route::get('directores', [DirectoresController::class, 'index']);
 
 
 Route::post('informe', [InformeController::class, 'store']);
