@@ -1,0 +1,66 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Informe con nota hoja de tutorias</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                    <li class="breadcrumb-item active">Informe con nota hoja de tutorias</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Registro de Informe con nota hoja de tutorias</h3>
+            </div>
+            <form [formGroup]="informeNotaForm" (ngSubmit)="registrarInforme()">
+
+                <div class="card-body p-0 m-3">
+
+                    <!-- your steps content here -->
+                    <div id="general-part" class="content">
+                        <div class="form-check mb-2">
+                            <input type="checkbox" class="form-check-input" id="validacion"
+                                formControlName="validacion">
+                            <label class="form-check-label" for="validacion"> Informe favorable</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="titulo">Tema de trabajo de titulacion</label>
+                            <input type="text" class="form-control" id="titulo" placeholder="Título del informe">
+                        </div>
+                        <div class="form-group">
+                            <label for="cuerpo">Asunto del informe</label>
+                            <input type="text" class="form-control" id="cuerpo" placeholder="Asunto del informe"
+                                formControlName="cuerpo">
+                        </div>
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones</label>
+                            <textarea name="observaciones" cols="30" rows="10" class="form-control"
+                                formControlName="observacion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="calificacion_proyecto">Calificación de proyecto</label>
+                            <input type="number" class="form-control" placeholder="Calificación de proyecto" formControlName="calificacion_proyecto">
+                        </div>
+                        <div class="form-group">
+                            <label for="carga_hojas_tutorias">Subir hoja de tutorias</label>
+                            <input type="file">
+                        </div>
+                        <button class="btn btn-primary">Enviar Informe</button>
+                    </div>
+
+                </div>
+            </form>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->

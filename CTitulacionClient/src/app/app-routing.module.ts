@@ -25,6 +25,8 @@ import { SolicitudProrrogaComponent } from './components/solicitud-prorroga/soli
 import { TemaAnteproyectoComponent } from './components/tema-anteproyecto/tema-anteproyecto.component';
 import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-temas-anteproyecto/aprobacion-temas-anteproyecto.component';
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
+import { InformeNotaComponent } from './components/informe-nota/informe-nota.component';
+import { ListaEstudiantesComponent } from './components/lista-estudiantes/lista-estudiantes.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -96,6 +98,9 @@ const routes: Routes = [
    },
    { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
    { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },
+   { path: 'listaEstudiantes', component: ListaEstudiantesComponent, canActivate: [AuthGuardService], data: { role: 'Docente' } },
+   { path: 'informeNota/:id', component: InformeNotaComponent, canActivate: [AuthGuardService], data: { role: 'Docente' } },
+   
    {
       path: 'realizarInforme', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: {
          role: 'Revisor'

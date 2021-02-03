@@ -34,9 +34,10 @@ import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.
 import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TemaAnteproyectoComponent } from './components/tema-anteproyecto/tema-anteproyecto.component';
 import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-temas-anteproyecto/aprobacion-temas-anteproyecto.component';
+import { InformeNotaComponent } from './components/informe-nota/informe-nota.component';
+import { ListaEstudiantesComponent } from './components/lista-estudiantes/lista-estudiantes.component';
 
 registerLocaleData(localEs);
 
@@ -69,6 +70,8 @@ registerLocaleData(localEs);
     ProrrogaComponent,
     TemaAnteproyectoComponent,
     AprobacionTemasAnteproyectoComponent,
+    InformeNotaComponent,
+    ListaEstudiantesComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,6 @@ registerLocaleData(localEs);
     ReactiveFormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    NgxMaterialTimepickerModule,
     BrowserAnimationsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
