@@ -17,7 +17,7 @@ Después de instalar los componentes necesarios se debe copiar el archvio .env y
 Una vez configurado se debe ejecutar la siguiente linea para la correcta migración en la base de datos 
 
 ```bash
-php artisan migrate:refresh --seed
+php artisan migrate:fresh --seed
 ```
 
 
