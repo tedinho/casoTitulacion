@@ -36,7 +36,10 @@ class CarreraRequisitoSolicitudController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        return carrera_requisito_solicitud::create($input);
+        $carrera = carrera_requisito_solicitud::create($input);
+        $carrera->requisito;
+        $carrera->evidencia;
+        return $carrera;
     }
 
     public function buscarCarreraRequisitoPorIdSolicitud($idSolicitud)

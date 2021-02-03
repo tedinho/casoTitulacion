@@ -77,6 +77,7 @@ export class EstudianteCarreraComponent implements OnInit {
   }
 
   guardarEvidencia(crs: CarreraRequisitoSolicitud) {
+    document.getElementById("loading-imagen").style.display = "block";
     const formData = new FormData();
     formData.append('file', this.cargarDocumento.get('arch').value);
     formData.append('tipo_archivo', this.cargarDocumento.get('tipo_archivo').value);
@@ -95,6 +96,7 @@ export class EstudianteCarreraComponent implements OnInit {
         this.carreraRequisitoSolicitudService.actualizarCarreraRequisitoSolicitud(crs, crs.id)
           .subscribe(crsAct => {
             this.getRequisitos();
+            document.getElementById("loading-imagen").style.display = "none";
           });
       }, (errorServer) => {
         this.cargarDocumento.reset();
@@ -121,6 +123,7 @@ export class EstudianteCarreraComponent implements OnInit {
   }
 
   enviarSolicitud() {
+    document.getElementById("loading-imagen").style.display = "block";
     this.solicitud.estado = 'E';
     this.solicitud.fecha_envio = new Date();
     this.solicitudServicio
@@ -128,6 +131,7 @@ export class EstudianteCarreraComponent implements OnInit {
       .subscribe(soli => {
         this.solicitud = soli as Solicitud;
         this.mensajeEnvio = "Se ha enviado la solicitud correctamente";
+        document.getElementById("loading-imagen").style.display = "none";
       });
   }
 
@@ -163,11 +167,13 @@ export class EstudianteCarreraComponent implements OnInit {
   }
 
   guardar() {
+    document.getElementById("loading-imagen").style.display = "block";
     if (this.formularioEstudianteCarrera.get('id') != null) {
       this.estudianteCarreraServicio.actualizarEstudianteCarrera(this.formularioEstudianteCarrera.value, this.formularioEstudianteCarrera.get('id').value)
         .subscribe(estuCarrera => {
           this.mostrarForm = false;
           this.estudianteCarrera = estuCarrera as EstudianteCarrera;
+          document.getElementById("loading-imagen").style.display = "none";
         });
     } else {
       this.formularioEstudianteCarrera.get('estudiante_id').setValue(+localStorage.getItem('id'));
@@ -188,19 +194,23 @@ export class EstudianteCarreraComponent implements OnInit {
                 console.log(soli);
                 this.carreraRequisitoService.buscarCarreraRequisitoPorIdCarrera(this.estudianteCarrera.carrera_id)
                   .subscribe(requisitos => {
-                    let solicit = soli as Solicitud;
+                    this.solicitud = soli as Solicitud;
+                    if (this.requisitos == null) {
+                      this.requisitos = [];
+                    }
                     for (let r of requisitos) {
                       var requiCrreraSoli = new CarreraRequisitoSolicitud;
                       requiCrreraSoli.cumple = false;
                       requiCrreraSoli.evidencia_id = null;
                       requiCrreraSoli.requisito_id = r.id;
-                      requiCrreraSoli.solicitud_id = solicit.id;
+                      requiCrreraSoli.solicitud_id = this.solicitud.id;
                       this.carreraRequisitoSolicitudService
                         .guardarCarreraRequisitoSolicitud(requiCrreraSoli)
                         .subscribe(carrReSoli => {
-                          console.log(carrReSoli);
+                          this.requisitos.push(carrReSoli as CarreraRequisitoSolicitud);
                         });
                     }
+                    document.getElementById("loading-imagen").style.display = "none";
                   });
               });
           }

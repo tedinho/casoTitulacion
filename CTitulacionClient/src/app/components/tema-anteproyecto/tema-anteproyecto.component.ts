@@ -110,6 +110,7 @@ export class TemaAnteproyectoComponent implements OnInit {
   }
 
   guardarTema() {
+    document.getElementById("loading-imagen").style.display = "block";
     const formData = new FormData();
     formData.append('file', this.formTemaAnteproyecto.get('cargarDocumento').get('arch').value);
     formData.append('tipo_archivo', this.formTemaAnteproyecto.get('cargarDocumento').get('tipo_archivo').value);
@@ -134,6 +135,7 @@ export class TemaAnteproyectoComponent implements OnInit {
                 console.log(tema);
                 this.temaAnteProyecto = tema[0] as TemaAnteproyecto;
                 this.mensajeTema = "Se ha enviado correctamente el tema para su aprobación";
+                document.getElementById("loading-imagen").style.display = "none";
               }
             );
         } else {
@@ -143,6 +145,7 @@ export class TemaAnteproyectoComponent implements OnInit {
               tema => {
                 this.temaAnteProyecto = tema as TemaAnteproyecto;
                 this.mensajeTema = "Se ha enviado correctamente el tema para su aprobación";
+                document.getElementById("loading-imagen").style.display = "none";
               }
             );
         }

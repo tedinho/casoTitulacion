@@ -45,7 +45,7 @@ export class CarreraFormComponent implements OnInit {
     tipo_carrera: new FormControl(),
     estado: new FormControl('A'),
     id_coordinador: new FormControl(1),
-    opcion_graduacion: new FormControl(''),
+    opcion_graduacion: new FormControl(),
     id_usuario_titulacion: new FormControl(),
     id_usuario_junta: new FormControl()
   });
@@ -105,6 +105,7 @@ export class CarreraFormComponent implements OnInit {
 
 
   guardar() {
+    document.getElementById("loading-imagen").style.display = "block";
     if (this.carrera.id == null) {
       console.log(this.formularioCarrera.value);
       this.carreraServicio
@@ -115,6 +116,7 @@ export class CarreraFormComponent implements OnInit {
             this.id = this.carrera.id;
             console.log(carrera);
             this.mensajeDatosGenerales = "La carrera ha sido creada correctamente";
+            document.getElementById("loading-imagen").style.display = "none";
           }
         );
     } else {
@@ -126,6 +128,7 @@ export class CarreraFormComponent implements OnInit {
             this.id = this.carrera.id;
             console.log(carrera);
             this.mensajeDatosGenerales = "La carrera ha sido actualizada correctamente";
+            document.getElementById("loading-imagen").style.display = "none";
           },
           error => {
             this.errorMessage = error.json().errors;
@@ -135,6 +138,7 @@ export class CarreraFormComponent implements OnInit {
   }
 
   seleccionarUsuarioJunta(docente: DocenteCarrera) {
+    document.getElementById("loading-imagen").style.display = "block";
     this.carrera.id_usuario_junta = docente.usuario_id;
     this.carreraServicio
       .actualizarCarrera(this.carrera, this.id)
@@ -144,11 +148,13 @@ export class CarreraFormComponent implements OnInit {
           this.id = this.carrera.id;
           console.log(carrera);
           this.mensajeDocentes = "El docente ha sido registrado como Usuario Junta";
+          document.getElementById("loading-imagen").style.display = "none";
         }
       );
   }
 
   seleccionarUsuarioTitulacion(docente: DocenteCarrera) {
+    document.getElementById("loading-imagen").style.display = "block";
     this.carrera.id_usuario_titulacion = docente.usuario_id;
     this.carreraServicio
       .actualizarCarrera(this.carrera, this.id)
@@ -158,6 +164,7 @@ export class CarreraFormComponent implements OnInit {
           this.id = this.carrera.id;
           console.log(carrera);
           this.mensajeDocentes = "El docente ha sido registrado como Usuario Coordinación de Titulación";
+          document.getElementById("loading-imagen").style.display = "none";
         }
       );
   }
@@ -191,6 +198,7 @@ export class CarreraFormComponent implements OnInit {
   }
 
   guardarDocente() {
+    document.getElementById("loading-imagen").style.display = "block";
     let pass = this.makeRandom();
     this.formularioDocente.get('password').setValue(pass);
     this.formularioDocente.get('password_repeat').setValue(pass);
@@ -212,6 +220,7 @@ export class CarreraFormComponent implements OnInit {
                   password: new FormControl(''),
                   password_repeat: new FormControl('')
                 });
+                document.getElementById("loading-imagen").style.display = "none";
               });
           }, error => {
             console.log(error);
@@ -219,6 +228,7 @@ export class CarreraFormComponent implements OnInit {
       }, error => {
         console.log(error);
         this.userDocente = null;
+        document.getElementById("loading-imagen").style.display = "none";
       });
   }
 
@@ -240,6 +250,7 @@ export class CarreraFormComponent implements OnInit {
   }
 
   guardarPeriodoLectivo() {
+    document.getElementById("loading-imagen").style.display = "block";
     this.formularioPeriodoLectivo.get('carrera_id').setValue(this.carrera.id);
     this.periodoLectivoServicio.guardarPeriodoLectivo(this.formularioPeriodoLectivo.value)
       .subscribe(periodoLe => {
@@ -251,6 +262,7 @@ export class CarreraFormComponent implements OnInit {
         });
         this.mensajePeriodoLectivo = "Se ha guardado el Periodo Lectivo correctamente";
         this.getPeriodosLectivos();
+        document.getElementById("loading-imagen").style.display = "none";
       });
   }
 
@@ -262,6 +274,7 @@ export class CarreraFormComponent implements OnInit {
   }
 
   guardarEvidenciaCarrera() {
+    document.getElementById("loading-imagen").style.display = "block";
     let nombre = this.formularioArchivos.get('nombre').value;
     const formData = new FormData();
     formData.append('file', this.formularioArchivos.get('arch').value);
@@ -279,7 +292,6 @@ export class CarreraFormComponent implements OnInit {
         eviCarre.carrera_id = this.id;
         eviCarre.nombre = nombre;
         eviCarre.evidencia_id = stringObject.id
-
         this.evidenciaCarreraService
           .guardarEvidenciaCarrera(eviCarre)
           .subscribe(
@@ -287,6 +299,7 @@ export class CarreraFormComponent implements OnInit {
               console.log(evi);
               this.getArchivosEvidencia();
               this.mensajeArchivo = 'Se ha guardado el Archivo correctamente';
+              document.getElementById("loading-imagen").style.display = "none";
             }
           );
 
@@ -315,6 +328,7 @@ export class CarreraFormComponent implements OnInit {
   }
 
   guardarRequisito() {
+    document.getElementById("loading-imagen").style.display = "block";
     this.formularioCarreraRequisito.get('carrera_id').setValue(this.carrera.id);
     this.carreraRequisitoService.guardarCarreraRequisito(this.formularioCarreraRequisito.value)
       .subscribe(carreraRe => {
@@ -326,6 +340,7 @@ export class CarreraFormComponent implements OnInit {
         });
         this.mensajeRequisito = "Se ha guardado el Requisito correctamente";
         this.getRequisitos();
+        document.getElementById("loading-imagen").style.display = "none";
       });
   }
 

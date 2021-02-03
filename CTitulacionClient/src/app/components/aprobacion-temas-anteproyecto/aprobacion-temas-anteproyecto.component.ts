@@ -58,6 +58,7 @@ export class AprobacionTemasAnteproyectoComponent implements OnInit {
   }
 
   rechazarTema() {
+    document.getElementById("loading-imagen").style.display = "block";
     this.tema.estado = 'R';
     this.tema.observacion = this.formularioRechazo.get('descripcion').value;
     delete this.tema.evidencia;
@@ -69,8 +70,10 @@ export class AprobacionTemasAnteproyectoComponent implements OnInit {
           this.mensaje = "El tema se rechazó correctamente";
           this.tema = null;
           this.getTemas();
+          document.getElementById("loading-imagen").style.display = "none";
         }
       );
+
   }
 
   abrirPopVerRequisitos(tema) {
@@ -78,6 +81,7 @@ export class AprobacionTemasAnteproyectoComponent implements OnInit {
   }
 
   aceptarTema() {
+    document.getElementById("loading-imagen").style.display = "block";
     this.tema.estado = 'A';
     delete this.tema.evidencia;
     delete this.tema.solicitud;
@@ -96,6 +100,7 @@ export class AprobacionTemasAnteproyectoComponent implements OnInit {
               this.mensaje = "El Tema se aprobo correctamente y se creo el lapso del anteProyecto";
               this.tema = null;
               this.getTemas();
+              document.getElementById("loading-imagen").style.display = "none";
             })
         }
       );

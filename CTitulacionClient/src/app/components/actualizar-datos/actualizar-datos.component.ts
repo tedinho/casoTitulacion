@@ -52,6 +52,7 @@ export class ActualizarDatosComponent implements OnInit {
   }
 
   guardar() {
+    document.getElementById("loading-imagen").style.display = "block";
     this.formularioEstudiante.get('actualizar_datos').setValue(false);
     this.estudianteServicio
       .actualizarEstudiante(this.formularioEstudiante.value, this.id)
@@ -66,6 +67,7 @@ export class ActualizarDatosComponent implements OnInit {
               } else {
                 this.router.navigate(['/estudiante-carrera']);
               }
+              document.getElementById("loading-imagen").style.display = "none";
             }
           );
       });

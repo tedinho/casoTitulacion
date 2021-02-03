@@ -53,6 +53,7 @@ export class EstudiantesSolicitudComponent implements OnInit {
   }
 
   rechazarSolicitud() {
+    document.getElementById("loading-imagen").style.display = "block";
     this.solicitud.estado = 'R';
     this.solicitud.observacion = this.formularioRechazo.get('descripcion').value;
     this.solicitudServicio
@@ -63,6 +64,7 @@ export class EstudiantesSolicitudComponent implements OnInit {
           this.requisitos = [];
           this.solicitud = null;
           this.getEstudiantes();
+          document.getElementById("loading-imagen").style.display = "none";
         }
       );
   }
@@ -85,6 +87,7 @@ export class EstudiantesSolicitudComponent implements OnInit {
   }
 
   aceptarSolicitud() {
+    document.getElementById("loading-imagen").style.display = "block";
     this.solicitud.estado = 'A';
     this.solicitudServicio
       .actualizarSolicitud(this.solicitud, this.solicitud.id)
@@ -94,6 +97,7 @@ export class EstudiantesSolicitudComponent implements OnInit {
           this.requisitos = [];
           this.solicitud = null;
           this.getEstudiantes();
+          document.getElementById("loading-imagen").style.display = "none";
         }
       );
   }
