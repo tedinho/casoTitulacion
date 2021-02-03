@@ -161,13 +161,10 @@ class TemaAnteproyectoController extends Controller
                 $message->to($to_email, $to_name)->subject('Tema Anteproyecto');
                 $message->from('jajajanova97@gmail.com', 'Anthony Casanova');
             });
-            $temas = TemaAnteproyecto::where('id', '=', $id)->get();
-            for ($i = 0; $i < count($temas); $i++) {
-                $temas[$i]->evidencia;
-            }
-            return $temas;
         }
-        return TemaAnteproyecto::find($id);
+        $tems = TemaAnteproyecto::find($id);
+        $tems->evidencia;
+        return $tems;
     }
 
     /**

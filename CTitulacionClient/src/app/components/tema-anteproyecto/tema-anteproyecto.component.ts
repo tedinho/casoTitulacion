@@ -112,44 +112,62 @@ export class TemaAnteproyectoComponent implements OnInit {
   guardarTema() {
     document.getElementById("loading-imagen").style.display = "block";
     const formData = new FormData();
-    formData.append('file', this.formTemaAnteproyecto.get('cargarDocumento').get('arch').value);
-    formData.append('tipo_archivo', this.formTemaAnteproyecto.get('cargarDocumento').get('tipo_archivo').value);
-    formData.append('email', this.formTemaAnteproyecto.get('cargarDocumento').get('email').value);
-    formData.append('validar', 'false');
-    const documentes = this.formTemaAnteproyecto.get('cargarDocumento').value;
-    formData.append('nombre_archivo', documentes['arch']['name']);
-    this.archivos.cargaDocumento(formData)
-      .subscribe(respu => {
-        console.log(respu);
-        this.formTemaAnteproyecto.get('cargarDocumento').reset();
-        let stringJson = JSON.stringify(respu);
-        let stringObject = JSON.parse(stringJson);
-        this.formTemaAnteproyecto.get('evidencia_id').setValue(stringObject.id);
-        this.formTemaAnteproyecto.removeControl('cargarDocumento');
-        if (this.temaAnteProyecto == null || this.temaAnteProyecto.id == null) {
-          this.formTemaAnteproyecto.get('estado').setValue('E');
-          this.temaAnteproyectoService
-            .guardarTema(this.formTemaAnteproyecto.value)
-            .subscribe(
-              tema => {
-                console.log(tema);
-                this.temaAnteProyecto = tema[0] as TemaAnteproyecto;
-                this.mensajeTema = "Se ha enviado correctamente el tema para su aprobación";
-                document.getElementById("loading-imagen").style.display = "none";
-              }
-            );
-        } else {
-          this.formTemaAnteproyecto.get('estado').setValue('E');
-          this.temaAnteproyectoService.actualizarTemaAnteproyecto(this.formTemaAnteproyecto.value, this.temaAnteProyecto.id)
-            .subscribe(
-              tema => {
-                this.temaAnteProyecto = tema as TemaAnteproyecto;
-                this.mensajeTema = "Se ha enviado correctamente el tema para su aprobación";
-                document.getElementById("loading-imagen").style.display = "none";
-              }
-            );
-        }
-      })
+    console.log('hola');
+    let valor = this.formTemaAnteproyecto.get('cargarDocumento').get('arch').value;
+    if (valor != null && valor.length > 0) {
+      formData.append('file', this.formTemaAnteproyecto.get('cargarDocumento').get('arch').value);
+      formData.append('tipo_archivo', this.formTemaAnteproyecto.get('cargarDocumento').get('tipo_archivo').value);
+      formData.append('email', this.formTemaAnteproyecto.get('cargarDocumento').get('email').value);
+      formData.append('validar', 'false');
+      const documentes = this.formTemaAnteproyecto.get('cargarDocumento').value;
+      formData.append('nombre_archivo', documentes['arch']['name']);
+      this.archivos.cargaDocumento(formData)
+        .subscribe(respu => {
+          console.log(respu);
+          this.formTemaAnteproyecto.get('cargarDocumento').reset();
+          let stringJson = JSON.stringify(respu);
+          let stringObject = JSON.parse(stringJson);
+          this.formTemaAnteproyecto.get('evidencia_id').setValue(stringObject.id);
+          this.formTemaAnteproyecto.removeControl('cargarDocumento');
+          if (this.temaAnteProyecto == null || this.temaAnteProyecto.id == null) {
+            this.formTemaAnteproyecto.get('estado').setValue('E');
+            this.temaAnteproyectoService
+              .guardarTema(this.formTemaAnteproyecto.value)
+              .subscribe(
+                tema => {
+                  console.log(tema);
+                  this.temaAnteProyecto = tema[0] as TemaAnteproyecto;
+                  this.mensajeTema = "Se ha enviado correctamente el tema para su aprobación";
+                  document.getElementById("loading-imagen").style.display = "none";
+                }
+              );
+          } else {
+            this.formTemaAnteproyecto.get('estado').setValue('E');
+            this.temaAnteproyectoService.actualizarTemaAnteproyecto(this.formTemaAnteproyecto.value, this.temaAnteProyecto.id)
+              .subscribe(
+                tema => {
+                  this.temaAnteProyecto = tema as TemaAnteproyecto;
+                  this.mensajeTema = "Se ha enviado correctamente el tema para su aprobación";
+                  document.getElementById("loading-imagen").style.display = "none";
+                }
+              );
+          }
+        })
+    } else if ((valor == null || valor.length <= 0) && this.temaAnteProyecto.id != null) {
+      let tem = this.temaAnteProyecto as any;
+      tem.estado = 'E';
+      tem.nombre = this.formTemaAnteproyecto.get('nombre').value;
+      delete tem.evidencia;
+      this.temaAnteproyectoService
+        .actualizarTemaAnteproyecto(tem, this.temaAnteProyecto.id)
+        .subscribe(
+          tema => {
+            this.temaAnteProyecto = tema as TemaAnteproyecto;
+            this.mensajeTema = "Se ha enviado correctamente el tema para su aprobación";
+            document.getElementById("loading-imagen").style.display = "none";
+          }
+        );
+    }
   }
 
   enviarAAprobacionTema() {

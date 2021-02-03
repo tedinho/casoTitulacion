@@ -87,7 +87,11 @@ export class EstudianteCarreraComponent implements OnInit {
     formData.append('nombre_archivo', documentes['arch']['name']);
     this.archivos.cargaDocumento(formData)
       .subscribe(respu => {
-        this.cargarDocumento.reset();
+        this.cargarDocumento = new FormGroup({
+          arch: new FormControl(''),
+          tipo_archivo: new FormControl('requisito'),
+          email: new FormControl(localStorage.getItem('email'))
+        });
         let stringJson = JSON.stringify(respu);
         let stringObject = JSON.parse(stringJson);
         crs.evidencia_id = stringObject.id;

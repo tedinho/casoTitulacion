@@ -274,6 +274,7 @@ export class CarreraFormComponent implements OnInit {
   }
 
   guardarEvidenciaCarrera() {
+    console.log("hola");
     document.getElementById("loading-imagen").style.display = "block";
     let nombre = this.formularioArchivos.get('nombre').value;
     const formData = new FormData();
@@ -285,7 +286,12 @@ export class CarreraFormComponent implements OnInit {
     formData.append('nombre_archivo', documentes['arch']['name']);
     this.archivos.cargaDocumento(formData)
       .subscribe(respu => {
-        this.formularioArchivos.reset();
+        this.formularioArchivos = new FormGroup({
+          nombre: new FormControl(''),
+          arch: new FormControl(''),
+          tipo_archivo: new FormControl('archivo_carrera'),
+          email: new FormControl(localStorage.getItem('email'))
+        });
         let stringJson = JSON.stringify(respu);
         let stringObject = JSON.parse(stringJson);
         let eviCarre = new EvidenciaCarrera();
