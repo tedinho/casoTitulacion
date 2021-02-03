@@ -28,6 +28,7 @@ class CreateProyectoTitulacionsTable extends Migration
                 ->references('id')
                 ->on('evidencias')
                 ->onDelete('cascade');
+            $table->string('estado_aceptacion');
         });
     }
 

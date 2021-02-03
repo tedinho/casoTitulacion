@@ -95,6 +95,8 @@ Route::get('getEstudiantes', [AnteproyectoController::class, 'obtenerEstudiantes
 Route::resource('proyectoTitulacion', ProyectoTitulacionController::class);
 
 Route::resource("solicitudProrroga", SolicitudProrrogaController::class);
+Route::patch("aprobarSolicitud/{id}", [SolicitudProrrogaController::class, 'aprobarSolicitud']);
+Route::patch("desaprobarSolicitud/{id}", [SolicitudProrrogaController::class, 'desaprobarSolicitud']);
 
 Route::resource('tema-anteproyecto', TemaAnteproyectoController::class);
 Route::get('tema-anteproyecto/buscar-por-id-solicitud/{idSolicitud}', [TemaAnteproyectoController::class, 'buscarTemaAnteproyectoPorIdSolicitud']);

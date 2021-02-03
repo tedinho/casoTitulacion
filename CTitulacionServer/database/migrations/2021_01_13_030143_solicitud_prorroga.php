@@ -29,7 +29,7 @@ class SolicitudProrroga extends Migration
             $table->integer('duracion');
             $table->string('motivo');
             $table->string('observacion');
-            $table->boolean('estado');
+            $table->string('estado');
             $table->integer('intentos');
             $table->string('motivo_desaprobado')->nullable(true);
         });
