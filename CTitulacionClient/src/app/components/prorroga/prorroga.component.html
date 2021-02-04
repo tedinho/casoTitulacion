@@ -10,7 +10,7 @@
         <th>Fecha</th>
         <th>Duración</th>
         <th>Motivo</th>
-        <th>Observación</th>
+        <th>Estado</th>
         <th>Opciones</th>
       </tr>
     </thead>
@@ -22,26 +22,15 @@
         <td>{{p.fecha}}</td>
         <td>{{p.duracion}}</td>
         <td>{{p.motivo}}</td>
-        <td>{{p.obsevacion}}</td>
+        <td>{{p.estado}}</td>
         <td>
           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAprobar">
             Aprobar
           </button>
           &nbsp;
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesprobar">
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDesaprobar">
             Desaprobar
           </button>
-
-
-
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-    </tfoot>
-  </table>
-</div>
-<!-- /.card-body -->
 
 <!-- Modal Aprobar -->
 <div class="modal fade" id="modalAprobar" tabindex="-1" role="dialog" aria-labelledby="modalAprobarLabel"
@@ -59,7 +48,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Aprobar</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="aprobarSolPro(p.id)">Aprobar</button>
       </div>
     </div>
   </div>
@@ -67,12 +56,12 @@
 
 
 <!-- Modal Desaprobar -->
-<div class="modal fade" id="modalDesprobar" tabindex="-1" role="dialog" aria-labelledby="modalDesprobarLabel"
+<div class="modal fade" id="modalDesaprobar" tabindex="-1" role="dialog" aria-labelledby="modalDesaprobarLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalDesprobarLabel">Aprobar Solicitud de Prórroga</h5>
+        <h5 class="modal-title" id="modalDesaprobarLabel">Aprobar Solicitud de Prórroga</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -82,8 +71,21 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Desaprobar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="desaprobarSolPro(p.id)">Desaprobar</button>
       </div>
     </div>
   </div>
 </div>
+
+
+        </td>
+      </tr>
+
+
+      
+    </tbody>
+    <tfoot>
+    </tfoot>
+  </table>
+</div>
+<!-- /.card-body -->

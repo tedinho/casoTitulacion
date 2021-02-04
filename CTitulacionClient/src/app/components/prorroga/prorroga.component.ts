@@ -9,7 +9,8 @@ import { SolicitudProrrogaService } from 'src/app/Services/solicitud-prorroga.se
 })
 export class ProrrogaComponent implements OnInit {
 
-  prorrogas:SolicitudProrroga[];
+  prorrogas: SolicitudProrroga[];
+  solicitudProrroga: SolicitudProrroga; 
   errorMessage: string;
   txtNombre: string;
 
@@ -20,10 +21,11 @@ export class ProrrogaComponent implements OnInit {
   ngOnInit(): void {
     this.txtNombre = "";
     this.getSolicitudesProrrogas();
-        
+     
   }
 
   getSolicitudesProrrogas(){
+    console.log("1 Entra"+this.prorrogas); 
     this.solicitudProrrogaServicio
     .getSolicitudesProrrogas(this.txtNombre)
     .subscribe(
@@ -38,5 +40,32 @@ export class ProrrogaComponent implements OnInit {
   buscar(){
     this.getSolicitudesProrrogas();
   }
+
+  aprobarSolPro(id:any){
+    this.solicitudProrrogaServicio
+    .aprobarSolicitudProrroga(this.prorrogas,id)
+    .subscribe(
+      solicitudPro => {
+        this.getSolicitudesProrrogas();
+      }, (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  desaprobarSolPro(id:any){
+    this.solicitudProrrogaServicio
+    .desaprobarSolicitudProrroga(this.prorrogas,id)
+    .subscribe(
+      solicitudPro => {
+        this.getSolicitudesProrrogas();
+      }, (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+
+
 
 }

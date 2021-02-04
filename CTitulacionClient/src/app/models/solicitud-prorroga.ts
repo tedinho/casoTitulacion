@@ -6,7 +6,7 @@ export class SolicitudProrroga {
     duracion: string;
     motivo: string;
     observacion: string;
-    estado: boolean;
+    estado: string;
     intentos: number;
     motivo_desaprobado: string;
  }
