@@ -40,7 +40,10 @@ Route::post('getfile/{user_id}', [ArchivosController::class, 'obtenerDocumentos'
 Route::get('getUser/{id}', [ArchivosController::class, 'getUserById']);
 Route::get('getUserM/{id}', [ArchivosController::class, 'getUserByM']);
 
-Route::get('directores', [DirectoresController::class, 'index']);
+Route::get('directores/{id}', [DirectoresController::class, 'fusionDirectorEstudiante']);
+Route::get('informeEstudiante/{id}', [DirectoresController::class, 'getInformeByStudent']);
+Route::post('directores', [DirectoresController::class, 'informeDirector']);
+
 
 
 Route::post('informe', [InformeController::class, 'store']);

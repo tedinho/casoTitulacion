@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
+import { Validators } from '@angular/forms';
 
 declare var Swal: any;
 
 @Component({
-  selector: 'app-modificacion-revisor',
-  templateUrl: './modificacion-revisor.component.html'
+  selector: 'app-informe-revisor',
+  templateUrl: './informe-revisor.component.html'
 })
-export class ModificacionRevisorComponent {
+export class InformeRevisorComponent {
 
   estudiantes: Array<any> = [];
   correo = localStorage['email'];

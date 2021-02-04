@@ -1,0 +1,37 @@
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-primary card-outline" *ngFor="let infor of informeData">
+      <div class="card-header">
+        <h3 class="card-title">Informe</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div class="mailbox-read-info">
+          <h5 class="mb-2">{{ infor.titulo }}</h5>
+          <h6>
+            {{ infor.cuerpo }}
+            <span class="mailbox-read-time float-right"
+              >{{ infor.created_at | date:'fullDate' }}</span
+            >
+          </h6>
+        </div>        
+        <div class="mailbox-read-message">
+            <p>
+              {{ infor.observacion }}
+            </p>
+            <div *ngFor="let hojaR of hojaRuta">
+                <div class="card-body">
+                    <a href="http://localhost:8000/{{ hojaR.url }}" target="_blank">
+                        <i class="far fa-fw fa-file-pdf"></i>{{ hojaR.nombre_archivo }}
+                    </a>                    
+                </div>
+            </div>
+            
+        </div>
+        <!-- /.mailbox-read-message -->
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+</div>

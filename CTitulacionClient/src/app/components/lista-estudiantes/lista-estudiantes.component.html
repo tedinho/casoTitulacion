@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header">                        
                         <h3 class="card-title">Lista de estudiantes</h3>
                     </div>
                     <!-- ./card-header -->
@@ -31,21 +31,18 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Titulo</th>
-                                    <th>Descripción</th>
-                                    <th>Observaciones</th>
+                                    <th>Nombres</th>                                    
+                                    <th>Trabajo Final</th>                                    
                                     <th>Detalles</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Nombre</td>
-                                    <td>Titulo</td>
-                                    <td>Descripción</td>
-                                    <td>Observaciones</td>
-                                    <td><a [routerLink]="['/informeNota/1']">Informe</a></td>
+                                    <td>Nombre</td>                                    
+                                    <td>Trabajo Final</td>                                    
+                                    <td><a [routerLink]="['/informeNota/1']">Realizar Informe</a> <br>
+                                        <a [routerLink]="['/informexest/2']">Reavisar Informe</a></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -20,7 +20,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SideBarComponent } from './components/shared/shared/side-bar/side-bar.component';
 import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fecha-entrega-final.component';
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
-import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
+import { InformeRevisorComponent } from './components/informe-revisor/informe-revisor.component';
 import { InformesComponent } from './components/informes/informes.component';
 import { AsignacionRevisorComponent } from './components/asignacion-revisor/asignacion-revisor.component';
 import { InformeEstudianteComponent } from './components/informe-estudiante/informe-estudiante.component';
@@ -38,6 +38,7 @@ import { TemaAnteproyectoComponent } from './components/tema-anteproyecto/tema-a
 import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-temas-anteproyecto/aprobacion-temas-anteproyecto.component';
 import { InformeNotaComponent } from './components/informe-nota/informe-nota.component';
 import { ListaEstudiantesComponent } from './components/lista-estudiantes/lista-estudiantes.component';
+import { InformeXEstudianteComponent } from './components/informe-revisor/informe-x-estudiante/informe-x-estudiante.component';
 
 registerLocaleData(localEs);
 
@@ -56,7 +57,7 @@ registerLocaleData(localEs);
     SideBarComponent,
     FechaEntregaFinalComponent,
     CargaDocumentoFinalComponent,
-    ModificacionRevisorComponent,
+    InformeRevisorComponent,
     InformesComponent,
     AsignacionRevisorComponent,
     InformeEstudianteComponent,
@@ -72,6 +73,7 @@ registerLocaleData(localEs);
     AprobacionTemasAnteproyectoComponent,
     InformeNotaComponent,
     ListaEstudiantesComponent,
+    InformeXEstudianteComponent,
   ],
   imports: [
     BrowserModule,

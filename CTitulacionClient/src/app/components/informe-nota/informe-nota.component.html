@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Informe con nota hoja de tutorias</h1>
+                <h1 class="m-0">Informe del Director</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                    <li class="breadcrumb-item active">Informe con nota hoja de tutorias</li>
+                    <li class="breadcrumb-item active">Informe del Director</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -15,10 +15,16 @@
 </div>
 <!-- /.row -->
 <div class="row">
+    <div class="col-md-9">
+
+    </div>
+    <div class="col-md-3">
+        <a class="btn btn-primary btn-block" [routerLink]="['/listaEstudiantes']">Regresar</a>
+    </div>
     <div class="col-md-12">
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Registro de Informe con nota hoja de tutorias</h3>
+                <h3 class="card-title">Registro de Informe del Director</h3>
             </div>
             <form [formGroup]="informeNotaForm" (ngSubmit)="registrarInforme()">
 
@@ -33,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="titulo">Tema de trabajo de titulacion</label>
-                            <input type="text" class="form-control" id="titulo" placeholder="Título del informe">
+                            <input type="text" class="form-control" id="titulo" placeholder="Título del tema de titulacion" formControlName="titulo">
                         </div>
                         <div class="form-group">
                             <label for="cuerpo">Asunto del informe</label>
@@ -51,7 +57,7 @@
                         </div>
                         <div class="form-group">
                             <label for="carga_hojas_tutorias">Subir hoja de tutorias</label>
-                            <input type="file">
+                            <input type="file" id="arch" name="arch" (change)="onFileSelect($event)" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                         </div>
                         <button class="btn btn-primary">Enviar Informe</button>
                     </div>

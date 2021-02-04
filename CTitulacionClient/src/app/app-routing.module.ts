@@ -14,7 +14,7 @@ import { FechaEntregaFinalComponent } from './components/fecha-entrega-final/fec
 import { InformeEstudianteComponent } from './components/informe-estudiante/informe-estudiante.component';
 import { InformesAdminComponent } from './components/informes-admin/informes-admin.component';
 import { InformesComponent } from './components/informes/informes.component';
-import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
+import { InformeRevisorComponent } from './components/informe-revisor/informe-revisor.component';
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
 import { EstudiantesSolicitudComponent } from './components/estudiantes-solicitud/estudiantes-solicitud.component';
 import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
@@ -27,6 +27,7 @@ import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-te
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { InformeNotaComponent } from './components/informe-nota/informe-nota.component';
 import { ListaEstudiantesComponent } from './components/lista-estudiantes/lista-estudiantes.component';
+import { InformeXEstudianteComponent } from './components/informe-revisor/informe-x-estudiante/informe-x-estudiante.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -100,9 +101,10 @@ const routes: Routes = [
    { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },
    { path: 'listaEstudiantes', component: ListaEstudiantesComponent, canActivate: [AuthGuardService], data: { role: 'Docente' } },
    { path: 'informeNota/:id', component: InformeNotaComponent, canActivate: [AuthGuardService], data: { role: 'Docente' } },
+   { path: 'informexest/:id', component: InformeXEstudianteComponent, canActivate: [AuthGuardService], data: { role: ['Docente', 'Administrator'], } },
    
    {
-      path: 'realizarInforme', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: {
+      path: 'realizarInforme', component: InformeRevisorComponent, canActivate: [AuthGuardService], data: {
          role: 'Revisor'
       }
    },
@@ -135,8 +137,7 @@ const routes: Routes = [
    { path: 'revisor', component: AsignacionRevisorComponent, canActivate: [AuthGuardService], data: { role: 'Administrator' } },
    { path: 'informeestudiante/:id', component: InformeEstudianteComponent, canActivate: [AuthGuardService], data: { role: ['Revisor', 'Administrator'], } },
 
-   { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },
-   { path: 'realizarInforme', component: ModificacionRevisorComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
+   { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },   
    { path: 'informes', component: InformesComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
    { path: 'informead', component: InformesAdminComponent, canActivate: [AuthGuardService], data: { role: 'Administrator' } },
    { path: 'home', component: DashboardComponent, canActivate: [AuthGuardService] },
