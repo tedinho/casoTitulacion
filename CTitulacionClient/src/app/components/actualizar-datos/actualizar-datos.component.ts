@@ -22,6 +22,7 @@ export class ActualizarDatosComponent implements OnInit {
     celular: new FormControl('')
   });
   id: number;
+  mensajeError: string;
 
   constructor(private estudianteServicio: EstudianteService, private router: Router, private estudianteCarreraServicio: EstudianteCarreraService) { }
 
@@ -52,6 +53,27 @@ export class ActualizarDatosComponent implements OnInit {
   }
 
   guardar() {
+    this.mensajeError = "";
+    if (this.isVacio(this.formularioEstudiante.get("nombre").value)) {
+      this.mensajeError = "Nombre Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioEstudiante.get("apellido").value)) {
+      this.mensajeError = "Apellido Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioEstudiante.get("correo").value)) {
+      this.mensajeError = "Correo Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioEstudiante.get("telefono").value)) {
+      this.mensajeError = "Telefono Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioEstudiante.get("celular").value)) {
+      this.mensajeError = "Celular Requerido";
+      return;
+    }
     document.getElementById("loading-imagen").style.display = "block";
     this.formularioEstudiante.get('actualizar_datos').setValue(false);
     this.estudianteServicio
@@ -71,6 +93,13 @@ export class ActualizarDatosComponent implements OnInit {
             }
           );
       });
+  }
+
+  isVacio(valor: string) {
+    if (valor != null && valor.length > 0) {
+      return false;
+    }
+    return true;
   }
 
 }
