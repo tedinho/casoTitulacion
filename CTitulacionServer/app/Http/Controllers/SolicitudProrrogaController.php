@@ -33,8 +33,10 @@ class SolicitudProrrogaController extends Controller
         $solicitudProrroga->duracion = $request['duracion'];
         $solicitudProrroga->motivo = $request['motivo'];
         $solicitudProrroga->observacion = $request['observacion'];
-        $solicitudProrroga->estado = $request['estado'];
-        $solicitudProrroga->intentos = $request['intentos'];
+        // $solicitudProrroga->estado = $request['estado'];
+        $$solicitudProrroga->estado =  "Pendiente";
+        // $solicitudProrroga->intentos = $request['intentos'];
+        $solicitudProrroga->intentos = 1;
         $solicitudProrroga->motivo_desaprobado = $request['motivo_desaprobado'];
         $result = $solicitudProrroga->save();
 
@@ -124,7 +126,7 @@ class SolicitudProrrogaController extends Controller
         return $changeStage;
     }
 
-     /**
+    /**
      * desaprobar solicitud de prorroga.
      *
      * @param  \Illuminate\Http\Request  $request

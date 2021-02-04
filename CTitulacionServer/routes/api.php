@@ -98,6 +98,11 @@ Route::resource("solicitudProrroga", SolicitudProrrogaController::class);
 Route::patch("aprobarSolicitud/{id}", [SolicitudProrrogaController::class, 'aprobarSolicitud']);
 Route::patch("desaprobarSolicitud/{id}", [SolicitudProrrogaController::class, 'desaprobarSolicitud']);
 
+
+Route::patch("aceptarProyectoTitulacion/{id}", [ProyectoTitulacionController::class, 'aceptarProyectoTitulacion']);
+Route::patch("rechazarProyectoTitulacion/{id}", [ProyectoTitulacionController::class, 'rechazarProyectoTitulacion']);
+Route::patch("anularProyectoTitulacion/{id}", [ProyectoTitulacionController::class, 'anularProyectoTitulacion']);
+
 Route::resource('tema-anteproyecto', TemaAnteproyectoController::class);
 Route::get('tema-anteproyecto/buscar-por-id-solicitud/{idSolicitud}', [TemaAnteproyectoController::class, 'buscarTemaAnteproyectoPorIdSolicitud']);
 Route::get('tema-anteproyecto/buscar-por-aprobar-id-carrera/{idCarrera}', [TemaAnteproyectoController::class, 'buscarTemaAnteproyectoPorIdCarrera']);
