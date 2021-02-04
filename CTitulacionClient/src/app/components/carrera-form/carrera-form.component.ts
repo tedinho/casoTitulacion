@@ -38,6 +38,10 @@ export class CarreraFormComponent implements OnInit {
   evidenciasLista: EvidenciaCarrera[];
   requisitosLista: CarreraRequisito[];
   mensajeArchivo: string;
+  mensajeErrorCarrera: string;
+  mensajeErrorEvidencia: string;
+  mensajeErrorDocente: string;
+  mensajeErrorRequisito: string;
 
   formularioCarrera = new FormGroup({
     nombre: new FormControl(''),
@@ -105,6 +109,24 @@ export class CarreraFormComponent implements OnInit {
 
 
   guardar() {
+    this.mensajeErrorCarrera = "";
+    if (this.isVacio(this.formularioCarrera.get("nombre").value)) {
+      this.mensajeErrorCarrera = "Nombre Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioCarrera.get("codigo").value)) {
+      this.mensajeErrorCarrera = "Código Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioCarrera.get("tipo_carrera").value)) {
+      this.mensajeErrorCarrera = "Tipo Carrera Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioCarrera.get("opcion_graduacion").value)) {
+      this.mensajeErrorCarrera = "Opción Graduación Requerido";
+      return;
+    }
+
     document.getElementById("loading-imagen").style.display = "block";
     if (this.carrera.id == null) {
       console.log(this.formularioCarrera.value);
@@ -198,6 +220,23 @@ export class CarreraFormComponent implements OnInit {
   }
 
   guardarDocente() {
+
+    this.mensajeErrorDocente = "";
+    if (this.isVacio(this.formularioDocente.get("name").value)) {
+      this.mensajeErrorDocente = "Nombre Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioDocente.get("email").value)) {
+      this.mensajeErrorDocente = "Email Requerido";
+      return;
+    }
+    console.log("asfsdgndfgndflk");
+    var EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!EMAIL_REGEX.test(this.formularioDocente.get("email").value)) {
+      this.mensajeErrorDocente = "Email Invalido";
+      return;
+    }
+
     document.getElementById("loading-imagen").style.display = "block";
     let pass = this.makeRandom();
     this.formularioDocente.get('password').setValue(pass);
@@ -274,15 +313,26 @@ export class CarreraFormComponent implements OnInit {
   }
 
   guardarEvidenciaCarrera() {
+    console.log("sdfsdfsdf");
+    let nombre = this.formularioArchivos.get('nombre').value;
+    this.mensajeErrorEvidencia = "";
+    const documentes = this.formularioArchivos.value;
+    if (this.isVacio(nombre)) {
+      this.mensajeErrorEvidencia = "Nombre Requerido";
+      return;
+    }
+    if (documentes['arch']['name'] == null) {
+      this.mensajeErrorEvidencia = "Archivo Requerido";
+      return;
+    }
+
     console.log("hola");
     document.getElementById("loading-imagen").style.display = "block";
-    let nombre = this.formularioArchivos.get('nombre').value;
     const formData = new FormData();
     formData.append('file', this.formularioArchivos.get('arch').value);
     formData.append('tipo_archivo', this.formularioArchivos.get('tipo_archivo').value);
     formData.append('email', this.formularioArchivos.get('email').value);
     formData.append('validar', 'false');
-    const documentes = this.formularioArchivos.value;
     formData.append('nombre_archivo', documentes['arch']['name']);
     this.archivos.cargaDocumento(formData)
       .subscribe(respu => {
@@ -334,6 +384,17 @@ export class CarreraFormComponent implements OnInit {
   }
 
   guardarRequisito() {
+    this.mensajeErrorRequisito = "";
+    if (this.isVacio(this.formularioCarreraRequisito.get("nombre").value)) {
+      this.mensajeErrorRequisito = "Nombre Requerido";
+      return;
+    }
+    if (this.isVacio(this.formularioCarreraRequisito.get("descripccion").value)) {
+      this.mensajeErrorRequisito = "Descripcción Requerido";
+      return;
+    }
+
+
     document.getElementById("loading-imagen").style.display = "block";
     this.formularioCarreraRequisito.get('carrera_id').setValue(this.carrera.id);
     this.carreraRequisitoService.guardarCarreraRequisito(this.formularioCarreraRequisito.value)
@@ -355,6 +416,13 @@ export class CarreraFormComponent implements OnInit {
       .subscribe(listaRequisitos => {
         this.requisitosLista = listaRequisitos;
       });
+  }
+
+  isVacio(valor: string) {
+    if (valor != null && valor.length > 0) {
+      return false;
+    }
+    return true;
   }
 
 
