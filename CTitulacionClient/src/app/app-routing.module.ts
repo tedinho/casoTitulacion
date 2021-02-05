@@ -25,6 +25,10 @@ import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-te
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { AprobacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/aprobacion-anteproyecto.component';
 import { AnteproyectoComponent } from './components/anteproyecto/anteproyecto.component';
+import { ProyectoTitulacionFormComponent } from './components/proyecto-titulacion-form/proyecto-titulacion-form.component';
+import { ProyectoTitulacionListaComponent } from './components/proyecto-titulacion-lista/proyecto-titulacion-lista.component';
+import { SolicitudProrrogaFormComponent } from './components/solicitud-prorroga-form/solicitud-prorroga-form.component';
+import { SolicitudProrrogaListaComponent } from './components/solicitud-prorroga-lista/solicitud-prorroga-lista.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -117,10 +121,31 @@ const routes: Routes = [
 
    },
    {
-      path: 'prorroga',
+      path: 'prorrogas',
       component: ProrrogaComponent
 
    },
+   {
+      path: 'proyecto-titulacion-form',
+      component: ProyectoTitulacionFormComponent
+
+   },
+   {
+      path: 'proyecto-titulacion-list',
+      component: ProyectoTitulacionListaComponent
+
+   },
+   {
+      path: 'solicitud-prorroga-form',
+      component: SolicitudProrrogaFormComponent
+
+   },
+   {
+      path: 'solicitud-prorroga-list',
+      component: SolicitudProrrogaListaComponent
+
+   },
+
    {
       path: '**', redirectTo: 'home'
    },

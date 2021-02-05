@@ -87,7 +87,11 @@ export class EstudianteCarreraComponent implements OnInit {
     formData.append('nombre_archivo', documentes['arch']['name']);
     this.archivos.cargaDocumento(formData)
       .subscribe(respu => {
-        this.cargarDocumento.reset();
+        this.cargarDocumento = new FormGroup({
+          arch: new FormControl(''),
+          tipo_archivo: new FormControl('requisito'),
+          email: new FormControl(localStorage.getItem('email'))
+        });
         let stringJson = JSON.stringify(respu);
         let stringObject = JSON.parse(stringJson);
         crs.evidencia_id = stringObject.id;
@@ -167,6 +171,26 @@ export class EstudianteCarreraComponent implements OnInit {
   }
 
   guardar() {
+    console.log("ddsfsdf");
+    this.errorMessage = "";
+    if (this.isVacio(this.formularioEstudianteCarrera.get("carrera_id").value as string)) {
+      this.errorMessage = "Carrera Requerida";
+      return;
+    }
+    if (this.isVacio(this.formularioEstudianteCarrera.get("modalidad").value)) {
+      this.errorMessage = "Modalidad Requerida";
+      return;
+    }
+    if (this.isVacio(this.formularioEstudianteCarrera.get("fecha_comienzo").value)) {
+      this.errorMessage = "Fecha Comienzo Requerida";
+      return;
+    }
+    if (this.isVacio(this.formularioEstudianteCarrera.get("fecha_final").value)) {
+      this.errorMessage = "Fecha Final Requerida";
+      return;
+    }
+
+
     document.getElementById("loading-imagen").style.display = "block";
     if (this.formularioEstudianteCarrera.get('id') != null) {
       this.estudianteCarreraServicio.actualizarEstudianteCarrera(this.formularioEstudianteCarrera.value, this.formularioEstudianteCarrera.get('id').value)
@@ -263,6 +287,13 @@ export class EstudianteCarreraComponent implements OnInit {
 
   isLogin() {
     return this.authService.estaLogeado();
+  }
+
+  isVacio(valor: string) {
+    if (valor != null && valor.toString().length > 0) {
+      return false;
+    }
+    return true;
   }
 
 }

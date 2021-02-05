@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\estudiante;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Date;
 
 class UserTableSeeder extends Seeder
 {
@@ -24,110 +26,74 @@ class UserTableSeeder extends Seeder
                 $user->roles()->attach(Role::where('name', 'admin')->first());
 
                 $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 1";
-                $user->email = "a1@mail.com";
+                $user->password = bcrypt("anthony1998");
+                $user->name = "Anthony Casanova";
+                $user->email = "asv.casanova@yavirac.edu.ec";
                 $user->save();
                 $user->roles()->attach(Role::where('name', 'student')->first());
+                $est = new estudiante();
+                $est->id = $user->id;
+                $est->fecha_ingreso = "2021-01-01";
+                $est->actualizar_datos = true;
+                $est->nombre = "Anthony";
+                $est->apellido = "Casanova";
+                $est->correo = "asv.casanova@yavirac.edu.ec";
+                $est->telefono = "0998768515";
+                $est->celular = "2623291";
+                $est->save();
 
                 $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 2";
-                $user->email = "a2@mail.com";
+                $user->password = bcrypt("steve123");
+                $user->name = "Steve Carvajal";
+                $user->email = "sjz.carvajal@yavirac.edu.ec";
                 $user->save();
                 $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 3";
-                $user->email = "a3@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 4";
-                $user->email = "a4@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 5";
-                $user->email = "a5@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 6";
-                $user->email = "a6@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 7";
-                $user->email = "a7@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 8";
-                $user->email = "a8@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
+                $est = new estudiante();
+                $est->id = $user->id;
+                $est->fecha_ingreso = "2021-01-01";
+                $est->actualizar_datos = true;
+                $est->nombre = "Steve";
+                $est->apellido = "Carvajal";
+                $est->correo = "sjz.carvajal@yavirac.edu.ec";
+                $est->telefono = "0987563214";
+                $est->celular = "215264489";
+                $est->save();
 
 
                 $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 9";
-                $user->email = "a9@mail.com";
+                $user->password = bcrypt("jacob123");
+                $user->name = "Jacob Cumbal";
+                $user->email = "jip.cumbal@yavirac.edu.ec";
                 $user->save();
                 $user->roles()->attach(Role::where('name', 'student')->first());
+                $est = new estudiante();
+                $est->id = $user->id;
+                $est->fecha_ingreso = "2021-01-01";
+                $est->actualizar_datos = true;
+                $est->nombre = "Jacob";
+                $est->apellido = "Cumbal";
+                $est->correo = "jip.cumbal@yavirac.edu.ec";
+                $est->telefono = "0987563214";
+                $est->celular = "215264489";
+                $est->save();
+
 
                 $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 10";
-                $user->email = "a10@mail.com";
+                $user->password = bcrypt("juan123");
+                $user->name = "Juan Carvajal";
+                $user->email = "jdd.carvajal@yavirac.edu.ec";
                 $user->save();
                 $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 11";
-                $user->email = "a11@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 12";
-                $user->email = "a12@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 13";
-                $user->email = "a13@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 14";
-                $user->email = "a41@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
-
-                $user = new User();
-                $user->password = bcrypt("123");
-                $user->name = "Alumno Numero 15";
-                $user->email = "a15@mail.com";
-                $user->save();
-                $user->roles()->attach(Role::where('name', 'student')->first());
+                $est = new estudiante();
+                $est->id = $user->id;
+                $est->fecha_ingreso = "2021-01-01";
+                $est->actualizar_datos = true;
+                $est->nombre = "Juan";
+                $est->apellido = "Carvajal";
+                $est->correo = "jdd.carvajal@yavirac.edu.ec";
+                $est->telefono = "0987563214";
+                $est->celular = "215264489";
+                $est->save();
 
                 /* CREACION DE USUARIOS CON ROL DE REVISOR*/
 

@@ -38,6 +38,10 @@ import { TemaAnteproyectoComponent } from './components/tema-anteproyecto/tema-a
 import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-temas-anteproyecto/aprobacion-temas-anteproyecto.component';
 import { AnteproyectoComponent } from './components/anteproyecto/anteproyecto.component';
 import { AprobacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/aprobacion-anteproyecto.component';
+import { ProyectoTitulacionFormComponent } from './components/proyecto-titulacion-form/proyecto-titulacion-form.component';
+import { ProyectoTitulacionListaComponent } from './components/proyecto-titulacion-lista/proyecto-titulacion-lista.component';
+import { SolicitudProrrogaFormComponent } from './components/solicitud-prorroga-form/solicitud-prorroga-form.component';
+import { SolicitudProrrogaListaComponent } from './components/solicitud-prorroga-lista/solicitud-prorroga-lista.component';
 
 registerLocaleData(localEs);
 
@@ -70,6 +74,10 @@ registerLocaleData(localEs);
     AprobacionTemasAnteproyectoComponent,
     AnteproyectoComponent,
     AprobacionAnteproyectoComponent,
+    ProyectoTitulacionFormComponent,
+    ProyectoTitulacionListaComponent,
+    SolicitudProrrogaFormComponent,
+    SolicitudProrrogaListaComponent,
   ],
   imports: [
     BrowserModule,

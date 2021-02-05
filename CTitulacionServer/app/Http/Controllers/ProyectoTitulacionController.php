@@ -85,4 +85,52 @@ class ProyectoTitulacionController extends Controller
     {
         //
     }
+
+    /**
+     * aceptar proyecto de titulación
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\SolicitudProrroga  $solicitudProrroga
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function aceptarProyectoTitulacion(Request $request, $id)
+    {
+        $acceptProject  = proyecto_titulacion::find($id);
+        $acceptProject->estado_aceptacion =  "Aceptado";
+        $acceptProject->save();
+        return $acceptProject;
+    }
+
+    /**
+     * rechazar proyecto de titulación
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\SolicitudProrroga  $solicitudProrroga
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function rechazarProyectoTitulacion(Request $request, $id)
+    {
+        $refuseProject  = proyecto_titulacion::find($id);
+        $refuseProject->estado_aceptacion =  "Rechazado";
+        $refuseProject->save();
+        return $refuseProject;
+    }
+
+     /**
+     * anular proyecto de titulación
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\SolicitudProrroga  $solicitudProrroga
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function anularProyectoTitulacion(Request $request, $id)
+    {
+        $refuseProject  = proyecto_titulacion::find($id);
+        $refuseProject->estado_aceptacion =  "Anulado";
+        $refuseProject->save();
+        return $refuseProject;
+    }
 }

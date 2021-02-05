@@ -28,7 +28,13 @@ export class SolicitudProrrogaService {
     return this.http.post(API_URL + 'solicitudProrroga/', solicitudProrroga);
   }
 
+  aprobarSolicitudProrroga(solicitudProrroga, id){
+    return this.http.patch(API_URL + 'aprobarSolicitud/' + id, solicitudProrroga);
+  }
 
+  desaprobarSolicitudProrroga(solicitudProrroga, id){
+    return this.http.patch(API_URL + 'desaprobarSolicitud/' + id, solicitudProrroga);
+  }
 
 
 }
