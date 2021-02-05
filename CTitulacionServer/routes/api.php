@@ -89,9 +89,7 @@ Route::get('carrera-requisito-solicitud/buscar-requisito-carrera-solicitud-id-so
 
 Route::resource('solicitud', SolicitudController::class);
 Route::get('solicitud/buscar-por-id-estudiante-carrera/{idEstudianteCarrera}', [SolicitudController::class, 'buscarSolicitudPorIdEstudianteCarrera']);
-Route::resource('anteproyectos', AnteproyectoController::class);
 Route::resource('temaAnteproyectos', ObservacionAnteproyectoController::class);
-Route::get('getEstudiantes', [AnteproyectoController::class, 'obtenerEstudiantes']);
 Route::resource('proyectoTitulacion', ProyectoTitulacionController::class);
 
 Route::resource("solicitudProrroga", SolicitudProrrogaController::class);
@@ -99,6 +97,11 @@ Route::resource("solicitudProrroga", SolicitudProrrogaController::class);
 Route::resource('tema-anteproyecto', TemaAnteproyectoController::class);
 Route::get('tema-anteproyecto/buscar-por-id-solicitud/{idSolicitud}', [TemaAnteproyectoController::class, 'buscarTemaAnteproyectoPorIdSolicitud']);
 Route::get('tema-anteproyecto/buscar-por-aprobar-id-carrera/{idCarrera}', [TemaAnteproyectoController::class, 'buscarTemaAnteproyectoPorIdCarrera']);
+
+Route::resource('anteproyectos', AnteproyectoController::class);
+Route::get('anteproyectos/buscar-por-id-tema/{idTema}', [AnteproyectoController::class, 'buscarAnteproyectoPorIdTema']);
+Route::get('anteproyectos/buscar-por-aprobar-id-carrera/{idCarrera}', [AnteproyectoController::class, 'buscarAnteproyectoPorIdCarrera']);
+Route::get('anteproyectos-revisor', [AnteproyectoController::class, 'ObtenerRevisores']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

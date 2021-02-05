@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\carrera;
+use App\Models\estudiante;
+use App\Models\estudiante_carrera;
+use App\Models\TemaAnteproyecto;
 use App\Models\anteproyecto;
-use Illuminate\Http\Request;
-use App\Models\Role;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Revisore;
+use Illuminate\Http\Request;
 
 class AnteproyectoController extends Controller
 {
@@ -16,7 +21,7 @@ class AnteproyectoController extends Controller
      */
     public function index()
     {
-        return anteproyecto::get();
+        //
     }
 
     /**
@@ -29,6 +34,32 @@ class AnteproyectoController extends Controller
         //
     }
 
+    public function buscarAnteproyectoPorIdCarrera($idCarrera)
+    {
+        $antepro =  anteproyecto::whereHas('TemaAnteproyecto', function ($q) use ($idCarrera) {
+            $q->whereHas('estudiante_carrera', function ($s) use ($idCarrera) {
+                $s->where('carrera_id', $idCarrera);
+            });
+        })->get();
+        for ($i = 0; $i < count($antepro); $i++) {
+            $a = $antepro[$i];
+            $a->evidencia;
+            $tema = $a->TemaAnteproyecto;
+            $estuca = $tema->estudiante_carrera;
+            $estuca->estudiante;
+        }
+        return $antepro;
+    }
+
+    public function buscarAnteproyectoPorIdTema($idTema)
+    {
+        $antepro = anteproyecto::where('tema_ante_proyecto_id', '=', $idTema)->get();
+        for ($i = 0; $i < count($antepro); $i++) {
+            $antepro[$i]->evidencia;
+        }
+        return $antepro;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,7 +69,21 @@ class AnteproyectoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        return anteproyecto::create($input);
+        $ante = anteproyecto::create($input);
+        $tema = TemaAnteproyecto::find($request->tema_ante_proyecto_id);
+        $estudiante_carrera = estudiante_carrera::find($tema->estudiante_carrera_id);
+        $usuario = User::find($estudiante_carrera->estudiante_id);
+        $carrera = carrera::find($estudiante_carrera->carrera_id);
+        $usuarioJunta = User::find($carrera->id_usuario_junta);
+        $to_name = $usuarioJunta->name;
+        $to_email = $usuarioJunta->email;
+        $data = array("estudiante" => $usuario->name, "usuarioJunta" => $usuarioJunta->name);
+
+        $antepro = anteproyecto::where('id', '=', $ante->id)->get();
+        for ($i = 0; $i < count($antepro); $i++) {
+            $antepro[$i]->evidencia;
+        }
+        return $antepro;
     }
 
     /**
@@ -47,9 +92,9 @@ class AnteproyectoController extends Controller
      * @param  \App\Models\anteproyecto  $anteproyecto
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(anteproyecto $anteproyecto)
     {
-        return anteproyecto::find($id);
+        //
     }
 
     /**
@@ -74,6 +119,37 @@ class AnteproyectoController extends Controller
     {
         $input = $request->all();
         anteproyecto::where('id', $id)->update($input);
+        if ($request->estado == 'R') {
+            $tema = TemaAnteproyecto::find($request->tema_ante_proyecto_id);
+            $estuCa = estudiante_carrera::find($tema->estudiante_carrera_id);
+            $estudiante = User::find($estuCa->estudiante_id);
+            $to_name = $estudiante->name;
+            $to_email = $estudiante->email;
+            $data = array("estudiante" => $estudiante->name, "observacion" => $request->observacion);
+        }
+        if ($request->estado == 'A') {
+            $tema = TemaAnteproyecto::find($request->tema_ante_proyecto_id);
+            $estuCa = estudiante_carrera::find($tema->estudiante_carrera_id);
+            $estudiante = User::find($estuCa->estudiante_id);
+            $to_name = $estudiante->name;
+            $to_email = $estudiante->email;
+            $data = array("estudiante" => $estudiante->name);
+        }
+        if ($request->estado == 'E') {
+            $tema = TemaAnteproyecto::find($request->tema_ante_proyecto_id);
+            $estuCa = estudiante_carrera::find($tema->estudiante_carrera_id);
+            $estudiante = User::find($estuCa->estudiante_id);
+            $carrera = carrera::find($estuCa->carrera_id);
+            $usuarioJunta = User::find($carrera->id_usuario_junta);
+            $to_name = $usuarioJunta->name;
+            $to_email = $usuarioJunta->email;
+            $data = array("estudiante" => $estudiante->name, "usuarioJunta" => $usuarioJunta->name);
+            $antepro = anteproyecto::where('id', '=', $ante->id)->get();
+            for ($i = 0; $i < count($antepro); $i++) {
+                $antepro[$i]->evidencia;
+            }
+            return $antepro;
+        }
         return anteproyecto::find($id);
     }
 
@@ -88,7 +164,7 @@ class AnteproyectoController extends Controller
         //
     }
 
-    public function obtenerEstudiantes($student = "student")
+    /* public function obtenerEstudiantes($student = "student")
     {
         $rol = $this->obtenerRol($student);
         return $rol;
@@ -99,5 +175,12 @@ class AnteproyectoController extends Controller
         $rol = Role::with('users')->where('name', $rol_nombre)->first();
 
         return $rol['users'];
+    } */
+
+    public function ObtenerRevisores()
+    {
+        $revisor = Role::with('users')->where('name', 'Revisor')->first();
+
+        return $revisor;
     }
 }

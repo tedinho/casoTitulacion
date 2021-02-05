@@ -1,0 +1,45 @@
+<br />
+<h2>Gestión Anteproyecto</h2>
+<br />
+<div>
+  <form [formGroup]="formAnteproyecto" (ngSubmit)="guardarAnteproyecto()">
+  <div class="alert alert-info alert-dismissible" *ngIf='mensajeAntepro'>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    {{mensajeAntepro}}
+  </div>
+  <div *ngIf="anteproyecto != null && anteproyecto.estado != null && anteproyecto.estado == 'R'">
+    <h4>Observación:</h4>
+    <p>{{anteproyecto.observacion}}</p>
+  </div>
+  <div class="row">
+    <div
+      *ngIf="anteproyecto == null || (anteproyecto.estado == 'C' || anteproyecto.estado == 'R')"
+      formGroupName="cargarDocumento"
+    >
+      <div class="col">
+        <div class="form-group">
+          <label>Archivo</label>
+          <div class="input-group mb-2">
+            <div class="custom-file">
+              <input
+                type="file"
+                class="form-control-file"
+                id="arch"
+                name="arch"
+                (change)="onFileSelect($event)"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    *ngIf="anteproyecto == null || (anteproyecto.estado == 'C' || anteproyecto.estado == 'R')"
+    type="submit"
+    class="btn btn-primary"
+  >
+    Guardar
+  </button>
+</form>
+</div>

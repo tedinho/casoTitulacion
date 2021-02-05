@@ -1,1 +1,185 @@
-<p>aprobacion-anteproyecto works!</p>
+<br />
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3><b>Gestión AnteProyectos</b></h3>
+            </div>
+        </div>
+    </div>
+    <br />
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Anteproyecto</th>
+                <th>Evidencia</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of anteproyectos">
+                <td>{{anteproyectos.indexOf(a)+1}}</td>
+                <td>b</td>
+                <td>
+                    <div *ngIf="a.evidencia != null">
+                        <a href="http://localhost:8000/{{ a.evidencia.url }}" target="_blank">
+                            <i class="far fa-fw fa-file-pdf"></i>
+                            {{ a.evidencia.nombre_archivo }}
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <p *ngIf="a.estado == 'E'">Enviado</p>
+                    <p *ngIf="a.estado == 'C'">Pendiente Envio</p>
+                    <p *ngIf="a.estado == 'R'">Rechazado</p>
+                    <p *ngIf="a.estado == 'A'">Aprobado</p>
+                </td>
+                <td>
+                    <button
+                        data-toggle="modal"
+                        data-target="#requisitoModal"
+                        type="submit"
+                        class="btn btn-success btn-sm"
+                        (click)="abrirPopVerRequisitos(a)"
+                    >
+                        Aprobar
+                    </button>
+                    <button
+                        data-toggle="modal"
+                        data-target="#rechazoModal"
+                        type="submit"
+                        class="btn btn-danger btn-sm"
+                        (click)="abrirPopRechazar(a)"
+                    >
+                        Rechazar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="anteproyectos==null||anteproyectos.length==0">
+        <div>
+            <p>No Existen AnteProyectos</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="requisitoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="requisitoModalLabel">Aprobar Anteproyecto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="formAnteproyectoAprobado">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <input type="text" class="form-control" value="Aprobado" disabled>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Seleccionar Revisor</label>
+                                <select
+                                  class="form-control"
+                                  style="width: 100%"
+                                  formControlName="revisor_id"
+                                >
+                                <option value="" selected disabled>Seleccionar Director</option>
+                                  <option *ngFor="let revisor of revisores" [value]="revisor.id">
+                                    {{ revisor.name }}
+                                  </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>
+                                    Fecha Inicio:
+                                    <input class="form-control" type="date" formControlName="fecha_inicio" required>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>
+                                    Fecha Fin:
+                                    <input class="form-control" type="date" formControlName="fecha_fin" required>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button
+                        data-dismiss="modal"
+                        type="submit"
+                        class="btn btn-primary"
+                        (click)="aprobarAnteproyecto()"
+                    >
+                        Guardar
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="rechazoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rechazoModalLabel">Rechazar Anteproyecto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="formAnteproyectoRechazado">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <input type="text" class="form-control" value="Rechazado" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Observación</label>
+                                <input class="form-control" type="text" formControlName="observacion">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button
+                        data-dismiss="modal"
+                        type="submit"
+                        class="btn btn-primary"
+                        (click)="rechazarAnteproyecto()"
+                    >
+                        Guardar
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

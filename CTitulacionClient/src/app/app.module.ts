@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InjectionToken, NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from "@angular/common";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
@@ -28,8 +29,6 @@ import { InformesAdminComponent } from './components/informes-admin/informes-adm
 import localEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { EstudiantesSolicitudComponent } from './components/estudiantes-solicitud/estudiantes-solicitud.component';
-import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
-import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { GuiasProyectoComponent } from './components/gestion-proyecto/guias-proyecto/guias-proyecto.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
@@ -37,6 +36,8 @@ import { ProrrogaComponent } from './components/prorroga/prorroga.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TemaAnteproyectoComponent } from './components/tema-anteproyecto/tema-anteproyecto.component';
 import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-temas-anteproyecto/aprobacion-temas-anteproyecto.component';
+import { AnteproyectoComponent } from './components/anteproyecto/anteproyecto.component';
+import { AprobacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/aprobacion-anteproyecto.component';
 
 registerLocaleData(localEs);
 
@@ -61,24 +62,27 @@ registerLocaleData(localEs);
     InformeEstudianteComponent,
     InformesAdminComponent,
     EstudiantesSolicitudComponent,
-    AnteproyectoFormComponent,
-    AnteproyectoListComponent,
     RubricaComponent,
     GuiasProyectoComponent,
     CronogramaComponent,
     ProrrogaComponent,
     TemaAnteproyectoComponent,
     AprobacionTemasAnteproyectoComponent,
+    AnteproyectoComponent,
+    AprobacionAnteproyectoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ReactiveFormsModule,
     NgxPaginationModule,
     NgxMaterialTimepickerModule,
     BrowserAnimationsModule,
+    CommonModule,
+  ],
+  exports: [
+    ReactiveFormsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]

@@ -17,14 +17,14 @@ import { InformesComponent } from './components/informes/informes.component';
 import { ModificacionRevisorComponent } from './components/modificacion-revisor/modificacion-tutor.component';
 import { CargaDocumentoFinalComponent } from './components/carga-documento-final/carga-documento-final.component';
 import { EstudiantesSolicitudComponent } from './components/estudiantes-solicitud/estudiantes-solicitud.component';
-import { AnteproyectoFormComponent } from './components/aprobacion-anteproyecto/anteproyecto-form/anteproyecto-form.component';
-import { AnteproyectoListComponent } from './components/aprobacion-anteproyecto/anteproyecto-list/anteproyecto-list.component';
 import { RubricaComponent } from './components/gestion-proyecto/rubrica/rubrica.component';
 import { CronogramaComponent } from './components/gestion-proyecto/cronograma/cronograma.component';
 import { SolicitudProrrogaComponent } from './components/solicitud-prorroga/solicitud-prorroga.component';
 import { TemaAnteproyectoComponent } from './components/tema-anteproyecto/tema-anteproyecto.component';
 import { AprobacionTemasAnteproyectoComponent } from './components/aprobacion-temas-anteproyecto/aprobacion-temas-anteproyecto.component';
 import { ProrrogaComponent } from './components/prorroga/prorroga.component';
+import { AprobacionAnteproyectoComponent } from './components/aprobacion-anteproyecto/aprobacion-anteproyecto.component';
+import { AnteproyectoComponent } from './components/anteproyecto/anteproyecto.component';
 const routes: Routes = [
    {
       path: 'login',
@@ -75,13 +75,13 @@ const routes: Routes = [
       canActivate: [AuthGuardService]
    },
    {
-      path: 'anteproyecto-form',
-      component: AnteproyectoFormComponent,
+      path: 'anteproyectos',
+      component: AnteproyectoComponent,
       canActivate: [AuthGuardService]
    },
    {
-      path: 'anteproyecto-list',
-      component: AnteproyectoListComponent,
+      path: 'aprobacion-anteproyectos',
+      component: AprobacionAnteproyectoComponent,
       canActivate: [AuthGuardService]
    },
    {
