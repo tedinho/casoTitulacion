@@ -31,18 +31,18 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombres</th>                                    
-                                    <th>Trabajo Final</th>                                    
+                                    <th>Nombres</th>                                                                                                        
                                     <th>Detalles</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Nombre</td>                                    
-                                    <td>Trabajo Final</td>                                    
-                                    <td><a [routerLink]="['/informeNota/1']">Realizar Informe</a> <br>
-                                        <a [routerLink]="['/informexest/2']">Reavisar Informe</a></td>
+                                <tr *ngFor="let estudiante of estudiantes; let i = index;">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ estudiante.name }}</td>                                                                                                
+                                    <td>
+                                        <a [routerLink]="['/informeNota', estudiante.id]">Realizar Informe</a> <br>
+                                        <a [routerLink]="['/informexest/', estudiante.id]">Revisar Informe</a>
+                                    </td>                                    
                                 </tr>
                             </tbody>
                         </table>

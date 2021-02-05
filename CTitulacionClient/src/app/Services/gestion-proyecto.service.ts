@@ -104,4 +104,8 @@ export class GestionProyectoService {
     return this.http.get(`${API_URL}informe/${userId}`);
   }
 
+  getFechas() {
+    return this.http.get(`${API_URL}fecha`);
+  }
+
 }

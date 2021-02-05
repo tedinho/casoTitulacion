@@ -102,6 +102,7 @@ const routes: Routes = [
    { path: 'listaEstudiantes', component: ListaEstudiantesComponent, canActivate: [AuthGuardService], data: { role: 'Docente' } },
    { path: 'informeNota/:id', component: InformeNotaComponent, canActivate: [AuthGuardService], data: { role: 'Docente' } },
    { path: 'informexest/:id', component: InformeXEstudianteComponent, canActivate: [AuthGuardService], data: { role: ['Docente', 'Administrator'], } },
+   { path: 'revisor', component: AsignacionRevisorComponent, canActivate: [AuthGuardService], data: { role: 'Administrator' } },
    
    {
       path: 'realizarInforme', component: InformeRevisorComponent, canActivate: [AuthGuardService], data: {
@@ -134,7 +135,7 @@ const routes: Routes = [
    { path: 'login', component: LoginComponent },
    { path: 'register', component: RegisterComponent },
    { path: 'fechaFinal', component: FechaEntregaFinalComponent, canActivate: [AuthGuardService], data: { role: 'Revisor' } },
-   { path: 'revisor', component: AsignacionRevisorComponent, canActivate: [AuthGuardService], data: { role: 'Administrator' } },
+   
    { path: 'informeestudiante/:id', component: InformeEstudianteComponent, canActivate: [AuthGuardService], data: { role: ['Revisor', 'Administrator'], } },
 
    { path: 'cargaDocFinal', component: CargaDocumentoFinalComponent, canActivate: [AuthGuardService], data: { role: 'Estudiante' } },   

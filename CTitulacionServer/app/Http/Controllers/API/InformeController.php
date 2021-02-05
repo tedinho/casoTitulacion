@@ -46,12 +46,6 @@ class InformeController extends BaseController
 
             if ($validacionInforme == true) {
 
-                $fecha = new FechaConfiguracione();
-                $fecha->fecha = date('Y-m-d', strtotime("+8 days"));
-                $fecha->aceptacionInforme = $validacionInforme;
-                $fecha->user_id = $request['id'];
-                $fecha->save();
-
                 $informe = new Informe();
                 $informe->titulo = $request['titulo'];
                 $informe->cuerpo = $request['cuerpo'];
@@ -64,16 +58,11 @@ class InformeController extends BaseController
 
                 return response()->json([
                     "success" => true,
-                    "message" => "Guardado el informe de forma correcta y se a asignado una fecha de entrega del proyecto",
+                    "message" => "Guardado el informe de forma correcta.",
                     "validacion" => $validacionInforme
                 ]);
             }
             if ($validacionInforme == false) {
-
-                $fecha = new FechaConfiguracione();
-                $fecha->user_id = $request['id'];
-                $fecha->aceptacionInforme = $validacionInforme;
-                $fecha->save();
 
                 $informe = new Informe();
                 $informe->titulo = $request['titulo'];

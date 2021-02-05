@@ -5,7 +5,9 @@ import { API_URL } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DirectorService {
+export class DirectorService {  
+
+  mail = localStorage.getItem('email');
 
   constructor(private http: HttpClient) { }
 
@@ -22,4 +24,17 @@ export class DirectorService {
   getInformeEstudiante(userId: number) {
     return this.http.get(`${API_URL}informe/${userId}`);
   }
+
+  getDirectorXEstudiante() {
+    return this.http.get(`${API_URL}directoresM/${this.mail}`);
+  }
+
+  getEstudiantes(student_id: number){
+    return this.http.get(`${API_URL}directoresS/${student_id}`);
+  }
+  
+  getDocumetoEstudiante(student_id: number){
+    return this.http.get(`${API_URL}documentoFEstudiante/${student_id}`);
+  }
+
 }

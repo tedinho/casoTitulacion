@@ -42,8 +42,10 @@ Route::get('getUserM/{id}', [ArchivosController::class, 'getUserByM']);
 
 Route::get('directores/{id}', [DirectoresController::class, 'fusionDirectorEstudiante']);
 Route::get('informeEstudiante/{id}', [DirectoresController::class, 'getInformeByStudent']);
+Route::get('documentoFEstudiante/{id}', [DirectoresController::class, 'obtenerProyectoxEstudiante']);
 Route::post('directores', [DirectoresController::class, 'informeDirector']);
-
+Route::get('directoresM/{email}', [DirectoresController::class, 'obtenerEstudiantesEmail']);
+Route::get('directoresS/{id}', [DirectoresController::class, 'obtenerEstudiantesxDirector']);
 
 
 Route::post('informe', [InformeController::class, 'store']);
@@ -54,6 +56,7 @@ Route::get('informemail/{email}', [InformeController::class, 'obtenerInformeEmai
 Route::get('getStudents', [InformeController::class, 'obtenerEstudiantes']);
 Route::get('obtEstudia/{email}', [RevisorController::class, 'obtenerEstudiantesId']);
 
+Route::get('fecha', [FechaConfiguracioneController::class, 'index']);
 Route::post('fecha/{id}', [FechaConfiguracioneController::class, 'store']);
 Route::get('fecha/{id}', [FechaConfiguracioneController::class, 'show']);
 Route::post('nota/{id}', [ArchivosController::class, 'nota']);

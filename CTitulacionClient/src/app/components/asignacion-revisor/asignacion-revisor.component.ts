@@ -13,6 +13,7 @@ export class AsignacionRevisorComponent {
 
   estudiantes: any;
   revisores: any;
+  fechaId: Array<any> = [];
 
   alu: Array<any> = [];
 
@@ -20,20 +21,32 @@ export class AsignacionRevisorComponent {
 
   constructor(private revisor: GestionProyectoService) {
     this.revisor.obtenerRevisores().subscribe((respRxE) => {
-      this.revisorEstudianteArr = respRxE;     
-      console.log(respRxE);  
+      this.revisorEstudianteArr = respRxE;           
       this.revisorEstudianteArr.forEach((elemntos) => {
         this.revisor.fusion(elemntos['student_id'])
           .subscribe((re) => {
-            this.alu.push(re);   
-            console.log(re);
+            this.alu.push(re);               
           });               
       });
     });
 
-    this.revisor.getEstudiante().subscribe((respEst) => {
-      this.estudiantes = respEst['users'];
-    });
+    // this.revisor.getEstudiante().subscribe((respEst) => {
+    //   this.estudiantes = respEst['users'];      
+    // });
+
+    this.revisor.getFechas()
+      .subscribe(res =>{
+        let i;
+        for(i in res){
+          this.fechaId.push(res[i]['user_id']);
+        }
+        this.fechaId.forEach(element =>{
+          this.revisor.obtenerEstudiantesInformes(element)
+            .subscribe(reS =>{
+              this.estudiantes = [reS];
+            });
+        });        
+      });
 
     this.revisor.getRevisor().subscribe((respRev) => {
       this.revisores = respRev['users'];

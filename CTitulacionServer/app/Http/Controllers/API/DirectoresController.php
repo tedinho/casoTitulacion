@@ -22,6 +22,30 @@ class DirectoresController extends Controller
         
     }
 
+    public function obtenerProyectoxEstudiante($id)
+    {        
+        $documento = Evidencia::where('user_id', $id)->first();
+
+        if($documento)
+        {
+            return response()->json([                
+                $documento
+            ]);
+        }
+        if(!$documento)
+        {
+            $docu = new Evidencia();
+            $docu->id = "";
+            $docu->nombre_archivo = "";
+            $docu->ruta_archivo = "No se a subido ningun archivo";
+            $docu->nota_archivo = "";
+            $docu->user_id = $id;
+
+            return [$docu];
+        }
+        
+    }
+
     public function fusionDirectorEstudiante($id)
     {
         $director = Directore::where('student_id', $id)->first();
@@ -65,7 +89,20 @@ class DirectoresController extends Controller
             $informe->user_id = $request['user_id'];
             $informe->save();
 
+            $documento = Evidencia::where('user_id', $request['user_id'])->first();                     
+            if($documento)
+            {
+                $documento->nota_archivo = $request['calificacion_proyecto'];
+                $documento->save(); 
+            }
+
             $user = User::where('email', $request['director_email'])->first();
+
+            $fecha = new FechaConfiguracione();
+            $fecha->fecha = date('Y-m-d', strtotime("+16 days"));
+            $fecha->aceptacionInforme = true;
+            $fecha->user_id = $request['user_id'];
+            $fecha->save();
 
             $file = $request->file->store('public/documents');
 
@@ -83,11 +120,11 @@ class DirectoresController extends Controller
 
             return response()->json([
                 "success" => true,                
-                "message" => "Guardado informe de forma correcta"
+                "message" => "Guardado informe y calificación de forma correcta"
             ]);
 
         }
-        if ($validacionInforme == false) {
+        if ($validacionInforme != true) {
 
             $informe = new Informe();
             $informe->tipo_informe = "INFORME FINAL DE DIRECCIÓN DE TITULACIÓN";
@@ -100,7 +137,19 @@ class DirectoresController extends Controller
             $informe->user_id = $request['user_id'];
             $informe->save();
 
+            $documento = Evidencia::where('user_id', $request['user_id'])->first();
+            if($documento)
+            {
+                $documento->nota_archivo = "0";
+                $documento->save();      
+            }
+
             $user = User::where('email', $request['director_email'])->first();
+
+            $fecha = new FechaConfiguracione();            
+            $fecha->aceptacionInforme = false;
+            $fecha->user_id = $request['user_id'];
+            $fecha->save();
 
             $file = $request->file->store('public/documents');
 
@@ -122,6 +171,22 @@ class DirectoresController extends Controller
             ]);
         }
         
+    }
+
+    public function obtenerEstudiantesEmail($email)
+    {
+        $director = User::where('email', 'd1@mail.com')->first();
+
+        $directororPivot = Directore::where('director_id', $director['id'])->get();
+
+        return $directororPivot;
+    }
+
+    public function obtenerEstudiantesxDirector($id)
+    {
+        $datosEstudiante = User::where('id', $id)->get();
+
+        return $datosEstudiante;
     }
 
     public function getInformeByStudent($id)

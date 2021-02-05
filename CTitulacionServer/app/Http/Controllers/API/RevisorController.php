@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\FechaConfiguracione;
 use App\Models\Revisore;
 use App\Models\Role;
 use App\Models\User;
@@ -18,7 +19,7 @@ class RevisorController extends Controller
      */
     public function index()
     {
-        $revisor = Revisore::get();
+        $revisor = Revisore::get();        
 
         return $revisor;
     }
@@ -84,11 +85,18 @@ class RevisorController extends Controller
     }
 
     public function ObtenerEstudiantes()
-    {
+    {        
         $estudiante = Role::with('users')->where('name', 'student')->first();
 
         return $estudiante;
     }
+    public function ObtenerFechasEstudiantes($id)
+    {        
+        $fechas = FechaConfiguracione::where('user_id', $id)->get();
+
+        return $fechas;
+    }
+
     public function ObtenerRevisores()
     {
         $revisor = Role::with('users')->where('name', 'Revisor')->first();

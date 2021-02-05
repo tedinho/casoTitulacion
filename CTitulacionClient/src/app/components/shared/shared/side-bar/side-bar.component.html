@@ -62,6 +62,12 @@
                             <p style="    margin-left: 10px;"> Cronograma</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/revisor']" routerLinkActive="active" class="nav-link">
+                            <i class="nav-icon fas fa-user-shield"></i>
+                            <p style="    margin-left: 10px;"> Revisor</p>
+                        </a>
+                    </li>
                 </div>
                 <div *ngIf="isEstudiante()">
                     <li class="nav-item">

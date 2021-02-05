@@ -15,7 +15,9 @@ class FechaConfiguracioneController extends Controller
      */
     public function index()
     {
-        //
+        $fecha = FechaConfiguracione::where([['fecha', '>=', date('Y-m-d')]])->get();
+
+        return $fecha;
     }
 
     /**

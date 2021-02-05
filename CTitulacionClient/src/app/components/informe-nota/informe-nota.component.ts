@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { DirectorService } from 'src/app/Services/director.service';
 
 declare var Swal: any;
@@ -11,6 +12,22 @@ declare var Swal: any;
 export class InformeNotaComponent {
 
   correo = localStorage['email'];
+  documentos: Array<any> = [];
+
+  constructor(private directoreService: DirectorService, 
+        private activatedRoute: ActivatedRoute) {
+
+      let param = this.activatedRoute.snapshot.params["id"];
+
+      this.directoreService.getDocumetoEstudiante(param)
+        .subscribe(resp => {
+          let i;
+          for(i in resp)
+          {
+            this.documentos.push(resp[i]);
+          }          
+        });
+    }
 
   informeNotaForm = new FormGroup({
     titulo: new FormControl(''),
@@ -20,11 +37,9 @@ export class InformeNotaComponent {
     observacion: new FormControl(''),
     calificacion_proyecto: new FormControl(''),
     director_email: new FormControl(this.correo),
-    user_id: new FormControl('2'),
+    user_id: new FormControl(''),
   });
-
-  constructor(private directoreService: DirectorService) {  }
-
+  
   onFileSelect(event)
   {
     if (event.target.files.length > 0) {
@@ -43,7 +58,7 @@ export class InformeNotaComponent {
     formData.append('titulo', this.informeNotaForm.get('titulo').value);
     formData.append('calificacion_proyecto', this.informeNotaForm.get('calificacion_proyecto').value);
     formData.append('director_email', this.informeNotaForm.get('director_email').value);
-    formData.append('user_id', this.informeNotaForm.get('user_id').value);
+    formData.append('user_id', this.documentos[0]['user_id']);
     const documentos = this.informeNotaForm.value;
     formData.append('nombre_archivo', documentos['arch']['name']);
     
@@ -66,5 +81,6 @@ export class InformeNotaComponent {
       });
 
   }
+    
 
 }

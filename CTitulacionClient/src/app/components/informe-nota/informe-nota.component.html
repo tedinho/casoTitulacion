@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Informe del Director</h1>
+                <h1 class="m-0">Informe del director</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                    <li class="breadcrumb-item active">Informe del Director</li>
+                    <li class="breadcrumb-item active">Informe del director</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,7 +24,7 @@
     <div class="col-md-12">
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Registro de Informe del Director</h3>
+                <h3 class="card-title">Registro de informe del director</h3>
             </div>
             <form [formGroup]="informeNotaForm" (ngSubmit)="registrarInforme()">
 
@@ -38,8 +38,8 @@
                             <label class="form-check-label" for="validacion"> Informe favorable</label>
                         </div>
                         <div class="form-group">
-                            <label for="titulo">Tema de trabajo de titulacion</label>
-                            <input type="text" class="form-control" id="titulo" placeholder="Título del tema de titulacion" formControlName="titulo">
+                            <label for="titulo">Tema de trabajo de titulación</label>
+                            <input type="text" class="form-control" id="titulo" placeholder="Título del tema de titulación" formControlName="titulo">
                         </div>
                         <div class="form-group">
                             <label for="cuerpo">Asunto del informe</label>
@@ -50,10 +50,31 @@
                             <label for="observaciones">Observaciones</label>
                             <textarea name="observaciones" cols="30" rows="10" class="form-control"
                                 formControlName="observacion"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="calificacion_proyecto">Calificación de proyecto</label>
-                            <input type="number" class="form-control" placeholder="Calificación de proyecto" formControlName="calificacion_proyecto">
+                        </div>                        
+                        <div *ngFor="let documento of documentos">                            
+                            <div class="card-body">                                
+                                <div *ngIf="documento.id != ''">
+                                    <a href="http://localhost:8000/{{ documento.url }}" target="_blank">
+                                        <i class="far fa-fw fa-file-pdf"></i>
+                                        {{ documento.nombre_archivo }}                                        
+                                    </a>
+                                </div>
+                                <div *ngIf="documento.id == ''">
+                                    
+                                        <i class="far fa-fw fa-file-pdf"></i>
+                                        {{ documento.ruta_archivo }}                                        
+                                    
+                                </div>
+                                
+                                
+                                <hr>
+                                <div *ngIf="documento.nota_archivo == null">
+                                    <div class="form-group">
+                                        <label for="calificacion_proyecto">Calificación de proyecto</label>
+                                        <input type="number" class="form-control" placeholder="Calificación de proyecto" formControlName="calificacion_proyecto">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="carga_hojas_tutorias">Subir hoja de tutorias</label>

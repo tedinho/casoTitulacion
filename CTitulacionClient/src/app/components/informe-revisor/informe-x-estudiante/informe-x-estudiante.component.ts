@@ -18,13 +18,13 @@ export class InformeXEstudianteComponent {
 
     this.directorService.getInformeEstudiante(parame)
       .subscribe(resp => {
-        this.informeData = resp['Informe'];        
+        this.informeData = resp['Informe'];  
+        console.log(this.informeData);      
       });
     
     this.directorService.obtenerHojaTutorias(parame)
       .subscribe(resp =>{
         this.hojaRuta = resp;
-        console.log(this.hojaRuta);
       });
 
   }
