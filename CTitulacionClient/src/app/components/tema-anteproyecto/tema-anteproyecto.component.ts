@@ -113,8 +113,9 @@ export class TemaAnteproyectoComponent implements OnInit {
     document.getElementById("loading-imagen").style.display = "block";
     const formData = new FormData();
     console.log('hola');
+    const documentes = this.formTemaAnteproyecto.get('cargarDocumento').value;
     let valor = this.formTemaAnteproyecto.get('cargarDocumento').get('arch').value;
-    if (valor != null && valor.length > 0) {
+    if (documentes['arch']['name'] != null) {
       formData.append('file', this.formTemaAnteproyecto.get('cargarDocumento').get('arch').value);
       formData.append('tipo_archivo', this.formTemaAnteproyecto.get('cargarDocumento').get('tipo_archivo').value);
       formData.append('email', this.formTemaAnteproyecto.get('cargarDocumento').get('email').value);
