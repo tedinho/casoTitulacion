@@ -5,6 +5,6 @@ export class Anteproyecto {
   fecha_fin: Date;
   evidencia_id: number;
   observacion: string;
-  tema_ante_proyecto_id: number;
+  tema_anteproyecto_id: number;
   revisor_id: number;
 }

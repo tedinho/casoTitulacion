@@ -92,7 +92,7 @@ export class AprobacionTemasAnteproyectoComponent implements OnInit {
           let antePro = new Anteproyecto();
           antePro.fecha_inicio = this.formularioNuevo.get('fecha_inicio').value;
           antePro.fecha_fin = this.formularioNuevo.get('fecha_fin').value;
-          antePro.tema_ante_proyecto_id = this.tema.id;
+          antePro.tema_anteproyecto_id = this.tema.id;
           antePro.estado = 'C';
           this.antePoryectoServicio
             .guardarAnteproyecto(antePro)

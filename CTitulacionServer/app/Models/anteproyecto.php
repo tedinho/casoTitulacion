@@ -9,7 +9,7 @@ class anteproyecto extends Model
 {
     protected $table = 'anteproyectos';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'estado', 'fecha_inicio', 'fecha_fin', 'observacion', 'tema_ante_proyecto_id', 'evidencia_id', 'revisor_id'];
+    protected $fillable = ['id', 'estado', 'fecha_inicio', 'fecha_fin', 'observacion', 'tema_anteproyecto_id', 'evidencia_id', 'revisor_id'];
     public $timestamps = false;
 
     public function evidencia()

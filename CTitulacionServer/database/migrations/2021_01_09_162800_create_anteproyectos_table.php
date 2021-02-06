@@ -19,8 +19,8 @@ class CreateAnteproyectosTable extends Migration
             $table->date('fecha_inicio')->nullable(true);
             $table->date('fecha_fin')->nullable(true);
             $table->string('observacion')->nullable(true);
-            $table->bigInteger('tema_ante_proyecto_id')->unsigned();
-            $table->foreign('tema_ante_proyecto_id')
+            $table->bigInteger('tema_anteproyecto_id')->unsigned();
+            $table->foreign('tema_anteproyecto_id')
                 ->references('id')
                 ->on('tema_anteproyectos')
                 ->onDelete('cascade');
@@ -34,7 +34,6 @@ class CreateAnteproyectosTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-
         });
     }
 

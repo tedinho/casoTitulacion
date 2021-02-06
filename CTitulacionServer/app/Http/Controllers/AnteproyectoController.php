@@ -10,6 +10,7 @@ use App\Models\anteproyecto;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Revisore;
+use App\Models\solicitud;
 use Illuminate\Http\Request;
 
 class AnteproyectoController extends Controller
@@ -37,15 +38,17 @@ class AnteproyectoController extends Controller
     public function buscarAnteproyectoPorIdCarrera($idCarrera)
     {
         $antepro =  anteproyecto::whereHas('TemaAnteproyecto', function ($q) use ($idCarrera) {
-            $q->whereHas('estudiante_carrera', function ($s) use ($idCarrera) {
-                $s->where('carrera_id', $idCarrera);
+            $q->whereHas('solicitud', function ($s) use ($idCarrera) {
+                $s->whereHas('estudiante_carrera', function ($ec) use ($idCarrera) {
+                    $ec->where('carrera_id', $idCarrera);
+                });
             });
         })->get();
         for ($i = 0; $i < count($antepro); $i++) {
             $a = $antepro[$i];
             $a->evidencia;
-            $tema = $a->TemaAnteproyecto;
-            $estuca = $tema->estudiante_carrera;
+            $tema = $a->temaAnteproyecto;
+            $estuca = $tema->solicitud->estudiante_carrera;
             $estuca->estudiante;
         }
         return $antepro;
@@ -137,14 +140,15 @@ class AnteproyectoController extends Controller
         }
         if ($request->estado == 'E') {
             $tema = TemaAnteproyecto::find($request->tema_ante_proyecto_id);
-            $estuCa = estudiante_carrera::find($tema->estudiante_carrera_id);
+            $soli = solicitud::find($tema->solicitud_id);
+            $estuCa = estudiante_carrera::find($soli->estudiante_carrera_id);
             $estudiante = User::find($estuCa->estudiante_id);
             $carrera = carrera::find($estuCa->carrera_id);
             $usuarioJunta = User::find($carrera->id_usuario_junta);
             $to_name = $usuarioJunta->name;
             $to_email = $usuarioJunta->email;
             $data = array("estudiante" => $estudiante->name, "usuarioJunta" => $usuarioJunta->name);
-            $antepro = anteproyecto::where('id', '=', $ante->id)->get();
+            $antepro = anteproyecto::where('id', '=', $id)->get();
             for ($i = 0; $i < count($antepro); $i++) {
                 $antepro[$i]->evidencia;
             }

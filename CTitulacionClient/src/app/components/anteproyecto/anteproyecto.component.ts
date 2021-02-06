@@ -7,6 +7,7 @@ import { EstudianteCarreraService } from 'src/app/Services/estudiante-carrera.se
 import { TemaAnteproyectoService } from 'src/app/Services/tema-anteproyecto.service';
 import { GestionProyectoService } from 'src/app/Services/gestion-proyecto.service';
 import { AnteproyectoService } from 'src/app/Services/anteproyecto.service';
+import { SolicitudService } from 'src/app/Services/solicitud.service';
 
 @Component({
   selector: 'app-anteproyecto',
@@ -29,11 +30,13 @@ export class AnteproyectoComponent implements OnInit {
     })
   });
 
+
   mensajeAntepro: string;
 
-  constructor(private AnteproyectoServicio: AnteproyectoService, private temaAnteproyectoServicio: TemaAnteproyectoService, private estudianteCarreraServicio: EstudianteCarreraService, private archivos:GestionProyectoService) { }
+  constructor(private AnteproyectoServicio: AnteproyectoService, private temaAnteproyectoServicio: TemaAnteproyectoService, private estudianteCarreraServicio: EstudianteCarreraService, private archivos: GestionProyectoService, private solicitudServicio: SolicitudService, private EstudianteCarreraServicio: EstudianteCarreraService) { }
 
   ngOnInit(): void {
+    this.getAnteproyecto();
   }
 
   onFileSelect(event) {
@@ -43,19 +46,34 @@ export class AnteproyectoComponent implements OnInit {
     }
   }
 
-  /* getAnteproyecto() {
-    this.estudianteCarreraServicio
-    .buscarEstudianteCarreraPorIdEstudiante(+localStorage.getItem('id'))
-    .subscribe(
-      (estudiantes: any) => {
-        if (estudiantes && estudiantes.length > 0) {
-          this.estudianteCarrera = estudiantes[0];
-          this.temaAnteproyectoServicio
-          .buscarTemasPorAprobarPorIdCarrera
+  getAnteproyecto() {
+    this.EstudianteCarreraServicio
+      .buscarEstudianteCarreraPorIdEstudiante(+localStorage.getItem('id'))
+      .subscribe(
+        estuCa => {
+          this.solicitudServicio
+            .buscarSolicitudPorIdEstudianteCarrera(estuCa[0].id)
+            .subscribe(
+              solicitud => {
+                this.temaAnteproyectoServicio
+                  .buscarTemaAnteproyectoPorIdSolicitud(solicitud[0].id)
+                  .subscribe(
+                    tema => {
+                      this.temaAnteproyecto = tema[0];
+                      this.AnteproyectoServicio
+                        .buscarAnteproyectoPorIdTema(tema[0].id)
+                        .subscribe(
+                          ante => {
+                            this.anteproyecto = ante[0];
+                          }
+                        );
+                    }
+                  );
+              }
+            );
         }
-      }
-    )
-  } */
+      );
+  }
 
   guardarAnteproyecto() {
     const formData = new FormData();
@@ -71,29 +89,17 @@ export class AnteproyectoComponent implements OnInit {
         this.formAnteproyecto.get('cargarDocumento').reset();
         let stringJson = JSON.stringify(respu);
         let stringObject = JSON.parse(stringJson);
-        this.formAnteproyecto.get('evidencia_id').setValue(stringObject.id);
-        this.formAnteproyecto.removeControl('cargarDocumento');
-        if (this.anteproyecto == null || this.anteproyecto.id == null) {
-          this.formAnteproyecto.get('estado').setValue('E');
-          this.AnteproyectoServicio
-          .guardarAnteproyecto(this.formAnteproyecto.value)
+        this.anteproyecto.evidencia_id = stringObject.id;
+        this.anteproyecto.estado = 'E';
+        let ante: any = this.anteproyecto;
+        delete ante.evidencia;
+        this.AnteproyectoServicio.actualizarAnteproyecto(ante, this.anteproyecto.id)
           .subscribe(
             antepro => {
-              console.log(antepro);
-              this.anteproyecto = antepro[0] as Anteproyecto;
+              this.anteproyecto = antepro as Anteproyecto;
               this.mensajeAntepro = "Se ha enviado correctamente el documento";
             }
           );
-        } else {
-          this.formAnteproyecto.get('estado').setValue('E');
-          this.AnteproyectoServicio.actualizarAnteproyecto(this.formAnteproyecto.value, this.anteproyecto.id)
-            .subscribe(
-              antepro => {
-                this.anteproyecto = antepro as Anteproyecto;
-                this.mensajeAntepro = "Se ha enviado correctamente el documento";
-              }
-            );
-        }
       })
   }
 

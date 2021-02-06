@@ -15,7 +15,7 @@ export class AprobacionAnteproyectoComponent implements OnInit {
 
   constructor(private anteproyectoServicio: AnteproyectoService, private docenteCarreraServicio: DocenteCarreraService) {
     this.anteproyectoServicio.obtenerRevisores().subscribe((respRev) => {
-      this.revisores = respRev['users'];
+      console.log('');
     })
   }
 
@@ -35,10 +35,10 @@ export class AprobacionAnteproyectoComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // this.getAntepro();
+    this.getAntepro();
   }
 
-/*   getAntepro() {
+  getAntepro() {
     this.docenteCarreraServicio
       .buscarDocentesCarreraPorIdDocente(+localStorage.getItem('id'))
       .subscribe(
@@ -51,7 +51,7 @@ export class AprobacionAnteproyectoComponent implements OnInit {
             });
         }
       );
-  } */
+  }
 
   abrirPopRechazar(anteproyecto) {
     this.anteproyecto = anteproyecto;
